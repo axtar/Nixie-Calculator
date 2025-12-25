@@ -1,5 +1,5 @@
 dependencies:
   espressif/arduino-esp32:
     pre_release: false
-    version: ^3.3.2
-  esp32async/espasyncwebserver: ^3.8.1
+    version: ^3.3.3
+  esp32async/espasyncwebserver: ^3.9.3

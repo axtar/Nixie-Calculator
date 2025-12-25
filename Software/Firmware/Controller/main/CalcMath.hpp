@@ -532,7 +532,6 @@ public:
     }
     destroyrat(p);
     destroyrat(q);
-    roundCalculation(px, radix, precision);
     return (result);
   }
 
@@ -556,22 +555,6 @@ public:
     default:
       break;
     }
-  }
-
-  // round the calculation to avoid strange result for some special cases
-  // e.g. log(tan(45)) or sqrt(2.25) - 1.5
-  static void roundCalculation(PRAT *px, uint32_t radix, int32_t precision)
-  {
-    PNUMBER n = RatToNumber(*px, radix, precision + 2);
-    if (!zernum(n) && (n->cdigit > precision + EXTRA_PRECISION) && (abs(n->exp) > (precision + EXTRA_PRECISION)) && (abs(n->cdigit + n->exp) < precision) && (n->exp < 0))
-    {
-      roundnum(&n, radix, precision + EXTRA_PRECISION, 0);
-      cutdigits(&n, precision + EXTRA_PRECISION);
-      PRAT p = numtorat(n, radix);
-      DUPRAT(*px, p);
-      destroyrat(p);
-    }
-    destroynum(n);
   }
 
   // generate a random number
