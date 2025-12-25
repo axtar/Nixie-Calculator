@@ -145,6 +145,10 @@ extern PRAT rat_min_i32;
   DUPNUM((a)->pp, (b)->pp); \
   DUPNUM((a)->pq, (b)->pq);
 
+// ABSRAT returns the absolute value of the rational
+#define ABSRAT(x) (((x)->pp->sign = 1), ((x)->pq->sign = 1))
+
+
 // LOG*RADIX calculates the integral portion of the log of a number in
 // the base currently being used, only accurate to within g_ratio
 
@@ -270,7 +274,7 @@ extern PRAT rat_min_i32;
 // pret += thisterm
 #define NEXTTERM(p, d, precision)  \
   mulrat(&thisterm, p, precision); \
-  d addrat(&pret, thisterm, precision)
+  d _addrat(&pret, thisterm, precision)
 
 //-----------------------------------------------------------------------------
 //
@@ -385,6 +389,7 @@ extern void log10rat(PRAT *px, int32_t precision);
 
 // returns a new rat structure with the natural log of x->p/x->q
 extern void lograt(PRAT *px, int32_t precision);
+extern void _lograt(PRAT* px, int32_t precision);
 
 extern PRAT i32torat(int32_t ini32);
 extern PRAT Ui32torat(uint32_t inui32);
@@ -410,6 +415,7 @@ extern void _destroynum(PNUMBER pnum);
 extern void _destroyrat(PRAT prat);
 extern void addnum(PNUMBER *pa, PNUMBER b, uint32_t radix);
 extern void addrat(PRAT *pa, PRAT b, int32_t precision);
+extern void _addrat(PRAT* pa, PRAT b, int32_t precision);
 extern void andrat(PRAT *pa, PRAT b, uint32_t radix, int32_t precision);
 extern void divnum(PNUMBER *pa, PNUMBER b, uint32_t radix, int32_t precision);
 extern void divnumx(PNUMBER *pa, PNUMBER b, int32_t precision);
@@ -435,6 +441,7 @@ extern void rootrat(PRAT *pa, PRAT b, uint32_t radix, int32_t precision);
 extern void scale2pi(PRAT *px, uint32_t radix, int32_t precision);
 extern void scale(PRAT *px, PRAT scalefact, uint32_t radix, int32_t precision);
 extern void subrat(PRAT *pa, PRAT b, int32_t precision);
+extern void _subrat(PRAT* pa, PRAT b, int32_t precision);
 extern void xorrat(PRAT *pa, PRAT b, uint32_t radix, int32_t precision);
 extern void lshrat(PRAT *pa, PRAT b, uint32_t radix, int32_t precision);
 extern void rshrat(PRAT *pa, PRAT b, uint32_t radix, int32_t precision);
@@ -449,8 +456,10 @@ extern void trimit(PRAT *px, int32_t precision);
 extern void _dumprawrat(const char *varname, PRAT rat, std::ostream &out);
 extern void _dumprawnum(const char *varname, PNUMBER num, std::ostream &out);
 
+// if |pr| is magnitude smaller than |a| or |b| beyond precision, snap pr to 0
+extern void _snaprat(PRAT* pr, PRAT a, PRAT b, int32_t precision);
+
 // added functions
 extern std::string RatToScientificString(PRAT &prat, uint32_t radix, int32_t precision);
 extern std::string NumberToScientificString(PNUMBER &pnum, uint32_t radix, int32_t precision);
-extern void roundnum(PNUMBER *pnum, uint32_t radix, int32_t precision, int32_t count);
-extern void cutdigits(PNUMBER *pnum, int32_t precision);
+

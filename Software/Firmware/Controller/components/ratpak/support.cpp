@@ -198,18 +198,18 @@ void ChangeConstants(uint32_t radix, int32_t precision)
 
     DUPRAT(rat_qword, rat_two);
     numpowi32(&(rat_qword->pp), 64, BASEX, precision);
-    subrat(&rat_qword, rat_one, precision);
+    _subrat(&rat_qword, rat_one, precision);
     DUMPRAWRAT(rat_qword);
 
     DUPRAT(rat_dword, rat_two);
     numpowi32(&(rat_dword->pp), 32, BASEX, precision);
-    subrat(&rat_dword, rat_one, precision);
+    _subrat(&rat_dword, rat_one, precision);
     DUMPRAWRAT(rat_dword);
 
     DUPRAT(rat_max_i32, rat_two);
     numpowi32(&(rat_max_i32->pp), 31, BASEX, precision);
     DUPRAT(rat_min_i32, rat_max_i32);
-    subrat(&rat_max_i32, rat_one, precision); // rat_max_i32 = 2^31 -1
+    _subrat(&rat_max_i32, rat_one, precision); // rat_max_i32 = 2^31 -1
     DUMPRAWRAT(rat_max_i32);
 
     rat_min_i32->pp->sign *= -1; // rat_min_i32 = -2^31
@@ -232,13 +232,13 @@ void ChangeConstants(uint32_t radix, int32_t precision)
     DUPRAT(two_pi, pi);
     DUPRAT(pi_over_two, pi);
     DUPRAT(one_pt_five_pi, pi);
-    addrat(&two_pi, pi, extraPrecision);
+    _addrat(&two_pi, pi, extraPrecision);
     DUMPRAWRAT(two_pi);
 
     divrat(&pi_over_two, rat_two, extraPrecision);
     DUMPRAWRAT(pi_over_two);
 
-    addrat(&one_pt_five_pi, pi_over_two, extraPrecision);
+    _addrat(&one_pt_five_pi, pi_over_two, extraPrecision);
     DUMPRAWRAT(one_pt_five_pi);
 
     DUPRAT(e_to_one_half, rat_half);
@@ -249,14 +249,14 @@ void ChangeConstants(uint32_t radix, int32_t precision)
     _exprat(&rat_exp, extraPrecision);
     DUMPRAWRAT(rat_exp);
 
-    // WARNING: remember lograt uses exponent constants calculated above...
+    // WARNING: remember _lograt uses exponent constants calculated above...
 
     DUPRAT(ln_ten, rat_ten);
-    lograt(&ln_ten, extraPrecision);
+    _lograt(&ln_ten, extraPrecision);
     DUMPRAWRAT(ln_ten);
 
     DUPRAT(ln_two, rat_two);
-    lograt(&ln_two, extraPrecision);
+    _lograt(&ln_two, extraPrecision);
     DUMPRAWRAT(ln_two);
 
     destroyrat(rad_to_deg);
@@ -310,7 +310,7 @@ void intrat(PRAT *px, uint32_t radix, int32_t precision)
       flatrat(pret, radix, precision);
     }
 
-    subrat(px, pret, precision);
+    _subrat(px, pret, precision);
     destroyrat(pret);
 
     // Simplify the value if possible to resolve rounding errors
@@ -335,7 +335,7 @@ bool rat_equ(PRAT a, PRAT b, int32_t precision)
   PRAT rattmp = nullptr;
   DUPRAT(rattmp, a);
   rattmp->pp->sign *= -1;
-  addrat(&rattmp, b, precision);
+  _addrat(&rattmp, b, precision);
   bool bret = zernum(rattmp->pp);
   destroyrat(rattmp);
   return (bret);
@@ -358,7 +358,7 @@ bool rat_ge(PRAT a, PRAT b, int32_t precision)
   PRAT rattmp = nullptr;
   DUPRAT(rattmp, a);
   b->pp->sign *= -1;
-  addrat(&rattmp, b, precision);
+  _addrat(&rattmp, b, precision);
   b->pp->sign *= -1;
   bool bret = (zernum(rattmp->pp) || SIGN(rattmp) == 1);
   destroyrat(rattmp);
@@ -382,7 +382,7 @@ bool rat_gt(PRAT a, PRAT b, int32_t precision)
   PRAT rattmp = nullptr;
   DUPRAT(rattmp, a);
   b->pp->sign *= -1;
-  addrat(&rattmp, b, precision);
+  _addrat(&rattmp, b, precision);
   b->pp->sign *= -1;
   bool bret = (!zernum(rattmp->pp) && SIGN(rattmp) == 1);
   destroyrat(rattmp);
@@ -406,7 +406,7 @@ bool rat_le(PRAT a, PRAT b, int32_t precision)
   PRAT rattmp = nullptr;
   DUPRAT(rattmp, a);
   b->pp->sign *= -1;
-  addrat(&rattmp, b, precision);
+  _addrat(&rattmp, b, precision);
   b->pp->sign *= -1;
   bool bret = (zernum(rattmp->pp) || SIGN(rattmp) == -1);
   destroyrat(rattmp);
@@ -430,7 +430,7 @@ bool rat_lt(PRAT a, PRAT b, int32_t precision)
   PRAT rattmp = nullptr;
   DUPRAT(rattmp, a);
   b->pp->sign *= -1;
-  addrat(&rattmp, b, precision);
+  _addrat(&rattmp, b, precision);
   b->pp->sign *= -1;
   bool bret = (!zernum(rattmp->pp) && SIGN(rattmp) == -1);
   destroyrat(rattmp);
@@ -454,7 +454,7 @@ bool rat_neq(PRAT a, PRAT b, int32_t precision)
   PRAT rattmp = nullptr;
   DUPRAT(rattmp, a);
   rattmp->pp->sign *= -1;
-  addrat(&rattmp, b, precision);
+  _addrat(&rattmp, b, precision);
   bool bret = !(zernum(rattmp->pp));
   destroyrat(rattmp);
   return (bret);
@@ -488,7 +488,7 @@ void scale(PRAT *px, PRAT scalefact, uint32_t radix, int32_t precision)
   intrat(&pret, radix, precision);
   mulrat(&pret, scalefact, precision);
   pret->pp->sign *= -1;
-  addrat(px, pret, precision);
+  _addrat(px, pret, precision);
 
   destroyrat(pret);
 }
@@ -531,7 +531,7 @@ void scale2pi(PRAT *px, uint32_t radix, int32_t precision)
   intrat(&pret, radix, precision);
   mulrat(&pret, my_two_pi, precision);
   pret->pp->sign *= -1;
-  addrat(px, pret, precision);
+  _addrat(px, pret, precision);
 
   destroyrat(my_two_pi);
   destroyrat(pret);
