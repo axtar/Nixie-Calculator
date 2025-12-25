@@ -5,7 +5,7 @@ Date:    December 26, 2025<br/>
 ESP-IDF: v5.5.1<br/>
 Arduino: v3.3.3
 #### Changes
-- added a better fix for the √(2.25) - 1.5 rounding issue that was recently merged into the orignal ratpak code 
+- added a fix for the √(2.25) - 1.5 rounding issue that was recently merged into the original ratpak code 
 - removed my fix for this issue 
 ---
 ### Version: 0.1.1
