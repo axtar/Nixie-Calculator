@@ -27,6 +27,3 @@ constexpr uint8_t MEM_REGISTER_NONE = 255;
 
 // radix
 constexpr uint32_t RAT_RADIX = 10;
-
-// extra precision for rounding
-constexpr int32_t EXTRA_PRECISION = 5;
