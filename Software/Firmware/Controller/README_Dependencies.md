@@ -3,13 +3,14 @@ The Controller firmware depends on libraries that are not available in the ESP-I
 
 **Adafruit_NeoPixel Library** <br/>
 Download from: https://github.com/adafruit/Adafruit_NeoPixel<br/>
-Version: 1.15.1<br/>
+Version: 1.15.2<br/>
 Copy the following files to components/Adrafruit_Neopixel:
 - Adafruit_NeoPixel.cpp
 - Adafruit_NeoPixel.h
 - Adafruit_Neopixel_RP2.cpp
 - esp.c
 - esp8266.c
+- psoc6.c
 - rp2040_pio.h
 
 **DS18B20 Library** <br/>
@@ -48,7 +49,7 @@ Copy the following files to components/Time:
 
 **Timezone library** <br/>
 Download from https://github.com/JChristensen/Timezone<br/>
-Version: 1.2.5<br/>
+Version: 1.2.6<br/>
 Copy the following files to components/Timezone:
 - Timezone.h"
 - Timezone.cpp"
