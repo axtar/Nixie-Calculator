@@ -19,7 +19,7 @@
 // display_type::b5870 -> B5870 nixie display
 // display_type::led   -> 7-segment LED display
 // -------------------------------------------------------------------------------
-constexpr auto DISPLAY_TYPE = display_type::in17;
+constexpr auto DISPLAY_TYPE = display_type::undefined;
 
 // -------------------------------------------------------------------------------
 // WebSocket server support
@@ -35,7 +35,7 @@ constexpr auto DISPLAY_TYPE = display_type::in17;
 // CALC_TYPE_ALG -> algebraic
 // CALC_TYPE_RPN -> reverse polish notation
 // -------------------------------------------------------------------------------
-#define CALC_TYPE CALC_TYPE_RPN
+#define CALC_TYPE CALC_TYPE_UNDEFINED
 
 // -------------------------------------------------------------------------------
 // Calculator access point SSID and password
@@ -62,3 +62,4 @@ static_assert(DISPLAY_TYPE == display_type::in12a ||
 #if WEBSOCKET_SUPPORT != 0 && WEBSOCKET_SUPPORT != 1
 #error "WEBSOCKET_SUPPORT configuration incorrect"
 #endif
+
