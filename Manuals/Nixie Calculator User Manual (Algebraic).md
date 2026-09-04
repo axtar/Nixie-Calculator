@@ -1,8 +1,8 @@
 # Nixie Calculator User Manual (Algebraic Version)
 
-*Draft - Version 0.9 — September 4, 2026*
+*Draft (generated from pdf) - Version 0.9 — September 4, 2026*
 
-![Nixie Calculator](images/nixie_calculator_algebraic_cover.png)
+![Nixie Calculator](/images/nixie_calculator_algebraic_cover.png)
 
 ## Contents
 
