@@ -1,8 +1,8 @@
 # Nixie Calculator User Manual (RPN Version)
 
-*Draft - Version 0.9 — September 4, 2026*
+*Draft (generated from pdf) - Version 0.9 — September 4, 2026*
 
-![Nixie Calculator](images/nixie_calculator_cover.png)
+![Nixie Calculator](../Images/nixie_calculator_rpn_cover.png)
 
 ## Contents
 
