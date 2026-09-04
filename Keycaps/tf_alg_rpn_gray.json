@@ -1,0 +1,5391 @@
+{
+  "version": 19,
+  "customLayout": false,
+  "name": "My Custom Keycaps",
+  "preset": "50% OLKB #1",
+  "standard": "ANSI",
+  "language": "English (US)",
+  "profile": "Cherry",
+  "color": "#000000",
+  "palette": [
+    "#9f9f9f",
+    "#f8f8f8",
+    "#404040",
+    "#e8e8e8",
+    "#ffffff",
+    "#000000",
+    "#00ffff",
+    "#ffff1b"
+  ],
+  "fonts": [],
+  "tags": [],
+  "rows": [
+    {
+      "id": 0,
+      "y": 4,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "ESC",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F2",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F3",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F4",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 9,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F5",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 10,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F6",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 11,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F7",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 12,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F8",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 13,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F9",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 14,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F10",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 15,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F11",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 16,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F12",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 17,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "PrtSc",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 18,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "ScrLk",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 19,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Pause",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 20,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Del",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 21,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Insert",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 22,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Home",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 23,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "End",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 24,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "PgUp",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 25,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "PgDn",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 26,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 27,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 28,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 29,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "y": 4,
+      "hidden": false,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Num\nLock",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "/",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "*",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "-",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "EXP",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "29"
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "x",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 20,
+              "top": -17,
+              "size": 90,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "y",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "x²",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "02"
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "sin",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "-1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "h",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "03"
+        },
+        {
+          "id": 9,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 175,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "±",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "04"
+        },
+        {
+          "id": 10,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -20,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "\n√",
+              "font": "Kosugi",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "05"
+        },
+        {
+          "id": 11,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "%",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "06"
+        },
+        {
+          "id": 29,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 30,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 12,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "÷",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "07"
+        },
+        {
+          "id": 13,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "X↔Y",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "lstx",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            }
+          ],
+          "hidden": false,
+          "scancode": "08"
+        },
+        {
+          "id": 14,
+          "width": 1,
+          "height": 1,
+          "color": "#ffffff",
+          "image": "",
+          "legends": [],
+          "hidden": false,
+          "scancode": "09"
+        },
+        {
+          "id": 15,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "MC",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "0A"
+        },
+        {
+          "id": 16,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false,
+          "scancode": "0B"
+        },
+        {
+          "id": 17,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "-",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "_",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "0C"
+        },
+        {
+          "id": 18,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "=",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "+",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "0D"
+        },
+        {
+          "id": 19,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 20,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false
+        },
+        {
+          "id": 21,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Insert",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 22,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Home",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 23,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "PgUp",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 24,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Del",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 25,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Num\nLock",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 26,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "/",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 27,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "*",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 28,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "-",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "y": 3,
+      "hidden": false,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "7",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "8",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "9",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "+",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 175,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "⇐",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "clx",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 1,
+              "content": "x³",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            },
+            {
+              "type": "Text",
+              "left": 8,
+              "top": -5,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "√",
+              "font": "Kosugi",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": -2,
+              "top": -30,
+              "size": 90,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 3,
+              "content": "y",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 20,
+              "top": 0,
+              "size": 90,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 4,
+              "content": "x",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "10"
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "cos",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "-1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "h",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "11"
+        },
+        {
+          "id": 9,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "7",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "12"
+        },
+        {
+          "id": 10,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "8",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "13"
+        },
+        {
+          "id": 11,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "9",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "14"
+        },
+        {
+          "id": 30,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 31,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 12,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "×",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "15"
+        },
+        {
+          "id": 13,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "R↓",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "R↑",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            }
+          ],
+          "hidden": false,
+          "scancode": "16"
+        },
+        {
+          "id": 14,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "C",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "17"
+        },
+        {
+          "id": 15,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "MR",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "18"
+        },
+        {
+          "id": 16,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false,
+          "scancode": "19"
+        },
+        {
+          "id": 17,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 18,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "[",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "{",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "1A"
+        },
+        {
+          "id": 19,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "]",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "}",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "1B"
+        },
+        {
+          "id": 20,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false,
+          "scancode": "2B"
+        },
+        {
+          "id": 21,
+          "width": 1.5,
+          "height": 2,
+          "special": "iso-enter",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 20,
+              "top": 0,
+              "size": 175,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-arrow-turn-down-left",
+              "font": "fa-regular fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 22,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Del",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 23,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "End",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 24,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "PgDn",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 25,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "Home",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 26,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "7",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 27,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "8",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 28,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "9",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 29,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "+",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "y": 2,
+      "hidden": false,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "4",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "special": "hom",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "5",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "6",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "CLS",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "1/x",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "n!",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": -14,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "e",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -17,
+              "size": 90,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 4,
+              "content": "x",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "1E"
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "tan",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "-1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "h",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "1F"
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "4",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "20"
+        },
+        {
+          "id": 9,
+          "width": 1,
+          "height": 1,
+          "special": "hom",
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "5",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "21"
+        },
+        {
+          "id": 10,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "6",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "22"
+        },
+        {
+          "id": 25,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 26,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 11,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "−",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "23"
+        },
+        {
+          "id": 12,
+          "width": 1,
+          "height": 1,
+          "special": "hom",
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "CLR",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "24"
+        },
+        {
+          "id": 13,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "AC",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "25"
+        },
+        {
+          "id": 14,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "MS",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "26"
+        },
+        {
+          "id": 15,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "5",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "27"
+        },
+        {
+          "id": 16,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "'",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "\"",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "28"
+        },
+        {
+          "id": 17,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 18,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 19,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "\\",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "|",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "2B"
+        },
+        {
+          "id": 20,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "CLR",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 21,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "End",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 22,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "4",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 23,
+          "width": 1,
+          "height": 1,
+          "special": "hom",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "5",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 24,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "6",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "y": 1,
+      "hidden": false,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "2",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "3",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 0,
+              "top": 0,
+              "size": 175,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-arrow-turn-down-left",
+              "font": "fa-regular fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 1,
+          "color": "#000000",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 175,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "⇑",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "\\",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": -25,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "|",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "56"
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "ln",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "e",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "mod",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "2C"
+        },
+        {
+          "id": 9,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "log",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "π",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "rnd",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "2D"
+        },
+        {
+          "id": 10,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "2E"
+        },
+        {
+          "id": 11,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "2",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "2F"
+        },
+        {
+          "id": 12,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "3",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false,
+          "scancode": "30"
+        },
+        {
+          "id": 27,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 28,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 29,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 30,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 13,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "B",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true,
+          "scancode": "30"
+        },
+        {
+          "id": 14,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "+",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            }
+          ],
+          "hidden": false,
+          "scancode": "31"
+        },
+        {
+          "id": 15,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "STO",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "menu↑",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#9f9f9f"
+            }
+          ],
+          "hidden": false,
+          "scancode": "32"
+        },
+        {
+          "id": 16,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false,
+          "scancode": "33"
+        },
+        {
+          "id": 17,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "M+",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "menu↑",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#9f9f9f"
+            }
+          ],
+          "hidden": false,
+          "scancode": "34"
+        },
+        {
+          "id": 18,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false,
+          "scancode": "35"
+        },
+        {
+          "id": 19,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": false
+        },
+        {
+          "id": 20,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "FN",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 21,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-chevron-up",
+              "font": "fa-solid fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 22,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 23,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "1",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 24,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "2",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 25,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "3",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 26,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 0,
+              "top": 0,
+              "size": 175,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-arrow-turn-down-left",
+              "font": "fa-regular fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "y": 1,
+      "hidden": false,
+      "keys": [
+        {
+          "id": 0,
+          "width": 2,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "0",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": ".",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#000000",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "F",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "log",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 37,
+              "top": 12,
+              "size": 90,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 2,
+              "content": "y",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "int",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 4,
+              "content": "py,x",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "d↔r",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "start",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "cy,x",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffff1b"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 3,
+              "content": "Δ%",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#00ffff"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "0",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "00",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 9,
+          "width": 1,
+          "height": 1,
+          "color": "#e8e8e8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "ꞏ",
+              "font": "Noto Sans",
+              "bold": false,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 10,
+          "width": 1,
+          "height": 1,
+          "color": "#f8f8f8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "ENT",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 11,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "RCL",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "menu↓",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#9f9f9f"
+            }
+          ],
+          "hidden": false,
+          "scancode": "E038"
+        },
+        {
+          "id": 12,
+          "width": 1,
+          "height": 1,
+          "color": "#f8f8f8",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "=",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 13,
+          "width": 1.25,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 110,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "MENU",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 14,
+          "width": 1,
+          "height": 1,
+          "color": "#404040",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "M-",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#ffffff"
+            },
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 100,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "end",
+              "horizontal": "end",
+              "layer": 2,
+              "content": "menu↓",
+              "font": "Noto Sans Math",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#9f9f9f"
+            }
+          ],
+          "hidden": false
+        },
+        {
+          "id": 15,
+          "width": 1,
+          "height": 1,
+          "color": "#6baade",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "ENT",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#f8f8f8"
+            }
+          ],
+          "hidden": false,
+          "warnings": {}
+        },
+        {
+          "id": 16,
+          "width": 1,
+          "height": 1,
+          "color": "#6baade",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 200,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "=",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#f8f8f8"
+            }
+          ],
+          "hidden": false,
+          "warnings": {}
+        },
+        {
+          "id": 17,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-chevron-left",
+              "font": "fa-solid fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 18,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-chevron-down",
+              "font": "fa-solid fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 19,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Icon",
+              "left": 0,
+              "top": 0,
+              "size": 150,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "fa-chevron-right",
+              "font": "fa-solid fa-sharp",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 20,
+          "width": 2,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": "0",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        },
+        {
+          "id": 21,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [
+            {
+              "type": "Text",
+              "left": 0,
+              "top": 0,
+              "size": 125,
+              "opacity": 100,
+              "rotation": 0,
+              "vertical": "center",
+              "horizontal": "center",
+              "layer": 1,
+              "content": ".",
+              "font": "Noto Sans",
+              "bold": true,
+              "italic": false,
+              "underline": false,
+              "textAlign": "center",
+              "color": "#000000"
+            }
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "y": 4,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 5,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 2,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1.5,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "y": 3,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1.75,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 7,
+          "width": 1.5,
+          "height": 2,
+          "special": "iso-enter",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "y": 2,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1.25,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 7,
+          "width": 1.5,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "y": 1,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 0,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1.25,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 7,
+          "width": 1.25,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 8,
+          "width": 1.5,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 9,
+          "width": 1.5,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 10,
+          "width": 1.5,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 11,
+          "width": 1.5,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 12,
+          "width": 1.75,
+          "height": 1,
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "y": 1,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 0,
+          "width": 7,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 3,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 3,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 2.75,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 2.25,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 2,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 2,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "y": 1,
+      "hidden": true,
+      "keys": [
+        {
+          "id": 0,
+          "width": 6,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 1,
+          "width": 1.75,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 2,
+          "width": 1.75,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 3,
+          "width": 1.5,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "width": 1.5,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 5,
+          "width": 1.25,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 6,
+          "width": 1.25,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 7,
+          "width": 1,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        },
+        {
+          "id": 8,
+          "width": 1,
+          "height": 1,
+          "special": "sp",
+          "color": "#FFFFFF",
+          "image": "",
+          "legends": [],
+          "hidden": true
+        }
+      ]
+    }
+  ]
+}

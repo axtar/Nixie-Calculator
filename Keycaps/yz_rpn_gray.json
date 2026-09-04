@@ -1,0 +1,2019 @@
+{
+  "keycapProfileId": "cherry",
+  "printType": "dyesub",
+  "keyboard": "customlayout",
+  "language": "german",
+  "name": null,
+  "author": null,
+  "mods": [],
+  "extensions": [],
+  "layers": [],
+  "layoutKeys": [
+    {
+      "id": "3NAUZZ",
+      "x": 0,
+      "y": -0.25,
+      "labelId": "tab",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "H4S4Q2",
+      "x": 1,
+      "y": -0.25,
+      "labelId": "Q",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "JQRKV2",
+      "x": 2,
+      "y": -0.25,
+      "labelId": "W",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "WHS5GG",
+      "x": 3,
+      "y": -0.25,
+      "labelId": "E",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "MLJ82E",
+      "x": 4,
+      "y": -0.25,
+      "labelId": "R",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "5HFLUY",
+      "x": 5,
+      "y": -0.25,
+      "labelId": "T",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "GA2YCP",
+      "x": 6,
+      "y": -0.25,
+      "labelId": "Y",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "7CMWLC",
+      "x": 7,
+      "y": -0.25,
+      "labelId": "U",
+      "sizeId": "1u",
+      "rowNumber": 2
+    },
+    {
+      "id": "FQ8M2E",
+      "x": 0,
+      "y": 0.75,
+      "labelId": "esc",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "J6M29K",
+      "x": 1,
+      "y": 0.75,
+      "labelId": "A",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "DDXEW9",
+      "x": 2,
+      "y": 0.75,
+      "labelId": "S",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "GDZGEG",
+      "x": 3,
+      "y": 0.75,
+      "labelId": "D",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "6J458R",
+      "x": 5,
+      "y": 0.75,
+      "labelId": "G",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "EYW44E",
+      "x": 6,
+      "y": 0.75,
+      "labelId": "H",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "3ZKQRW",
+      "x": 0,
+      "y": 1.75,
+      "labelId": "shift",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "TDDMRE",
+      "x": 1,
+      "y": 1.75,
+      "labelId": "Z",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "EH6FYD",
+      "x": 2,
+      "y": 1.75,
+      "labelId": "X",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "FEN58G",
+      "x": 3,
+      "y": 1.75,
+      "labelId": "C",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "G6FDLY",
+      "x": 4,
+      "y": 1.75,
+      "labelId": "V",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "TNGXMP",
+      "x": 5,
+      "y": 1.75,
+      "labelId": "B",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "HP4HXW",
+      "x": 6,
+      "y": 1.75,
+      "labelId": "N",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "52NFWW",
+      "x": 7,
+      "y": 1.75,
+      "labelId": "M",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "2TFA38",
+      "x": 0,
+      "y": 2.75,
+      "labelId": "mod",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "CR4Z49",
+      "x": 1,
+      "y": 2.75,
+      "labelId": "ctrl",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "74R86P",
+      "x": 2,
+      "y": 2.75,
+      "labelId": "alt",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "NE69UD",
+      "x": 3,
+      "y": 2.75,
+      "labelId": "super",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "X8VXFU",
+      "x": 4,
+      "y": 2.75,
+      "labelId": "space",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "4H3BFV",
+      "x": 7,
+      "y": 2.75,
+      "labelId": "space",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "HQ4K2V",
+      "x": 5,
+      "y": 2.75,
+      "labelId": "space",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "6RZLU9",
+      "x": 6,
+      "y": 2.75,
+      "labelId": "space",
+      "sizeId": "1u",
+      "rowNumber": 4
+    },
+    {
+      "id": "EGAND3",
+      "x": 0,
+      "y": -1.25,
+      "labelId": "tilde",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "V3J2Z3",
+      "x": 1,
+      "y": -1.25,
+      "labelId": "1",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "HJJYQV",
+      "x": 2,
+      "y": -1.25,
+      "labelId": "2",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "QSZQEN",
+      "x": 3,
+      "y": -1.25,
+      "labelId": "3",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "J6PKFG",
+      "x": 4,
+      "y": -1.25,
+      "labelId": "4",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "6R8MPS",
+      "x": 5,
+      "y": -1.25,
+      "labelId": "5",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "SZJREM",
+      "x": 6,
+      "y": -1.25,
+      "labelId": "6",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "BSZE4B",
+      "x": 7,
+      "y": -1.25,
+      "labelId": "7",
+      "sizeId": "1u",
+      "rowNumber": 1
+    },
+    {
+      "id": "F55WH8",
+      "x": 4,
+      "y": 0.75,
+      "labelId": "space",
+      "sizeId": "1u",
+      "rowNumber": 3
+    },
+    {
+      "id": "9RCACA",
+      "x": 7,
+      "y": 0.75,
+      "labelId": "space",
+      "sizeId": "1u",
+      "rowNumber": 3
+    }
+  ],
+  "keys": {
+    "3NAUZZ": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 6,
+          "textLabel": "",
+          "textFontId": 20221
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "clx",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "vectDef": "M530 248C542 261 546 280 538 296L457 458L1056 458C1079 458 1098 476 1098 499C1098 522 1079 540 1056 540L457 540L538 702C546 718 543 737 531 749C518 762 499 765 483 757L38 535C24 528 15 513 15 497C15 481 24 466 38 459L483 236C499 228 519 231 532 244Z",
+          "vectScale": 30,
+          "vectViewbox": "0 0 1111 1000",
+          "vectId": 1197,
+          "vectCollectionId": "323694ae-d835-48a6-bcce-cd89106894d2",
+          "y": -1.9
+        }
+      ]
+    },
+    "H4S4Q2": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "√",
+          "textFontId": 20221
+        },
+        {
+          "y": 3.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR002",
+          "textSize": 3.5,
+          "textLabel": "y",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 9
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "x³",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "textFontId": 20221,
+          "textSize": 3.5,
+          "textLabel": "x",
+          "x": 1.3,
+          "y": -1.8
+        }
+      ]
+    },
+    "JQRKV2": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "cos",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "-1",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.4
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "h",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.4,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "WHS5GG": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "7",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "MLJ82E": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "8",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "5HFLUY": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "9",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "GA2YCP": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 10,
+          "textLabel": "×",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "7CMWLC": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": -0.2,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "R",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "R",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 13.2
+        },
+        {
+          "y": -14.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 2.5,
+          "textLabel": "",
+          "textFontId": 20221,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "textFontId": 20221,
+          "textSize": 4,
+          "textLabel": "",
+          "y": -2,
+          "x": 2
+        },
+        {
+          "colorId": "GR002",
+          "vectDef": "M224 523C235 512 253 509 268 516L414 589L414 50C414 29 431 12 452 12C473 12 490 29 490 49L490 588L635 515C650 508 668 511 680 522C691 534 694 551 687 565L487 965C480 977 467 985 453 985C439 985 426 977 420 964L220 564C212 549 215 531 227 519Z",
+          "vectScale": 20,
+          "vectViewbox": "0 0 900 1000",
+          "vectId": 1198,
+          "vectCollectionId": "323694ae-d835-48a6-bcce-cd89106894d2",
+          "x": 2.4,
+          "y": -2.1
+        },
+        {
+          "colorId": "YW013",
+          "vectScale": 14,
+          "vectId": 1194,
+          "vectCollectionId": "323694ae-d835-48a6-bcce-cd89106894d2",
+          "vectDef": "M677 476C665 488 648 491 634 483L489 410L489 950C489 970 472 987 452 987C432 987 415 970 415 949L415 409L269 482C255 490 238 487 227 475C215 464 212 446 220 431L420 31C426 18 439 10 453 10C467 10 480 18 487 30L687 430C694 444 691 461 680 472Z",
+          "vectViewbox": "0 0 900 1000",
+          "x": 4.6,
+          "y": -5.8
+        }
+      ]
+    },
+    "FQ8M2E": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "CLS",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "J6M29K": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "1/x",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "n!",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "e",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 13.3,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "BL011",
+          "textFontId": 26,
+          "textSize": 3.5,
+          "textLabel": "x",
+          "x": 4.5,
+          "y": 1
+        }
+      ]
+    },
+    "DDXEW9": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "tan",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "-1",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.4
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "h",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.4,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "GDZGEG": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "4",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "6J458R": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "6",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "EYW44E": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 10,
+          "textLabel": "-",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "3ZKQRW": {
+      "colorId": "GR001",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "yzyM",
+          "colorId": "YW013",
+          "textSize": 6,
+          "textLabel": "",
+          "textFontId": 25
+        },
+        {
+          "colorId": "YW013",
+          "vectDef": "M677 476C665 488 648 491 634 483L489 410L489 950C489 970 472 987 452 987C432 987 415 970 415 949L415 409L269 482C255 490 238 487 227 475C215 464 212 446 220 431L420 31C426 18 439 10 453 10C467 10 480 18 487 30L687 430C694 444 691 461 680 472Z",
+          "vectScale": 30,
+          "vectViewbox": "0 0 900 1000",
+          "vectId": 1194,
+          "vectCollectionId": "323694ae-d835-48a6-bcce-cd89106894d2",
+          "y": -1.9
+        }
+      ]
+    },
+    "TDDMRE": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "ln",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "e",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "mod",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "EH6FYD": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "log",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "π",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "rnd",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "FEN58G": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "1",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "G6FDLY": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "2",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "TNGXMP": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "3",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "HP4HXW": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 7,
+          "textLabel": "+",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "52NFWW": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "STO",
+          "textFontId": 26
+        },
+        {
+          "y": 10.299999999999999,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR020",
+          "textSize": 3.5,
+          "textLabel": "menu",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 13.3
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR020",
+          "textSize": 2.5,
+          "textLabel": "",
+          "textFontId": 20221,
+          "lockY": "bottom",
+          "x": 14.7,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR020",
+          "vectDef": "M677 476C665 488 648 491 634 483L489 410L489 950C489 970 472 987 452 987C432 987 415 970 415 949L415 409L269 482C255 490 238 487 227 475C215 464 212 446 220 431L420 31C426 18 439 10 453 10C467 10 480 18 487 30L687 430C694 444 691 461 680 472Z",
+          "vectScale": 14,
+          "vectViewbox": "0 0 900 1000",
+          "vectId": 1194,
+          "vectCollectionId": "323694ae-d835-48a6-bcce-cd89106894d2",
+          "x": 4.7,
+          "y": 2.6
+        }
+      ]
+    },
+    "2TFA38": {
+      "colorId": "GR001",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "yzyM",
+          "colorId": "BL011",
+          "textSize": 6,
+          "textLabel": "F",
+          "textFontId": 26
+        }
+      ]
+    },
+    "CR4Z49": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "log",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "py,x",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "int",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "textFontId": 26,
+          "textSize": 3.5,
+          "textLabel": "y",
+          "x": 4.2,
+          "y": -0.3
+        }
+      ]
+    },
+    "74R86P": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0.4,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 4,
+          "textLabel": "⇔",
+          "textFontId": 20221
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "cy,x",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "Δ%",
+          "textFontId": 20221,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "textFontId": 26,
+          "textSize": 5,
+          "textLabel": "d",
+          "x": -3.4,
+          "y": -1.9
+        },
+        {
+          "colorId": "GR002",
+          "textFontId": 26,
+          "textSize": 5,
+          "textLabel": "r",
+          "y": -1.9,
+          "x": 3.9
+        }
+      ]
+    },
+    "NE69UD": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "yzyM",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "0",
+          "textFontId": 26
+        }
+      ]
+    },
+    "X8VXFU": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "00",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "4H3BFV": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "RCL",
+          "textFontId": 26
+        },
+        {
+          "y": 10.299999999999999,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR020",
+          "textSize": 3.5,
+          "textLabel": "menu",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 13.3
+        },
+        {
+          "y": -4.8,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR020",
+          "textSize": 2.5,
+          "textLabel": "",
+          "textFontId": 20221,
+          "lockY": "bottom",
+          "x": 14.9,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "vectDef": "",
+          "vectScale": 30
+        },
+        {
+          "colorId": "GR020",
+          "vectScale": 14,
+          "vectDef": "M224 523C235 512 253 509 268 516L414 589L414 50C414 29 431 12 452 12C473 12 490 29 490 49L490 588L635 515C650 508 668 511 680 522C691 534 694 551 687 565L487 965C480 977 467 985 453 985C439 985 426 977 420 964L220 564C212 549 215 531 227 519Z",
+          "vectViewbox": "0 0 900 1000",
+          "vectId": 1198,
+          "vectCollectionId": "323694ae-d835-48a6-bcce-cd89106894d2",
+          "x": 4.7,
+          "y": 2.6
+        }
+      ]
+    },
+    "HQ4K2V": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -2.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 7,
+          "textLabel": ".",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "6RZLU9": {
+      "colorId": "GR002",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "ENT",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "EGAND3": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "EXP",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "V3J2Z3": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "x",
+          "textFontId": 26
+        },
+        {
+          "y": 4.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR002",
+          "textSize": 3.5,
+          "textLabel": "y",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 12.5
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "x²",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "HJJYQV": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "sin",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "-1",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.4
+        },
+        {
+          "y": -4.9,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "h",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.4,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "QSZQEN": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 7,
+          "textLabel": "±",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "J6PKFG": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "√",
+          "textFontId": 20221
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "6R8MPS": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 6,
+          "textLabel": "%",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "SZJREM": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 8,
+          "textLabel": "÷",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "BSZE4B": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0.2,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 4,
+          "textLabel": "⇔",
+          "textFontId": 20221
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "lstx",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -8.7,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "X",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 7.8,
+          "alignX": "right",
+          "alignY": "bottom"
+        },
+        {
+          "colorId": "GR002",
+          "textFontId": 26,
+          "textSize": 5,
+          "textLabel": "Y",
+          "y": -1.6,
+          "x": 3.5
+        }
+      ]
+    },
+    "F55WH8": {
+      "colorId": "GR020",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR001",
+          "textSize": 5,
+          "textLabel": "5",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "GR001",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    },
+    "9RCACA": {
+      "colorId": "GR024",
+      "layers": [
+        {
+          "x": 0,
+          "y": -1.9,
+          "id": "uZbA",
+          "colorId": "GR002",
+          "textSize": 5,
+          "textLabel": "CLR",
+          "textFontId": 26
+        },
+        {
+          "y": 2.1,
+          "id": "CGCC",
+          "lockX": "left",
+          "colorId": "YW013",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "alignX": "right",
+          "alignY": "top",
+          "lockY": "top",
+          "x": 14.5
+        },
+        {
+          "y": -4.1,
+          "id": "TW2F",
+          "lockX": "left",
+          "colorId": "BL011",
+          "textSize": 3.5,
+          "textLabel": "",
+          "textFontId": 26,
+          "lockY": "bottom",
+          "x": 14.5,
+          "alignX": "right",
+          "alignY": "bottom"
+        }
+      ]
+    }
+  },
+  "keyTemplates": {
+    "3NAUZZ": "cPpy",
+    "H4S4Q2": "cPpy",
+    "JQRKV2": "cPpy",
+    "WHS5GG": "cPpy",
+    "MLJ82E": "cPpy",
+    "5HFLUY": "cPpy",
+    "GA2YCP": "cPpy",
+    "7CMWLC": "cPpy",
+    "FQ8M2E": "cPpy",
+    "J6M29K": "cPpy",
+    "DDXEW9": "cPpy",
+    "GDZGEG": "cPpy",
+    "6J458R": "cPpy",
+    "EYW44E": "cPpy",
+    "3ZKQRW": "eGIz",
+    "TDDMRE": "cPpy",
+    "EH6FYD": "cPpy",
+    "FEN58G": "cPpy",
+    "G6FDLY": "cPpy",
+    "TNGXMP": "cPpy",
+    "HP4HXW": "cPpy",
+    "52NFWW": "cPpy",
+    "2TFA38": "eGIz",
+    "CR4Z49": "cPpy",
+    "74R86P": "cPpy",
+    "NE69UD": "eGIz",
+    "X8VXFU": "cPpy",
+    "4H3BFV": "cPpy",
+    "HQ4K2V": "cPpy",
+    "6RZLU9": "cPpy",
+    "EGAND3": "cPpy",
+    "V3J2Z3": "cPpy",
+    "HJJYQV": "cPpy",
+    "QSZQEN": "cPpy",
+    "J6PKFG": "cPpy",
+    "6R8MPS": "cPpy",
+    "SZJREM": "cPpy",
+    "BSZE4B": "cPpy",
+    "F55WH8": "cPpy",
+    "9RCACA": "cPpy"
+  },
+  "designUrl": "cherry-default"
+}
