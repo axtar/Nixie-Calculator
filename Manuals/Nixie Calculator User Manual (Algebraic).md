@@ -2,8 +2,6 @@
 
 *Draft (generated from pdf) - Version 0.9 — September 4, 2026*
 
-![Nixie Calculator](../Images/nixie_calculator_algebraic_cover.png)
-
 ## Contents
 
 - [General information](#general-information)
