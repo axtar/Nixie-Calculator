@@ -286,7 +286,7 @@ If the calculator loses the time, please change the CR2032 battery.
 | `[F]` + `[M-]` | Display uptime in format `ddddd hh mm` | Clock |
 | `[F]` + `[MC]` | Reset all settings to default | Menu |
 | `[F]` + `[AC]` | Exit menu mode and discard changes | Menu |
-| `[F]` + `[C]` | Reset Wi-Fi access point password | Menu |
+| `[F]` + `[C]` | Reset SSID and passwords to default | Menu |
 
 `(*)` temporarily, changed settings are not committed
 
