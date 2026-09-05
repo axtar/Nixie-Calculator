@@ -1,6 +1,6 @@
 # Nixie Calculator User Manual (Algebraic Version)
 
-*Draft (generated from pdf) - Version 0.9 — September 4, 2026*
+*Draft (generated from pdf) - Version 0.10 — September 6, 2026*
 
 ## Contents
 
@@ -199,17 +199,16 @@ Hold the `[F]` key for 3 seconds to enter the menu mode. The setting ID (see [Se
 | 68 | precision | Calculator precision (restart needed) | 20 - 32 (default 32) |
 | 69 | calcinputdirec | Calculator input direction and output format | 0 = left to right (default)<br>1 = right to left<br>2 = right to left with zero padding |
 | 70 | inputblinking | Blinking behavior during time, timer and menu value input | 0 = off<br>1 = on (default) |
-| 71 | brightness | Display brightness: 15 disables PWM dimming on nixie displays ** | 1 - 15 (default 15) |
+| 71 | brightness | Display brightness: 15 disables PWM dimming on nixie displays | 1 - 15 (default 15) |
 | 72 | dimbrightness | Display brightness during the dimming period | 1 - 15 (default 1) |
 | 73 | dimstarttime | Start time of display dimming | 00:00 - 23:59 (default 00:00) |
 | 74 | dimduration | Duration in minutes of display dimming | 0 - 720 (default 0) |
-| 75 | apautostart | Enable the access point and the web server at startup *** | 0 = off (default)<br>1 = on |
+| 75 | apautostart | Enable the access point and the web server at startup ** | 0 = off (default)<br>1 = on |
 | 76 | rtcdriftcorr | RTC drift compensation in seconds per month | -60 - 60 (default 0) |
 | 77 | exttempcorr | External temperature sensor correction in 0.1 °C | -100 - 100 (default 0) |
 
-`(*)` not available for 7-segment LED version
-`(**)` not available for IN-12A and IN-12B versions
-`(***)` only available if `WEB_SUPPORT` is set to `true`
+`(*)` not available for 7-segment LED version<br>
+`(**)` only available if `WEB_SUPPORT` is set to `true`
 
 ## Web server
 
