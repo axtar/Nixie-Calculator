@@ -290,7 +290,7 @@ If the calculator loses the time, please change the CR2032 battery.
 | `[F]` + `[RCL]` | Display uptime in format `ddddd hh mm` | Clock |
 | `[F]` + `[CLR]` | Reset all settings to default | Menu |
 | `[F]` + `[CLS]` | Exit menu mode and discard changes | Menu |
-| `[F]` + `[←]` | Reset Wi-Fi access point password | Menu |
+| `[F]` + `[←]` | Reset SSID and passwords to default | Menu |
 
 `(*)` temporarily, changed settings are not committed
 
