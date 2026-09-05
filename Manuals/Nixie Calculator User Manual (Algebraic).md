@@ -17,7 +17,7 @@
   - [Stopwatch](#stopwatch)
 - [Menu mode](#menu-mode)
   - [Navigation](#navigation)
-  - [Menu table](#menu-table)
+  - [Settings table](#settings-table)
 - [Web server](#web-server)
 - [Peripherals module](#peripherals-module)
 - [Reset SSID and passwords](#reset-ssid-and-passwords)
@@ -108,7 +108,7 @@ The accuracy depends on the internal MCU oscillator.
 
 ## Menu mode
 
-Hold the `[F]` key for 3 seconds to enter the menu mode. The menu ID (see [Menu table](#menu-table)) is displayed on the left, the menu value(s) on the right. Key autorepeat is enabled in menu mode and starts after 1 second. The autorepeat speed increases after some time. Press the `[F]` key to leave the menu mode and store the values.
+Hold the `[F]` key for 3 seconds to enter the menu mode. The setting ID (see [Settings table](#settings-table)) is displayed on the left, the setting value(s) on the right. Key autorepeat is enabled in menu mode and starts after 1 second. The autorepeat speed increases after some time. Press the `[F]` key to leave the menu mode and store the values.
 
 ### Navigation
 
@@ -125,7 +125,7 @@ Hold the `[F]` key for 3 seconds to enter the menu mode. The menu ID (see [Menu 
 | `[F]` + `[AC]` | Exit menu mode and discard changes |
 | `[F]` | Exit menu mode and commit changes |
 
-### Menu table
+### Settings table
 
 | ID | Name | Description | Values |
 |----|------|-------------|--------|
