@@ -114,8 +114,8 @@ Hold the `[F]` key for 3 seconds to enter the menu mode. The setting ID (see [Se
 
 | Keys | Description |
 |------|-------------|
-| `[M+]` | Next menu |
-| `[M-]` | Previous menu |
+| `[M+]` | Next setting |
+| `[M-]` | Previous setting |
 | `[+]` | Next value |
 | `[-]` | Previous value |
 | `[=]` | Accept value and move to the next column if any |
