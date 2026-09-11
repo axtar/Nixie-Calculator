@@ -1,0 +1,8 @@
+dependencies:
+  espressif/arduino-esp32:
+    pre_release: false
+    version: ^3.3.11
+  esp32async/espasyncwebserver: ^3.12.0
+  espressif/led_strip: ^2.5.5
+  espressif/onewire_bus: ^1.1.0
+  espressif/ds18b20: ^0.4.0
