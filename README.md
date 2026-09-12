@@ -49,7 +49,7 @@ https://www.youtube.com/watch?v=CKAuJhKjPZ4
 #### RPN IN-16 version
 ![RPN17](Images/rpn_in16.jpg)
 
-#### RPN IN-17 version
+#### RPN IN-17 "Black Screw Edition" :grin: (sorry, inside joke)
 ![RPN17](Images/rpn_in17.jpg)
 
 #### RPN 7-seg LED version
