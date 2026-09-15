@@ -127,6 +127,41 @@ public:
     return (current - start < duration);
   }
 
+  // check if current time is within a [start, stop) time-of-day window, handling
+  // midnight wraparound (e.g. start=22:00, stop=06:00); start==stop means disabled
+  static bool isInTimeWindow(uint8_t startHour, uint8_t startMinute, uint8_t stopHour, uint8_t stopMinute, uint8_t currentHour, uint8_t currentMinute)
+  {
+    int start = timeToInt(startHour, startMinute);
+    int stop = timeToInt(stopHour, stopMinute);
+    int current = timeToInt(currentHour, currentMinute);
+
+    if (start == stop)
+    {
+      return (false);
+    }
+    if (stop < start)
+    {
+      stop += 1440; // window wraps past midnight
+    }
+    if (current < start)
+    {
+      current += 1440;
+    }
+    return (current < stop);
+  }
+
+  // check if a day (0=Sunday..6=Saturday, matching tm_wday) is set in a day-of-week bitmask
+  static bool isDaySelected(int mask, uint8_t day)
+  {
+    return (((mask >> day) & 1) != 0);
+  }
+
+  // toggle a day (0=Sunday..6=Saturday, matching tm_wday) in a day-of-week bitmask
+  static int toggleDay(int mask, uint8_t day)
+  {
+    return (mask ^ (1 << day));
+  }
+
   // convert a temperature from degrees Celsius to degrees Fahrenheit
   static float celsiusToFahrenheit(float celsius)
   {

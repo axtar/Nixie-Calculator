@@ -38,7 +38,7 @@ enum class cached_as
 {
   numeric, // plain int/int8_t and enum-typed fields
   ms,      // minutes-setting mirrored as milliseconds in the cache
-  time,    // time setting mirrored as STARTTIME field in the cache
+  time,    // time setting mirrored as SCHEDULETIME field in the cache
   rgb      // RGB setting mirrored as RGBCOLOR field in the cache
 };
 
@@ -74,6 +74,18 @@ public:
         setting_type::numeric, 5, 1, 720,
         syncToCache<&SettingsCache::autoOffDelay, cached_as::ms>, syncFromCache<&SettingsCache::autoOffDelay, cached_as::ms>);
 
+    _settings[setting_id::offstarttime] = new Setting(setting_id::offstarttime, "offstarttime",
+        setting_type::time, 0, 0, MAX_TIME_INT,
+        syncToCache<&SettingsCache::offStartTime, cached_as::time>, syncFromCache<&SettingsCache::offStartTime, cached_as::time>);
+
+    _settings[setting_id::offstoptime] = new Setting(setting_id::offstoptime, "offstoptime",
+        setting_type::time, 0, 0, MAX_TIME_INT,
+        syncToCache<&SettingsCache::offStopTime, cached_as::time>, syncFromCache<&SettingsCache::offStopTime, cached_as::time>);
+
+    _settings[setting_id::offdays] = new Setting(setting_id::offdays, "offdays",
+        setting_type::dayofweek, 0, 0, 127,
+        syncToCache<&SettingsCache::offDays>, syncFromCache<&SettingsCache::offDays>);
+
     _settings[setting_id::clockmode] = new Setting(setting_id::clockmode, "clockmode",
         setting_type::numeric, clock_mode::time, clock_mode::time, clock_mode::stopwatch,
         syncToCache<&SettingsCache::clockMode>, syncFromCache<&SettingsCache::clockMode>);
@@ -89,6 +101,10 @@ public:
     _settings[setting_id::timeseparator] = new Setting(setting_id::timeseparator, "timeseparator",
         setting_type::numeric, time_separator::blink, time_separator::off, time_separator::on,
         syncToCache<&SettingsCache::timeSeparator>, syncFromCache<&SettingsCache::timeSeparator>);
+
+    _settings[setting_id::digittransition] = new Setting(setting_id::digittransition, "digittransition",
+        setting_type::numeric, digit_transition::direct, digit_transition::direct, digit_transition::rolling,
+        syncToCache<&SettingsCache::digitTransition>, syncFromCache<&SettingsCache::digitTransition>);
 
     _settings[setting_id::dateformat] = new Setting(setting_id::dateformat, "dateformat",
         setting_type::numeric, date_format::ddmmyy, date_format::ddmmyy, date_format::yyddmm,
@@ -123,7 +139,7 @@ public:
         syncToCache<&SettingsCache::temperatureCF>, syncFromCache<&SettingsCache::temperatureCF>);
 
     _settings[setting_id::ledmode] = new Setting(setting_id::ledmode, "ledmode",
-        setting_type::numeric, led_mode::always, led_mode::time, led_mode::always,
+        setting_type::numeric, led_mode::always, led_mode::scheduled, led_mode::always,
         syncToCache<&SettingsCache::ledMode>, syncFromCache<&SettingsCache::ledMode>);
 
     _settings[setting_id::calcrgbmode] = new Setting(setting_id::calcrgbmode, "calcrgbmode",
@@ -134,6 +150,10 @@ public:
         setting_type::numeric, clock_rgb_mode::off, clock_rgb_mode::off, clock_rgb_mode::rainbow_all,
         syncToCache<&SettingsCache::clockRGBMode>, syncFromCache<&SettingsCache::clockRGBMode>);
 
+    _settings[setting_id::breathingmode] = new Setting(setting_id::breathingmode, "breathingmode",
+        setting_type::numeric, breathing_mode::off, breathing_mode::off, breathing_mode::on,
+        syncToCache<&SettingsCache::breathingMode>, syncFromCache<&SettingsCache::breathingMode>);
+
     _settings[setting_id::trigcolorchange] = new Setting(setting_id::trigcolorchange, "trigcolorchange",
         setting_type::numeric, trig_color_change::off, trig_color_change::off, trig_color_change::every_hour,
         syncToCache<&SettingsCache::trigColorChange>, syncFromCache<&SettingsCache::trigColorChange>);
@@ -142,17 +162,17 @@ public:
         setting_type::time, 0, 0, MAX_TIME_INT,
         syncToCache<&SettingsCache::ledStartTime, cached_as::time>, syncFromCache<&SettingsCache::ledStartTime, cached_as::time>);
 
-    _settings[setting_id::ledduration] = new Setting(setting_id::ledduration, "ledduration",
-        setting_type::numeric, 0, 0, 720,
-        syncToCache<&SettingsCache::ledDuration>, syncFromCache<&SettingsCache::ledDuration>);
+    _settings[setting_id::ledstoptime] = new Setting(setting_id::ledstoptime, "ledstoptime",
+        setting_type::time, 0, 0, MAX_TIME_INT,
+        syncToCache<&SettingsCache::ledStopTime, cached_as::time>, syncFromCache<&SettingsCache::ledStopTime, cached_as::time>);
 
     _settings[setting_id::ledstarttime2] = new Setting(setting_id::ledstarttime2, "ledstarttime2",
         setting_type::time, 0, 0, MAX_TIME_INT,
         syncToCache<&SettingsCache::ledStartTime2, cached_as::time>, syncFromCache<&SettingsCache::ledStartTime2, cached_as::time>);
 
-    _settings[setting_id::ledduration2] = new Setting(setting_id::ledduration2, "ledduration2",
-        setting_type::numeric, 0, 0, 720,
-        syncToCache<&SettingsCache::ledDuration2>, syncFromCache<&SettingsCache::ledDuration2>);
+    _settings[setting_id::ledstoptime2] = new Setting(setting_id::ledstoptime2, "ledstoptime2",
+        setting_type::time, 0, 0, MAX_TIME_INT,
+        syncToCache<&SettingsCache::ledStopTime2, cached_as::time>, syncFromCache<&SettingsCache::ledStopTime2, cached_as::time>);
 
     _settings[setting_id::acpstarttime] = new Setting(setting_id::acpstarttime, "acpstarttime",
         setting_type::time, 0, 0, MAX_TIME_INT,
@@ -330,6 +350,10 @@ public:
         setting_type::numeric, 32, 20, 32,
         syncToCache<&SettingsCache::calcPrecision>, syncFromCache<&SettingsCache::calcPrecision>);
 
+    _settings[setting_id::roundingmode] = new Setting(setting_id::roundingmode, "roundingmode",
+        setting_type::numeric, rounding_mode::five_four, rounding_mode::five_four, rounding_mode::cut,
+        syncToCache<&SettingsCache::roundingMode>, syncFromCache<&SettingsCache::roundingMode>);
+
     _settings[setting_id::calcinputdirec] = new Setting(setting_id::calcinputdirec, "calcinputdirec",
         setting_type::numeric, calc_input_direc::ltr, calc_input_direc::ltr, calc_input_direc::rtl_zero_padding,
         syncToCache<&SettingsCache::calcInputDirec>, syncFromCache<&SettingsCache::calcInputDirec>);
@@ -350,9 +374,9 @@ public:
         setting_type::time, 0, 0, MAX_TIME_INT,
         syncToCache<&SettingsCache::dimStartTime, cached_as::time>, syncFromCache<&SettingsCache::dimStartTime, cached_as::time>);
 
-    _settings[setting_id::dimduration] = new Setting(setting_id::dimduration, "dimduration",
-        setting_type::numeric, 0, 0, 720,
-        syncToCache<&SettingsCache::dimDuration>, syncFromCache<&SettingsCache::dimDuration>);
+    _settings[setting_id::dimstoptime] = new Setting(setting_id::dimstoptime, "dimstoptime",
+        setting_type::time, 0, 0, MAX_TIME_INT,
+        syncToCache<&SettingsCache::dimStopTime, cached_as::time>, syncFromCache<&SettingsCache::dimStopTime, cached_as::time>);
 
     _settings[setting_id::apautostart] = new Setting(setting_id::apautostart, "apautostart",
         setting_type::numeric, ap_auto_start::off, ap_auto_start::off, ap_auto_start::on,
@@ -365,14 +389,6 @@ public:
     _settings[setting_id::exttempcorr] = new Setting(setting_id::exttempcorr, "exttempcorr",
         setting_type::numeric, 0, -100, 100,
         syncToCache<&SettingsCache::extTempCorr>, syncFromCache<&SettingsCache::extTempCorr>);
-
-    _settings[setting_id::breathingmode] = new Setting(setting_id::breathingmode, "breathingmode",
-        setting_type::numeric, breathing_mode::off, breathing_mode::off, breathing_mode::on,
-        syncToCache<&SettingsCache::breathingMode>, syncFromCache<&SettingsCache::breathingMode>);
-
-    _settings[setting_id::roundingmode] = new Setting(setting_id::roundingmode, "roundingmode",
-        setting_type::numeric, rounding_mode::five_four, rounding_mode::five_four, rounding_mode::cut,
-        syncToCache<&SettingsCache::roundingMode>, syncFromCache<&SettingsCache::roundingMode>);
     // clang-format on
   }
 

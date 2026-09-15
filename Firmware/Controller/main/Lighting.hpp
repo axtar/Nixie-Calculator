@@ -299,10 +299,12 @@ private:
   bool isLighting(const struct tm *tm) const
   {
     return ((SettingsCache::ledMode == led_mode::led_mode::always) ||
-            (Helper::isInTimeRange(SettingsCache::ledStartTime.hour, SettingsCache::ledStartTime.minute,
-                                   tm->tm_hour, tm->tm_min, SettingsCache::ledDuration)) ||
-            (Helper::isInTimeRange(SettingsCache::ledStartTime2.hour, SettingsCache::ledStartTime2.minute,
-                                   tm->tm_hour, tm->tm_min, SettingsCache::ledDuration2)) ||
+            (Helper::isInTimeWindow(SettingsCache::ledStartTime.hour, SettingsCache::ledStartTime.minute,
+                                    SettingsCache::ledStopTime.hour, SettingsCache::ledStopTime.minute,
+                                    tm->tm_hour, tm->tm_min)) ||
+            (Helper::isInTimeWindow(SettingsCache::ledStartTime2.hour, SettingsCache::ledStartTime2.minute,
+                                    SettingsCache::ledStopTime2.hour, SettingsCache::ledStopTime2.minute,
+                                    tm->tm_hour, tm->tm_min)) ||
             _forcedByShortcut);
   }
 

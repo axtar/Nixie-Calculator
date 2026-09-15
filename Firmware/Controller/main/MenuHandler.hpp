@@ -54,6 +54,7 @@ public:
     formatDisplay(_it->second);
     _rgbPart = rgb_part::red;
     _timePart = time_part::hours;
+    _dayPart = 0;
   }
 
   // return the red value of the current setting
@@ -207,6 +208,7 @@ private:
   uint8_t _digitCount;
   rgb_part _rgbPart;
   time_part _timePart;
+  uint8_t _dayPart;
   uint8_t _red;
   uint8_t _green;
   uint8_t _blue;
@@ -226,117 +228,72 @@ private:
     switch (setting->getSettingType())
     {
     case setting_type::numeric:
-      if (blink && (setting->get() != setting->getTempValue()))
+      if (setting->getTempValue() < 0)
       {
-        if (setting->getTempValue() < 0)
-        {
-          sprintf(buffer, "-%02d%*s", setting->getId(), _digitCount - 2, " ");
-        }
-        else
-        {
-          sprintf(buffer, "%02d%*s", setting->getId(), _digitCount - 2, " ");
-        }
-        if (setting->getTempValue() < 0)
-        {
-          _display = "-";
-        }
-        else
-        {
-          _display.clear();
-        }
+        sprintf(buffer, "-%02d%*s%3d", setting->getId(), _digitCount - 5, " ", abs(setting->getTempValue()));
+        _display = "-";
       }
       else
       {
-        if (setting->getTempValue() < 0)
-        {
-          sprintf(buffer, "-%02d%*s%3d", setting->getId(), _digitCount - 5, " ", abs(setting->getTempValue()));
-        }
-        else
-        {
-
-          sprintf(buffer, "%02d%*s%3d", setting->getId(), _digitCount - 5, " ", setting->getTempValue());
-        }
-        if (setting->getTempValue() < 0)
-        {
-          _display = "-";
-        }
-        else
-        {
-          _display.clear();
-        }
+        sprintf(buffer, "%02d%*s%3d", setting->getId(), _digitCount - 5, " ", setting->getTempValue());
+        _display.clear();
       }
       _display += buffer;
       break;
 
     case setting_type::time:
       Helper::intToTime(setting->getTempValue(), &hours, &minutes);
-      if (blink && (setting->get() != setting->getTempValue()))
+      switch (_timePart)
       {
-        switch (_timePart)
-        {
-        case time_part::hours:
-          sprintf(buffer, "%02d%*s %02d", setting->getId(), _digitCount - 5, " ", minutes);
-          break;
+      case time_part::hours:
+        sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d%*s%02d. %02d" : "%02d%*s.%02d %02d", setting->getId(), _digitCount - 7, " ", hours, minutes);
+        break;
 
-        case time_part::minutes:
-          sprintf(buffer, "%02d%*s%02d %2s", setting->getId(), _digitCount - 7, " ", hours, " ");
-          break;
-        }
-      }
-      else
-      {
-        switch (_timePart)
-        {
-        case time_part::hours:
-          sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d%*s%02d. %02d" : "%02d%*s.%02d %02d", setting->getId(), _digitCount - 7, " ", hours, minutes);
-          break;
-
-        case time_part::minutes:
-          sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d%*s%02d %02d." : "%02d%*s%02d .%02d", setting->getId(), _digitCount - 7, " ", hours, minutes);
-          break;
-        }
+      case time_part::minutes:
+        sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d%*s%02d %02d." : "%02d%*s%02d .%02d", setting->getId(), _digitCount - 7, " ", hours, minutes);
+        break;
       }
       _display = buffer;
       break;
 
     case setting_type::rgb:
       Helper::intToRGB(setting->getTempValue(), &red, &green, &blue);
-      if (blink && (setting->get() != setting->getTempValue()))
+      switch (_rgbPart)
       {
-        switch (_rgbPart)
-        {
-        case rgb_part::red:
-          sprintf(buffer, "%02d %3s %03d %03d", setting->getId(), " ", green, blue);
-          break;
+      case rgb_part::red:
+        sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d %03d. %03d %03d" : "%02d .%03d %03d %03d", setting->getId(), red, green, blue);
+        break;
 
-        case rgb_part::green:
-          sprintf(buffer, "%02d %03d %3s %03d", setting->getId(), red, " ", blue);
-          break;
+      case rgb_part::green:
+        sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d %03d %03d. %03d" : "%02d %03d .%03d %03d", setting->getId(), red, green, blue);
+        break;
 
-        case rgb_part::blue:
-          sprintf(buffer, "%02d %03d %03d %3s", setting->getId(), red, green, " ");
-          break;
-        }
-      }
-      else
-      {
-        switch (_rgbPart)
-        {
-        case rgb_part::red:
-          sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d %03d. %03d %03d" : "%02d .%03d %03d %03d", setting->getId(), red, green, blue);
-          break;
-
-        case rgb_part::green:
-          sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d %03d %03d. %03d" : "%02d %03d .%03d %03d", setting->getId(), red, green, blue);
-          break;
-
-        case rgb_part::blue:
-          sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d %03d %03d %03d." : "%02d %03d %03d .%03d", setting->getId(), red, green, blue);
-          break;
-        }
+      case rgb_part::blue:
+        sprintf(buffer, _dsp == decimal_separator_position::right ? "%02d %03d %03d %03d." : "%02d %03d %03d .%03d", setting->getId(), red, green, blue);
+        break;
       }
       _display = buffer;
       break;
+
+    case setting_type::dayofweek:
+    {
+      // one digit per day (0=Sunday..6=Saturday); selected days blink, "." marks the +/- cursor
+      char days[9];
+      uint8_t pos = 0;
+      for (uint8_t d = 0; d < 7; d++)
+      {
+        bool selected = Helper::isDaySelected(setting->getTempValue(), d);
+        days[pos++] = (blink && selected) ? ' ' : static_cast<char>('0' + d);
+        if (d == _dayPart)
+        {
+          days[pos++] = '.';
+        }
+      }
+      days[pos] = '\0';
+      sprintf(buffer, "%02d%*s%s", setting->getId(), _digitCount - 2 - pos, " ", days);
+      _display = buffer;
+      break;
+    }
     }
     _red = red;
     _green = green;
@@ -361,6 +318,7 @@ private:
     _it->second->setTempValue(_it->second->get());
     _rgbPart = rgb_part::red;
     _timePart = time_part::hours;
+    _dayPart = 0;
     formatDisplay(_it->second);
   }
 
@@ -383,6 +341,7 @@ private:
     _it->second->setTempValue(_it->second->get());
     _rgbPart = rgb_part::red;
     _timePart = time_part::hours;
+    _dayPart = 0;
     formatDisplay(_it->second);
   }
 
@@ -476,6 +435,11 @@ private:
         break;
       }
       _it->second->setTempValue(Helper::rgbToInt(red, green, blue));
+      formatDisplay(_it->second);
+      break;
+
+    case setting_type::dayofweek:
+      _it->second->setTempValue(Helper::toggleDay(_it->second->getTempValue(), _dayPart));
       formatDisplay(_it->second);
       break;
     }
@@ -573,6 +537,11 @@ private:
       _it->second->setTempValue(Helper::rgbToInt(red, green, blue));
       formatDisplay(_it->second);
       break;
+
+    case setting_type::dayofweek:
+      _it->second->setTempValue(Helper::toggleDay(_it->second->getTempValue(), _dayPart));
+      formatDisplay(_it->second);
+      break;
     }
   }
 
@@ -613,6 +582,12 @@ private:
         _rgbPart = rgb_part::red;
         break;
       }
+      break;
+
+    case setting_type::dayofweek:
+      _it->second->set(_it->second->getTempValue());
+      _dayPart = (_dayPart + 1) % 7;
+      break;
     }
     formatDisplay(_it->second);
   }

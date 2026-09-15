@@ -14,7 +14,8 @@ enum class setting_type
 {
   time,
   rgb,
-  numeric
+  numeric,
+  dayofweek
 };
 
 // forward declaration

@@ -79,6 +79,31 @@ typedef struct
   unsigned long lastRotationTimestamp;
 } ROTATIONDATA;
 
+// struct with state variables
+typedef struct
+{
+  device_mode deviceMode;
+  device_mode prevDeviceMode;
+  bool highVoltageOn;
+  bool autoOff;
+  bool temperatureShutdown;
+  bool offDayActive;
+  bool offDayForceOff;
+  bool offDayInitialized;
+  bool offWindowActive;
+  bool offWindowForceOff;
+  bool offWindowInitialized;
+  bool dimmingActive;
+  bool rotationStopped;
+  bool scrollResult;
+  bool pendingSettingsIsReset;
+#if WEB_SUPPORT
+  device_mode lastBroadcastDeviceMode;
+  bool deviceModeBroadcastInitialized;
+  bool displayDirty;
+#endif
+} CONTROLLERSTATE; 
+
 #if WEB_SUPPORT
 // a key event received from the web keypad, queued for processing on the main task
 typedef struct
@@ -116,26 +141,34 @@ public:
         _menuHandler(&_settings, _displayHandler.getDecimalSeparatorPosition())
 
   {
-    _highVoltageOn = true;
+    _state.highVoltageOn = true;
     _hvOnTimestamp = 0;
     _hvOnAccumulatedSeconds = 0;
-    _autoOff = false;
-    _deviceMode = device_mode::calculator;
-    _prevDeviceMode = device_mode::calculator;
+    _state.autoOff = false;
+    _state.offWindowActive = false;
+    _offWindowKeyBaseline = 0;
+    _state.offWindowForceOff = false;
+    _state.offDayForceOff = false;
+    _state.offDayActive = false;
+    _state.offDayInitialized = false;
+    _offDayKeyBaseline = 0;
+    _state.offWindowInitialized = false;
+    _state.deviceMode = device_mode::calculator;
+    _state.prevDeviceMode = device_mode::calculator;
     _rotationData = (ROTATIONDATA *)calloc(_displayHandler.getDigitCount() + MAX_SPECIAL_CHARS_DIGITS, sizeof(ROTATIONDATA));
-    _rotationStopped = false;
-    _scrollResult = false;
-    _temperatureShutdown = false;
+    _state.rotationStopped = false;
+    _state.scrollResult = false;
+    _state.temperatureShutdown = false;
     _lastTempCheckTimestamp = 0;
-    _dimmingActive = false;
+    _state.dimmingActive = false;
     _settingsUpdateMutex = xSemaphoreCreateMutex();
-    _pendingSettingsIsReset = false;
+    _state.pendingSettingsIsReset = false;
 #if WEB_SUPPORT
     _keypadEventQueue = xQueueCreate(8, sizeof(KEYPADEVENT));
     _registerSubscriptionQueue = xQueueCreate(8, sizeof(register_sub_event));
     _registerSubscriberCount = 0;
-    _deviceModeBroadcastInitialized = false;
-    _displayDirty = false;
+    _state.deviceModeBroadcastInitialized = false;
+    _state.displayDirty = false;
     _lastDisplaySnapshot = 0;
     _timeSyncQueue = xQueueCreate(2, sizeof(time_t));
 #endif
@@ -243,7 +276,7 @@ public:
 
       // mark the display dirty on every hardware refresh
       _displayHandler.attachCommitCb([this]()
-                                     { _displayDirty = true; });
+                                     { _state.displayDirty = true; });
 
       // needed for display the busy calc animations on the web page
       _displayHandler.attachBusyTickCb([this]()
@@ -295,18 +328,18 @@ public:
       switch (SettingsCache::startupMode)
       {
       case startup_mode::calculator:
-        _deviceMode = device_mode::calculator;
-        _prevDeviceMode = device_mode::calculator;
+        _state.deviceMode = device_mode::calculator;
+        _state.prevDeviceMode = device_mode::calculator;
         break;
 
       case startup_mode::clock:
-        _deviceMode = device_mode::clock;
-        _prevDeviceMode = device_mode::clock;
+        _state.deviceMode = device_mode::clock;
+        _state.prevDeviceMode = device_mode::clock;
         break;
       }
 
       // display initial values
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::calculator:
         refreshCalcDisplay();
@@ -351,8 +384,14 @@ public:
     // process keyboard input
     _keyboard.process();
 
+    // check if today is an off day
+    checkOffDays(&tm);
+
+    // check if we are in the off time window
+    checkOffWindow(&tm);
+
     // check if it's time to switch to clock mode or turn the HV off
-    checkAutoOff();
+    checkAutoOffMode();
 
     // check if it's time to rotate digits for antipoisoning
     checkAntiPoisoning(&tm);
@@ -370,7 +409,8 @@ public:
     _pir.process();
 
     // turn on or off the high voltage
-    // HV can be off because of the autoff mode or because the PIR timed out
+    // HV can be off because of the autoff mode, PIR timed out,
+    // off day, off time window or temperature shutdown
     if (checkHVStatus())
     {
       hvON();
@@ -384,7 +424,7 @@ public:
     // process lighting
     if (isHVON())
     {
-      _lighting.process(&tm, _deviceMode);
+      _lighting.process(&tm, _state.deviceMode);
     }
 
     // process temperature
@@ -422,7 +462,7 @@ public:
 #endif
 
     // process according to current device mode
-    switch (_deviceMode)
+    switch (_state.deviceMode)
     {
     case device_mode::clock:
       _clock.resetRefreshLighting();
@@ -438,7 +478,7 @@ public:
 
     case device_mode::calculator:
       // check if we have to scroll the result
-      if (_scrollResult)
+      if (_state.scrollResult)
       {
         String scrollString;
         bool baseNegative;
@@ -457,7 +497,7 @@ public:
         else
         {
           // stop scrolling
-          _scrollResult = false;
+          _state.scrollResult = false;
           _calculator.resetScrollInfo();
           refreshCalcDisplay();
           _lighting.refresh();
@@ -513,31 +553,22 @@ private:
   KeyboardHandler _keyboard;
   Settings _settings;
   Calculator _calculator;
-  bool _scrollResult;
+  CONTROLLERSTATE _state;
 
-  device_mode _deviceMode;
-  device_mode _prevDeviceMode;
-  bool _highVoltageOn;
-  bool _autoOff;
+  unsigned long _offWindowKeyBaseline;
+  unsigned long _offDayKeyBaseline;
   ROTATIONDATA *_rotationData;
-  bool _rotationStopped;
   unsigned long _hvOffTimestamp;
   unsigned long _hvOnTimestamp;
   unsigned long _hvOnAccumulatedSeconds;
-  bool _temperatureShutdown;
   unsigned long _lastTempCheckTimestamp;
-  bool _dimmingActive;
   std::atomic<bool> _settingsUpdatePending{false};
   SemaphoreHandle_t _settingsUpdateMutex;
   String _pendingSettingsJSON;
-  bool _pendingSettingsIsReset;
 #if WEB_SUPPORT
   QueueHandle_t _keypadEventQueue;
-  device_mode _lastBroadcastDeviceMode;
-  bool _deviceModeBroadcastInitialized;
   QueueHandle_t _registerSubscriptionQueue;
   int _registerSubscriberCount;
-  bool _displayDirty;
   unsigned long _lastDisplaySnapshot;
   QueueHandle_t _timeSyncQueue;
 #endif
@@ -545,18 +576,18 @@ private:
   // the display brightness that should currently be in effect
   int currentBrightness() const
   {
-    return (_dimmingActive ? SettingsCache::dimBrightness : SettingsCache::brightness);
+    return (_state.dimmingActive ? SettingsCache::dimBrightness : SettingsCache::brightness);
   }
 
   // turn the high voltage on
   void hvON()
   {
-    if (!_highVoltageOn)
+    if (!_state.highVoltageOn)
     {
       // avoid too fast off and on switching
       if (millis() - _hvOffTimestamp > MIN_HVON_INTERVAL)
       {
-        _highVoltageOn = true;
+        _state.highVoltageOn = true;
         _hvOnTimestamp = millis();
         digitalWrite(PIN_HVLED, HIGH);
         _displayHandler.setDisplayBrightness(currentBrightness());
@@ -577,9 +608,9 @@ private:
   // turn the high voltage off
   void hvOFF()
   {
-    if (_highVoltageOn)
+    if (_state.highVoltageOn)
     {
-      _highVoltageOn = false;
+      _state.highVoltageOn = false;
       _hvOnAccumulatedSeconds += (millis() - _hvOnTimestamp) / 1000;
       digitalWrite(PIN_HVLED, LOW);
       if (_displayHandler.getDisplayType() != display_type::led)
@@ -598,14 +629,14 @@ private:
   // return the status of the high voltage
   bool isHVON() const
   {
-    return (_highVoltageOn);
+    return (_state.highVoltageOn);
   }
 
   // return the total accumulated time the high voltage has been on, in seconds
   unsigned long getHVOnSeconds() const
   {
     unsigned long total = _hvOnAccumulatedSeconds;
-    if (_highVoltageOn)
+    if (_state.highVoltageOn)
     {
       total += (millis() - _hvOnTimestamp) / 1000;
     }
@@ -624,15 +655,15 @@ private:
 
     _displayHandler.clearDisplay();
     _displayHandler.clearLEDs();
-    switch (_deviceMode)
+    switch (_state.deviceMode)
     {
     case device_mode::calculator:
-      _deviceMode = device_mode::clock;
+      _state.deviceMode = device_mode::clock;
       _lighting.refresh();
       break;
 
     case device_mode::clock:
-      _deviceMode = device_mode::calculator;
+      _state.deviceMode = device_mode::calculator;
       refreshCalcDisplay();
       _lighting.refresh();
       break;
@@ -640,12 +671,12 @@ private:
       // leaving menu mode
     case device_mode::menu:
       _settings.storeSettings();
-      _deviceMode = _prevDeviceMode;
+      _state.deviceMode = _state.prevDeviceMode;
       applyUpdatedSettings();
       break;
 
     case device_mode::antipoisoning:
-      _rotationStopped = true;
+      _state.rotationStopped = true;
       break;
     }
   }
@@ -654,7 +685,7 @@ private:
   // pressing and holding the function key for more than 3 seconds
   void enterMenuMode()
   {
-    if (_deviceMode != device_mode::menu)
+    if (_state.deviceMode != device_mode::menu)
     {
       // reconfigure keyboard
       _keyboard.setAutoRepeatInterval(250);
@@ -662,8 +693,8 @@ private:
       _keyboard.setHoldTime(1000);
       _keyboard.setFastAutoRepeatDelay(15);
 
-      _prevDeviceMode = _deviceMode;
-      _deviceMode = device_mode::menu;
+      _state.prevDeviceMode = _state.deviceMode;
+      _state.deviceMode = device_mode::menu;
       _displayHandler.setAllLED(_menuHandler.getRed(), _menuHandler.getGreen(), _menuHandler.getBlue());
       _displayHandler.updateLEDs();
     }
@@ -687,11 +718,11 @@ private:
     }
 
     // refresh display
-    if (_deviceMode == device_mode::calculator)
+    if (_state.deviceMode == device_mode::calculator)
     {
       refreshCalcDisplay();
     }
-    if (_deviceMode == device_mode::clock)
+    if (_state.deviceMode == device_mode::clock)
     {
       _displayHandler.clearDisplay();
     }
@@ -704,7 +735,7 @@ private:
   {
     xSemaphoreTake(_settingsUpdateMutex, portMAX_DELAY);
     _pendingSettingsJSON = json;
-    _pendingSettingsIsReset = isReset;
+    _state.pendingSettingsIsReset = isReset;
     xSemaphoreGive(_settingsUpdateMutex);
     _settingsUpdatePending = true;
   }
@@ -736,7 +767,7 @@ private:
       bool isReset;
       xSemaphoreTake(_settingsUpdateMutex, portMAX_DELAY);
       json = _pendingSettingsJSON;
-      isReset = _pendingSettingsIsReset;
+      isReset = _state.pendingSettingsIsReset;
       xSemaphoreGive(_settingsUpdateMutex);
 
       if (isReset)
@@ -773,10 +804,10 @@ private:
     info.temperatureUnit = (SettingsCache::temperatureCF == temperature_cf::celsius) ? "C" : "F";
     info.uptimeSeconds = static_cast<unsigned int>(esp_timer_get_time() / 1000000);
     info.presenceSeconds = (lastPirDetectionMillis != 0) ? static_cast<int>((millis() - lastPirDetectionMillis) / 1000) : -1;
-    info.deviceMode = Helper::deviceModeToString(_deviceMode);
+    info.deviceMode = Helper::deviceModeToString(_state.deviceMode);
     info.calculatorMode = RPN_MODE ? "RPN" : "Algebraic";
     info.displayType = Helper::displayTypeToString(_displayHandler.getDisplayType());
-    info.highVoltageOn = _highVoltageOn;
+    info.highVoltageOn = _state.highVoltageOn;
     info.hvOnSeconds = getHVOnSeconds();
     info.wifiClients = _web.getStationCount();
     info.apIP = _web.getIP().toString();
@@ -797,21 +828,26 @@ private:
   {
     bool result = true;
     // check if HV should be on or off
-    if (_deviceMode != device_mode::antipoisoning)
+    if (!((_state.deviceMode == device_mode::antipoisoning) && (SettingsCache::acpForceOn == acp_force_on::on)))
     {
+      // an off day or off window takes priority over the other checks below (see checkOffDays()/checkOffWindow())
+      if (_state.offDayForceOff || _state.offWindowForceOff)
+      {
+        result = false;
+      }
       // if PIR is configured and has timed out, shutdown the HV
       if (!_pir.getPresenceDetected() && (SettingsCache::pirMode == pir_mode::on))
       {
         result = false;
       }
       // if auto off is configured and active, shutdown the HV
-      if (_autoOff && (SettingsCache::autoOffMode == auto_off_mode::on))
+      if (_state.autoOff && (SettingsCache::autoOffMode == auto_off_mode::on))
       {
         result = false;
       }
     }
     // shutdown the HV if temperature shutdown flag is set
-    if (_temperatureShutdown)
+    if (_state.temperatureShutdown)
     {
       result = false;
     }
@@ -913,13 +949,13 @@ private:
   // send the current device mode to web clients, called from the main loop
   void broadcastDeviceModeIfChanged()
   {
-    if (!_deviceModeBroadcastInitialized || (_deviceMode != _lastBroadcastDeviceMode))
+    if (!_state.deviceModeBroadcastInitialized || (_state.deviceMode != _state.lastBroadcastDeviceMode))
     {
-      _deviceModeBroadcastInitialized = true;
-      _lastBroadcastDeviceMode = _deviceMode;
+      _state.deviceModeBroadcastInitialized = true;
+      _state.lastBroadcastDeviceMode = _state.deviceMode;
       if (_web.isInitialized() && (_web.getClientCount() > 0))
       {
-        _web.updateClients("MODE:", Helper::deviceModeToString(_deviceMode));
+        _web.updateClients("MODE:", Helper::deviceModeToString(_state.deviceMode));
       }
     }
   }
@@ -994,7 +1030,7 @@ private:
   // keep it lightweight since is also called from separate task
   void broadcastDisplaySnapshot()
   {
-    _displayDirty = false;
+    _state.displayDirty = false;
     _lastDisplaySnapshot = millis();
     if (_web.isInitialized() && (_web.getClientCount() > 0))
     {
@@ -1005,7 +1041,7 @@ private:
   // push a fresh display/LED snapshot to all web clients, throttled to DISPLAY_BROADCAST_INTERVAL
   void broadcastDisplaySnapshotIfDue()
   {
-    if (_displayDirty && ((millis() - _lastDisplaySnapshot) > DISPLAY_BROADCAST_INTERVAL))
+    if (_state.displayDirty && ((millis() - _lastDisplaySnapshot) > DISPLAY_BROADCAST_INTERVAL))
     {
       broadcastDisplaySnapshot();
     }
@@ -1120,9 +1156,9 @@ private:
       // when a key is pressed, the PIR timeout is reset even if no presence was detected
       _pir.onKeyPressed();
       // when a key is pressed, stop rotation
-      if (_deviceMode == device_mode::antipoisoning)
+      if (_state.deviceMode == device_mode::antipoisoning)
       {
-        _rotationStopped = true;
+        _state.rotationStopped = true;
       }
     }
     if (keyState == key_state::pressed)
@@ -1144,7 +1180,7 @@ private:
     }
 
     // ignore first key pressed if waking up or in antipoisoning mode
-    if (_autoOff || !_pir.getPresenceDetected() || (_deviceMode == device_mode::antipoisoning))
+    if (_state.autoOff || !_pir.getPresenceDetected() || (_state.deviceMode == device_mode::antipoisoning))
     {
       return;
     }
@@ -1175,7 +1211,7 @@ private:
       }
     }
 
-    switch (_deviceMode)
+    switch (_state.deviceMode)
     {
     case device_mode::calculator:
       // calculator is keyboard driven, send key event and update display
@@ -1184,9 +1220,9 @@ private:
         if (_calculator.onKeyboardEvent(keyCode, keyState, functionKeyPressed, shiftKeyPressed))
         {
           // first we may have to stop scrolling
-          if (_scrollResult)
+          if (_state.scrollResult)
           {
-            _scrollResult = false;
+            _state.scrollResult = false;
             _calculator.resetScrollInfo();
           }
           // show result
@@ -1235,7 +1271,7 @@ private:
     switch (keyCode)
     {
     case KEY_PLUS:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::clock:
         // adjust the time by plus 1 second
@@ -1252,7 +1288,7 @@ private:
       break;
 
     case KEY_MINUS:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::clock:
         // adjust the time by minus 1 second
@@ -1269,7 +1305,7 @@ private:
       break;
 
     case KEY_9:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::calculator:
         switch (SettingsCache::calcInputDirec)
@@ -1296,7 +1332,7 @@ private:
       break;
 
     case KEY_PCT:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::calculator:
         _calculator.switchRoundingMode();
@@ -1310,7 +1346,7 @@ private:
       break;
 
     case KEY_00:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::calculator:
         _calculator.trimXToDisplayedValue();
@@ -1334,7 +1370,7 @@ private:
 #else
     case KEY_MS:
 #endif
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::clock:
       case device_mode::calculator:
@@ -1353,7 +1389,7 @@ private:
 #else
     case KEY_MMINUS:
 #endif
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::clock:
         _displayHandler.saveLEDColors();
@@ -1373,7 +1409,7 @@ private:
 #else
     case KEY_MC:
 #endif
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::menu:
         // restore all settings to the default value
@@ -1392,7 +1428,7 @@ private:
 #else
     case KEY_C:
 #endif
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::menu:
 #if WEB_SUPPORT
@@ -1409,7 +1445,7 @@ private:
 
       default:
         // step through the light modes, override the lighting time constraints
-        _lighting.switchLightingMode(_deviceMode);
+        _lighting.switchLightingMode(_state.deviceMode);
         _lighting.refresh();
         break;
       }
@@ -1420,18 +1456,18 @@ private:
 #else
     case KEY_AC:
 #endif
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::menu:
         // leave menu mode and ignore changes
         _displayHandler.clearDisplay();
         _displayHandler.clearLEDs();
-        _deviceMode = _prevDeviceMode;
+        _state.deviceMode = _state.prevDeviceMode;
 
         // reload current settings to discard changes
         _settings.readSettings();
         _menuHandler.revertValue();
-        if (_deviceMode == device_mode::calculator)
+        if (_state.deviceMode == device_mode::calculator)
         {
           refreshCalcDisplay();
         }
@@ -1446,15 +1482,15 @@ private:
       break;
 
     case KEY_EXP:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       // set force scientific notation mode
       case device_mode::calculator:
         _calculator.switchForceScientific();
-        if (_scrollResult)
+        if (_state.scrollResult)
         {
           // display format has changed, stop scrolling
-          _scrollResult = false;
+          _state.scrollResult = false;
           _calculator.resetScrollInfo();
         }
         refreshCalcDisplay();
@@ -1478,13 +1514,13 @@ private:
       break;
 
     case KEY_DOT:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       // start or stop result scrolling
       case device_mode::calculator:
-        _scrollResult = !_scrollResult;
+        _state.scrollResult = !_state.scrollResult;
         _calculator.resetScrollInfo();
-        if (!_scrollResult)
+        if (!_state.scrollResult)
         {
           // scrolling stopped, update display
           refreshCalcDisplay();
@@ -1512,7 +1548,7 @@ private:
 #else
     case KEY_EQUALS:
 #endif
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::calculator:
       case device_mode::clock:
@@ -1536,7 +1572,7 @@ private:
       break;
 
     case KEY_0:
-      switch (_deviceMode)
+      switch (_state.deviceMode)
       {
       case device_mode::clock:
         _displayHandler.saveLEDColors();
@@ -1584,7 +1620,7 @@ private:
   // restore the display after showing a temporary information
   void restoreDisplay()
   {
-    switch (_deviceMode)
+    switch (_state.deviceMode)
     {
     case device_mode::calculator:
       refreshCalcDisplay();
@@ -1659,7 +1695,7 @@ private:
     // send the current display/LED snapshot
     sendDisplaySnapshot(id);
     // send the current device mode
-    _web.updateClient("MODE:", Helper::deviceModeToString(_deviceMode), id);
+    _web.updateClient("MODE:", Helper::deviceModeToString(_state.deviceMode), id);
   }
 
   // client disconnection callback
@@ -1683,8 +1719,68 @@ private:
   }
 #endif
 
-  // check if it's time to turn off the high voltage or switch to clock mode
-  void checkAutoOff()
+  // check if today is a configured off day
+  void checkOffDays(const struct tm *tm)
+  {
+    bool isOffDay = Helper::isDaySelected(SettingsCache::offDays, tm->tm_wday);
+    if (!_state.offDayInitialized)
+    {
+      _state.offDayActive = isOffDay;
+      _offDayKeyBaseline = _keyboard.getLastKeyTimestamp();
+      _state.offDayInitialized = true;
+    }
+
+    if (!isOffDay)
+    {
+      _state.offDayForceOff = false;
+    }
+    else if (!_state.offDayActive)
+    {
+      _state.offDayForceOff = true;
+      _offDayKeyBaseline = _keyboard.getLastKeyTimestamp();
+    }
+    else
+    {
+      unsigned long lastKey = _keyboard.getLastKeyTimestamp();
+      bool newKeySinceDayStart = (lastKey != _offDayKeyBaseline);
+      _state.offDayForceOff = !(newKeySinceDayStart && ((millis() - lastKey) <= SettingsCache::autoOffDelay));
+    }
+    _state.offDayActive = isOffDay;
+  }
+
+  // check if we are in the configured off time window
+  void checkOffWindow(const struct tm *tm)
+  {
+    bool inOffWindow = Helper::isInTimeWindow(SettingsCache::offStartTime.hour, SettingsCache::offStartTime.minute,
+                                              SettingsCache::offStopTime.hour, SettingsCache::offStopTime.minute,
+                                              tm->tm_hour, tm->tm_min);
+    if (!_state.offWindowInitialized)
+    {
+      _state.offWindowActive = inOffWindow;
+      _offWindowKeyBaseline = _keyboard.getLastKeyTimestamp();
+      _state.offWindowInitialized = true;
+    }
+
+    if (!inOffWindow)
+    {
+      _state.offWindowForceOff = false;
+    }
+    else if (!_state.offWindowActive)
+    {
+      _state.offWindowForceOff = true;
+      _offWindowKeyBaseline = _keyboard.getLastKeyTimestamp();
+    }
+    else
+    {
+      unsigned long lastKey = _keyboard.getLastKeyTimestamp();
+      bool newKeySinceWindowStart = (lastKey != _offWindowKeyBaseline);
+      _state.offWindowForceOff = !(newKeySinceWindowStart && ((millis() - lastKey) <= SettingsCache::autoOffDelay));
+    }
+    _state.offWindowActive = inOffWindow;
+  }
+
+  // check if it's time to turn off the high voltage or switch to clock mode based on the auto-off mode
+  void checkAutoOffMode()
   {
     if (SettingsCache::autoOffMode != auto_off_mode::off)
     {
@@ -1693,15 +1789,23 @@ private:
         switch (SettingsCache::autoOffMode)
         {
         case auto_off_mode::on:
-          _autoOff = true;
+          if ((SettingsCache::pirMode == pir_mode::on) &&
+              (millis() - _pir.getLastPIRDetectionMillis() <= SettingsCache::autoOffDelay))
+          {
+            _state.autoOff = false;
+          }
+          else
+          {
+            _state.autoOff = true;
+          }
           break;
 
         case auto_off_mode::clock:
-          if ((_deviceMode != device_mode::antipoisoning) && (_deviceMode != device_mode::menu))
+          if ((_state.deviceMode != device_mode::antipoisoning) && (_state.deviceMode != device_mode::menu))
           {
-            if (_deviceMode != device_mode::clock)
+            if (_state.deviceMode != device_mode::clock)
             {
-              _deviceMode = device_mode::clock;
+              _state.deviceMode = device_mode::clock;
               _displayHandler.clear();
               _lighting.refresh();
             }
@@ -1709,18 +1813,17 @@ private:
           break;
 
         case auto_off_mode::off:
-          // do nothing
           break;
         }
       }
       else
       {
-        _autoOff = false;
+        _state.autoOff = false;
       }
     }
     else
     {
-      _autoOff = false;
+      _state.autoOff = false;
     }
   }
 
@@ -1728,7 +1831,7 @@ private:
   void checkAntiPoisoning(const struct tm *tm)
   {
     // switch to antipoisoning mode only if in clock or calculator mode
-    if (_deviceMode == device_mode::clock || _deviceMode == device_mode::calculator)
+    if (_state.deviceMode == device_mode::clock || _state.deviceMode == device_mode::calculator)
     {
 
       // check if anti-poisoning is enabled
@@ -1738,17 +1841,17 @@ private:
         if (Helper::isInTimeRange(SettingsCache::acpStartTime.hour, SettingsCache::acpStartTime.minute,
                                   tm->tm_hour, tm->tm_min, SettingsCache::acpDuration))
         {
-          if (!_rotationStopped)
+          if (!_state.rotationStopped)
           {
-            _prevDeviceMode = _deviceMode;
-            _deviceMode = device_mode::antipoisoning;
+            _state.prevDeviceMode = _state.deviceMode;
+            _state.deviceMode = device_mode::antipoisoning;
             setRotationInterval();
             _displayHandler.clear();
           }
         }
         else
         {
-          _rotationStopped = false;
+          _state.rotationStopped = false;
         }
       }
     }
@@ -1757,21 +1860,21 @@ private:
   // check if we have to dim the display
   void checkDimming(const struct tm *tm)
   {
-    if (SettingsCache::dimDuration > 0 &&
-        Helper::isInTimeRange(SettingsCache::dimStartTime.hour, SettingsCache::dimStartTime.minute,
-                              tm->tm_hour, tm->tm_min, SettingsCache::dimDuration))
+    if (Helper::isInTimeWindow(SettingsCache::dimStartTime.hour, SettingsCache::dimStartTime.minute,
+                               SettingsCache::dimStopTime.hour, SettingsCache::dimStopTime.minute,
+                               tm->tm_hour, tm->tm_min))
     {
-      if (!_dimmingActive)
+      if (!_state.dimmingActive)
       {
-        _dimmingActive = true;
+        _state.dimmingActive = true;
         _displayHandler.setDisplayBrightness(SettingsCache::dimBrightness);
       }
     }
     else
     {
-      if (_dimmingActive)
+      if (_state.dimmingActive)
       {
-        _dimmingActive = false;
+        _state.dimmingActive = false;
         _displayHandler.setDisplayBrightness(SettingsCache::brightness);
       }
     }
@@ -1785,16 +1888,16 @@ private:
       float boardTemp = _clock.getBoardTemperature(); // temperature sensor is in the RTC chip
       __serial_print("Board temperature: ");
       __serial_println(boardTemp);
-      if (_temperatureShutdown)
+      if (_state.temperatureShutdown)
       {
         if (boardTemp <= RECOVER_TEMP)
         {
-          _temperatureShutdown = false;
+          _state.temperatureShutdown = false;
         }
       }
       else if (boardTemp >= SHUTDOWN_TEMP)
       {
-        _temperatureShutdown = true;
+        _state.temperatureShutdown = true;
       }
       _lastTempCheckTimestamp = millis();
     }
@@ -1815,7 +1918,7 @@ private:
     if (Helper::isInTimeRange(SettingsCache::acpStartTime.hour, SettingsCache::acpStartTime.minute,
                               tm->tm_hour, tm->tm_min, SettingsCache::acpDuration))
     {
-      if (!_rotationStopped)
+      if (!_state.rotationStopped)
       {
         // rotate digits
         bool change = false;
@@ -1849,11 +1952,11 @@ private:
     }
     else
     {
-      _rotationStopped = false;
+      _state.rotationStopped = false;
       // no longer in time range, exit antipoisoning mode
       restoreDeviceMode();
     }
-    if (_rotationStopped)
+    if (_state.rotationStopped)
     {
       // rotation manually stopped, exit antipoisoning mode
       restoreDeviceMode();
@@ -1863,9 +1966,9 @@ private:
   // switch back to the previous device mode
   void restoreDeviceMode()
   {
-    _deviceMode = _prevDeviceMode;
-    _prevDeviceMode = _deviceMode;
-    switch (_deviceMode)
+    _state.deviceMode = _state.prevDeviceMode;
+    _state.prevDeviceMode = _state.deviceMode;
+    switch (_state.deviceMode)
     {
     case device_mode::clock:
       _displayHandler.clear();
@@ -1891,11 +1994,12 @@ private:
       _settings.hideSetting(setting_id::ledmode, true);
       _settings.hideSetting(setting_id::calcrgbmode, true);
       _settings.hideSetting(setting_id::clockrgbmode, true);
+      _settings.hideSetting(setting_id::breathingmode, true);
       _settings.hideSetting(setting_id::trigcolorchange, true);
       _settings.hideSetting(setting_id::ledstarttime, true);
-      _settings.hideSetting(setting_id::ledduration, true);
+      _settings.hideSetting(setting_id::ledstoptime, true);
       _settings.hideSetting(setting_id::ledstarttime2, true);
-      _settings.hideSetting(setting_id::ledduration2, true);
+      _settings.hideSetting(setting_id::ledstoptime2, true);
       _settings.hideSetting(setting_id::negativecolor, true);
       _settings.hideSetting(setting_id::positivecolor, true);
       _settings.hideSetting(setting_id::errorcolor, true);
