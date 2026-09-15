@@ -24,7 +24,7 @@ dependencies:
       type: service
     version: 3.5.0
   esp32async/espasyncwebserver:
-    component_hash: 7330e5d36e5479b7a968f7ba43a6a3c870c123be486142fd18470f844461083a
+    component_hash: ee8100fc940abb97a1ce2d07038bd093bd6efc8e942a1a0f44619854ac6e2533
     dependencies:
     - name: bblanchon/arduinojson
       registry_url: https://components.espressif.com
@@ -41,7 +41,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com/
       type: service
-    version: 3.12.0
+    version: 3.12.1
   espressif/arduino-esp32:
     component_hash: 1aeba74639b4728ff708d6177edfb3a0011c23b4b585c829c9d5f9840f13f0ca
     dependencies:
@@ -548,7 +548,7 @@ dependencies:
       type: service
     version: 1.0.0
   espressif/rmaker_common:
-    component_hash: 276ee0baf9552805bf66a3e34a19cf38df6f5a7b167c47bf215b7196e03ef1fc
+    component_hash: ee65381bc5ec077390be5c68d03aacb4f3846cbb93ca79a730d94e941304a6a0
     dependencies:
     - name: espressif/mqtt
       registry_url: https://components.espressif.com
@@ -586,7 +586,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.8.5
+    version: 1.8.6
   espressif/rmaker_common_events:
     component_hash: ced95feff88c368e6306ff67ff3696ac76a5273de9fe1f907a7c115d4370fe6e
     dependencies:
@@ -598,7 +598,7 @@ dependencies:
       type: service
     version: 1.0.0
   espressif/rmaker_console:
-    component_hash: 24af13dad8da5ca7219203f7d6f37e888246d5adc8910ea3e018fac84492ab9b
+    component_hash: 22f38fe0ec9c84257427dad9a92e09ddbba48a6278eae42b0b167589f0e79f20
     dependencies:
     - name: espressif/rmaker_system_ctrl
       registry_url: https://components.espressif.com
@@ -614,7 +614,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.0.0
+    version: 1.0.1
   espressif/rmaker_system_ctrl:
     component_hash: b4208fbc7e99b30fb1d272cbd30e578327079a6495499d12fb466b6c2fc0d899
     dependencies:
