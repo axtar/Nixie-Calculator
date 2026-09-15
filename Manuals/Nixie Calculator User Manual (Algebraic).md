@@ -2,6 +2,33 @@
 
 *September 15, 2026 — Draft - Version 0.12*
 
+## Table of Contents
+
+- [General information](#general-information)
+- [Power supply](#power-supply)
+- [Power on / Power off](#power-on--power-off)
+- [The \[F\] key](#the-f-key)
+- [The \[↑\] key](#the--key)
+- [Calculator mode](#calculator-mode)
+- [Clock mode](#clock-mode)
+  - [Entering date and time](#entering-date-and-time)
+  - [Clock modes](#clock-modes)
+  - [Timer](#timer)
+  - [Stopwatch](#stopwatch)
+- [Menu mode](#menu-mode)
+  - [Navigation](#navigation)
+  - [Settings table](#settings-table)
+- [Reducing the display on-time](#reducing-the-display-on-time)
+- [Web server](#web-server)
+- [Peripherals module](#peripherals-module)
+- [Reset SSID and passwords](#reset-ssid-and-passwords)
+- ["Factory" reset](#factory-reset)
+- [OTA firmware update](#ota-firmware-update)
+- [Troubleshooting](#troubleshooting)
+- [Table of shortcuts](#table-of-shortcuts)
+- [List of error codes](#list-of-error-codes)
+- [List of operations](#list-of-operations)
+
 ## General information
 
 Apart from the power supply, the nixie calculator works completely independently and requires neither a network connection nor any peripheral devices.
@@ -48,7 +75,7 @@ There are several clock modes. They can be reached directly with the [0] to [9] 
 **Clock modes**
 
 | Mode | Description |
-|---|---|
+| --- | --- |
 | 0 | time only |
 | 1 | time with no seconds |
 | 2 | moving time |
@@ -62,7 +89,7 @@ There are several clock modes. They can be reached directly with the [0] to [9] 
 **Special clock modes**
 
 | Mode | Description |
-|---|---|
+| --- | --- |
 | 9 | timer |
 | 10 | stopwatch |
 
@@ -81,7 +108,7 @@ Hold the [F] key for 3 seconds to enter the menu mode. The setting ID (see Setti
 ### Navigation
 
 | Keys | Description |
-|---|---|
+| --- | --- |
 | [M+] | Next setting |
 | [M-] | Previous setting |
 | [+] | Next value |
@@ -96,39 +123,39 @@ Hold the [F] key for 3 seconds to enter the menu mode. The setting ID (see Setti
 ### Settings table
 
 | ID | Name | Description | Values |
-|---|---|---|---|
-| 1 | startupmode | Start in calculator or in clock mode | 0 = calculator (default); 1 = clock |
-| 2 | showversion | Show version at startup | 0 = off; 1 = on (default) |
-| 3 | autooffmode | Auto off action after a period of no keyboard activity | 0 = auto off disabled; 1 = shutdown high voltage; 2 = switch to clock mode (default) |
+| --- | --- | --- | --- |
+| 1 | startupmode | Start in calculator or in clock mode | 0 = calculator (default)<br>1 = clock |
+| 2 | showversion | Show version at startup | 0 = off<br>1 = on (default) |
+| 3 | autooffmode | Auto off action after a period of no keyboard activity | 0 = auto off disabled<br>1 = shutdown high voltage<br>2 = switch to clock mode (default) |
 | 4 | autooffdelay | Delay in minutes for auto off mode | 1 - 720 (default 5) |
 | 5 | offstarttime | Start time of the scheduled high voltage shutdown | 00:00 - 23:59 (default 00:00) |
 | 6 | offstoptime | Stop time of the scheduled high voltage shutdown | 00:00 - 23:50 (default 00:00) |
 | 7 | offdays | Days of the week the high voltage is off for the entire day | 0 = none (default) [bitmask] |
-| 8 | clockmode | Initial clock mode | 0 = time (default); 1 = time, no seconds; 2 = moving time; 3 = time or date; 4 = time and date; 5 = time and temperature; 6 = time and date and temperature; 7 = raw date and time; 8 = dual time; 9 = timer; 10 = stopwatch |
-| 9 | hourmode | 12 or 24 hours mode | 0 = 12 hours; 1 = 24 hours (default) |
-| 10 | leadingzero | Show hours leading zero | 0 = off; 1 = on (default) |
-| 11 | timeseparator | Separator mode in compact time format | 0 = off; 1 = blink (default); 2 = on |
-| 12 | digittransition | Clock digit transition effect (placeholder, not yet implemented) | 0 = direct (default); 1 = crossfade; 2 = rolling |
-| 13 | dateformat | Date format | 0 = ddmmyy (default); 1 = yymmdd; 2 = mmddyy; 3 = yyddmm |
-| 14 | pirmode | Use PIR to reduce the operating time of the nixie tubes | 0 = off (default); 1 = on |
+| 8 | clockmode | Initial clock mode | 0 = time (default)<br>1 = time, no seconds<br>2 = moving time<br>3 = time or date<br>4 = time and date<br>5 = time and temperature<br>6 = time and date and temperature<br>7 = raw date and time<br>8 = dual time<br>9 = timer<br>10 = stopwatch |
+| 9 | hourmode | 12 or 24 hours mode | 0 = 12 hours<br>1 = 24 hours (default) |
+| 10 | leadingzero | Show hours leading zero | 0 = off<br>1 = on (default) |
+| 11 | timeseparator | Separator mode in compact time format | 0 = off<br>1 = blink (default)<br>2 = on |
+| 12 | digittransition | Clock digit transition effect (placeholder, not yet implemented) | 0 = direct (default)<br>1 = crossfade<br>2 = rolling |
+| 13 | dateformat | Date format | 0 = ddmmyy (default)<br>1 = yymmdd<br>2 = mmddyy<br>3 = yyddmm |
+| 14 | pirmode | Use PIR to reduce the operating time of the nixie tubes | 0 = off (default)<br>1 = on |
 | 15 | pirdelay | PIR delay time in minutes before shutting down the high voltage | 1 - 720 (default 5) |
-| 16 | gpsmode | Sync with GPS time | 0 = off (default); 1 = on |
-| 17 | gpsspeed | GPS communication baud rate | 0 = 2400; 1 = 4800; 2 = 9600; 3 = 19200; 4 = 38400 (default); 5 = 57600; 6 = 115200 |
+| 16 | gpsmode | Sync with GPS time | 0 = off (default)<br>1 = on |
+| 17 | gpsspeed | GPS communication baud rate | 0 = 2400<br>1 = 4800<br>2 = 9600<br>3 = 19200<br>4 = 38400 (default)<br>5 = 57600<br>6 = 115200 |
 | 18 | gpssyncinterval | GPS time sync interval in minutes | 1 - 720 (default 10) |
-| 19 | temperaturemode | Use temperature sensor | 0 = off (default); 1 = on |
-| 20 | temperaturecf | Temperature in C or F | 0 = Celsius (default); 1 = Fahrenheit |
-| 21 | ledmode | LEDs on by time or always * | 0 = time; 1 = always (default) |
-| 22 | calcrgbmode | RGB mode in calculator mode * | 0 = off (default); 1 = by content; 2 = by content (all digits); 3 = random (turned on digits only); 4 = full random (turned on digits only); 5 = fixed color (all digits); 6 = random (all digits); 7 = full random (all digits); 8 = wheel (turned on digits only); 9 = wheel (all digits); 10 = rainbow (turned on digits only); 11 = rainbow (all digits) |
-| 23 | clockrgbmode | RGB mode in clock mode * | 0 = off (default); 1 = by content; 2 = random (turned on digits only); 3 = full random (turned on digits only); 4 = fixed color (all digits); 5 = random (all digits); 6 = full random (all digits); 7 = wheel (turned on digits only); 8 = wheel (all digits); 9 = rainbow (turned on digits only); 10 = rainbow (all digits) |
-| 24 | breathingmode | Breathing (pulsing brightness) effect for LED lighting off or on * | 0 = off (default); 1 = on |
-| 25 | trigcolorchange | Trigger color change for random RGB modes in clock mode * (this setting does not apply to the "moving time" clock mode as the color changes with every movement) | 0 = off (default); 1 = every second; 2 = every minute; 3 = every hour |
+| 19 | temperaturemode | Use temperature sensor | 0 = off (default)<br>1 = on |
+| 20 | temperaturecf | Temperature in C or F | 0 = Celsius (default)<br>1 = Fahrenheit |
+| 21 | ledmode | LEDs on by time or always * | 0 = time<br>1 = always (default) |
+| 22 | calcrgbmode | RGB mode in calculator mode * | 0 = off (default)<br>1 = by content<br>2 = by content (all digits)<br>3 = random (turned on digits only)<br>4 = full random (turned on digits only)<br>5 = fixed color (all digits)<br>6 = random (all digits)<br>7 = full random (all digits)<br>8 = wheel (turned on digits only)<br>9 = wheel (all digits)<br>10 = rainbow (turned on digits only)<br>11 = rainbow (all digits) |
+| 23 | clockrgbmode | RGB mode in clock mode * | 0 = off (default)<br>1 = by content<br>2 = random (turned on digits only)<br>3 = full random (turned on digits only)<br>4 = fixed color (all digits)<br>5 = random (all digits)<br>6 = full random (all digits)<br>7 = wheel (turned on digits only)<br>8 = wheel (all digits)<br>9 = rainbow (turned on digits only)<br>10 = rainbow (all digits) |
+| 24 | breathingmode | Breathing (pulsing brightness) effect for LED lighting off or on * | 0 = off (default)<br>1 = on |
+| 25 | trigcolorchange | Trigger color change for random RGB modes in clock mode * (this setting does not apply to the "moving time" clock mode as the color changes with every movement) | 0 = off (default)<br>1 = every second<br>2 = every minute<br>3 = every hour |
 | 26 | ledstarttime | Start time of LED lighting * | 00:00 - 23:59 (default 00:00) |
 | 27 | Ledstoptime | Stop time of LED lighting * | 00:00 - 23:59 (default 00:00) |
 | 28 | ledstarttime2 | Start time of LED lighting * | 00:00 - 23:59 (default 00:00) |
 | 29 | ledstoptime2 | Stop time of LED lighting * | 00:00 - 23:59 (default 00:00) |
 | 30 | acpstarttime | Start time of cathode poisoning prevention | 00:00 - 23:59 (default 00:00) |
 | 31 | acpduration | Duration in minutes of cathode poisoning prevention | 0 - 720 (default 0) |
-| 32 | acpforceon | Force turning nixies on during cathode poisoning prevention | 0 = off; 1 = on (default) |
+| 32 | acpforceon | Force turning nixies on during cathode poisoning prevention | 0 = off<br>1 = on (default) |
 | 33 | negativecolor | RGB LED color for negative numbers in calculator mode * | 0-255,0-255,0-255 (default 0,0,0) |
 | 34 | positivecolor | RGB LED color for positive numbers in calculator mode * | 0-255,0-255,0-255 (default 0,0,0) |
 | 35 | errorcolor | RGB LED color for error in calculator mode * | 0-255,0-255,0-255 (default 0,0,0) |
@@ -140,44 +167,44 @@ Hold the [F] key for 3 seconds to enter the menu mode. The setting ID (see Setti
 | 41 | datecolor | RGB LED color for date in clock mode * | 0-255,0-255,0-255 (default 0,0,0) |
 | 42 | tempcolor | RGB LED color for temperature in clock mode * | 0-255,0-255,0-255 (default 0,0,0) |
 | 43 | fixedcolor | RGB LED fixed color in clock mode * | 0-255,0-255,0-255 (default 0,0,0) |
-| 44 | dstweek | Daylight saving time change, week of month | 1 = first; 2 = second; 3 = third; 4 = fourth; 5 = last (default) |
+| 44 | dstweek | Daylight saving time change, week of month | 1 = first<br>2 = second<br>3 = third<br>4 = fourth<br>5 = last (default) |
 | 45 | dstdow | Daylight saving time change, day of week | 0 = sunday (default) - 6 = saturday |
 | 46 | dstmonth | Daylight saving time change, month | 0 = jan - 11 = dec (default 2 = mar) |
 | 47 | dsthour | Daylight saving time change, hour | 0 - 23 (default 2) |
 | 48 | dstoffset | Daylight saving time change, offset to UTC in minutes | -720 - 840 (default 120) |
-| 49 | stdweek | Standard time change, week of month | 1 = first; 2 = second; 3 = third; 4 = fourth; 5 = last (default) |
+| 49 | stdweek | Standard time change, week of month | 1 = first<br>2 = second<br>3 = third<br>4 = fourth<br>5 = last (default) |
 | 50 | stddow | Standard time change, day of week | 0 = sunday (default) - 6 = saturday |
 | 51 | stdmonth | Standard time change, month | 0 = jan - 11 = dec (default 9 = oct) |
 | 52 | stdhour | Standard time change, hour | 0 - 23 (default 3) |
 | 53 | stdoffset | Standard time change, offset to UTC in minutes | -720 - 840 (default 60) |
-| 54 | dstweek2 | Dual time daylight saving time change, week of month | 1 = first; 2 = second; 3 = third; 4 = fourth; 5 = last (default) |
+| 54 | dstweek2 | Dual time daylight saving time change, week of month | 1 = first<br>2 = second<br>3 = third<br>4 = fourth<br>5 = last (default) |
 | 55 | dstdow2 | Dual time daylight saving time change, day of week | 0 = sunday (default) - 6 = saturday |
 | 56 | dstmonth2 | Dual time daylight saving time change, month | 0 = jan - 11 = dec (default 2 = mar) |
 | 57 | dsthour2 | Dual time daylight saving time change, hour | 0 - 23 (default 2) |
 | 58 | dstoffset2 | Dual time daylight saving time change, offset to UTC in minutes | -720 - 840 (default 0) |
-| 59 | stdweek2 | Dual time standard time change, week of month | 1 = first; 2 = second; 3 = third; 4 = fourth; 5 = last (default) |
+| 59 | stdweek2 | Dual time standard time change, week of month | 1 = first<br>2 = second<br>3 = third<br>4 = fourth<br>5 = last (default) |
 | 60 | stddow2 | Dual time standard time change, day of week | 0 = sunday (default) - 6 = saturday |
 | 61 | stdmonth2 | Dual time standard time change, month | 0 = jan - 11 = dec (default 9 = oct) |
 | 62 | stdhour2 | Dual time standard time change, hour | 0 - 23 (default 3) |
 | 63 | stdoffset2 | Dual time standard time change, offset to UTC in minutes | -720 - 840 (default 0) |
-| 64 | gpsnotifysync | Notify GPS time sync with a short LED flash * | 0 = off (default); 1 = on |
+| 64 | gpsnotifysync | Notify GPS time sync with a short LED flash * | 0 = off (default)<br>1 = on |
 | 65 | gpssynccolor | RGB LED color for notifying GPS time sync * | 0-255,0-255,0-255 (default 255,0,0) |
-| 66 | notifytimer | Notify end of timer with flashing LEDs * | 0 = off; 1 = on (default) |
+| 66 | notifytimer | Notify end of timer with flashing LEDs * | 0 = off<br>1 = on (default) |
 | 67 | timercolor | RGB LED color for notifying end of timer * | 0-255,0-255,0-255 (default 255,255,255) |
-| 68 | fixeddecimals | Number of fixed decimals | 0 = floating (default); 1 - 8 = number of fixed decimals |
-| 69 | anglemode | Startup angle mode | 0 = degrees (default); 1 = radians |
-| 70 | showbusycalc | Show animation during long calculations | 0 = off; 1 = moving decimal point (default); 2 = digit flickering |
+| 68 | fixeddecimals | Number of fixed decimals | 0 = floating (default)<br>1 - 8 = number of fixed decimals |
+| 69 | anglemode | Startup angle mode | 0 = degrees (default)<br>1 = radians |
+| 70 | showbusycalc | Show animation during long calculations | 0 = off<br>1 = moving decimal point (default)<br>2 = digit flickering |
 | 71 | maxexplength | Max length of the exponent | 2 - 4 (default 4) |
 | 72 | scrolldelay | Interval while scrolling result in 1/10 seconds | 1 - 20 (default 5) |
 | 73 | precision | Calculator precision (restart needed) | 20 - 32 (default 32) |
-| 74 | Roundingmode | Rounding mode for displaying results | 0 = 5/4 (default); 1 = cut |
-| 75 | calcinputdirec | Calculator input direction and output format | 0 = left to right (default); 1 = right to left; 2 = right to left with zero padding |
-| 76 | inputblinking | Blinking behavior during time, timer and menu value input | 0 = off; 1 = on (default) |
+| 74 | Roundingmode | Rounding mode for displaying results | 0 = 5/4 (default)<br>1 = cut |
+| 75 | calcinputdirec | Calculator input direction and output format | 0 = left to right (default)<br>1 = right to left<br>2 = right to left with zero padding |
+| 76 | inputblinking | Blinking behavior during time, timer and menu value input | 0 = off<br>1 = on (default) |
 | 77 | brightness | Display brightness: 15 disables PWM dimming on nixie displays | 1 - 15 (default 15) |
 | 78 | dimbrightness | Display brightness during the dimming period | 1 - 15 (default 1) |
 | 79 | dimstarttime | Start time of display dimming | 00:00 - 23:59 (default 00:00) |
 | 80 | Dimstoptime | Stop time of display dimming | 00:00 - 23:59 (default 00:00) |
-| 81 | apautostart | Enable the access point and the web server at startup ** | 0 = off (default); 1 = on |
+| 81 | apautostart | Enable the access point and the web server at startup ** | 0 = off (default)<br>1 = on |
 | 82 | rtcdriftcorr | RTC drift compensation in seconds per month | -60 - 60 (default 0) |
 | 83 | exttempcorr | External temperature sensor correction in 0.1 °C | -100 - 100 (default 0) |
 
@@ -241,7 +268,7 @@ If the calculator loses the time, please change the CR2032 battery.
 ## Table of shortcuts
 
 | Keys | Description | Mode |
-|---|---|---|
+| --- | --- | --- |
 | [F] + [C] | Switch LED lighting mode, overrides the time constraints (*) | Calculator, Clock |
 | [F] + [AC] | Restore the lighting time constraints | Calculator, Clock |
 | [F] + [MS] | Commit temporarily changed settings | Calculator, Clock |
@@ -271,7 +298,7 @@ If the calculator loses the time, please change the CR2032 battery.
 ## List of error codes
 
 | Error Code | Description |
-|---|---|
+| --- | --- |
 | 1 | Overflow |
 | 2 | Divide by zero |
 | 3 | Domain error / Invalid input |
@@ -285,7 +312,7 @@ If the calculator loses the time, please change the CR2032 battery.
 ## List of operations
 
 | Operation | Description |
-|---|---|
+| --- | --- |
 | EXP | Enter exponent |
 | C | Clear last entered digit / clear display if not in input mode |
 | AC | All clear |
