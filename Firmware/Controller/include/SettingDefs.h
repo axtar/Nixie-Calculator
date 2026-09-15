@@ -21,12 +21,12 @@ typedef struct
   uint8_t blue;
 } RGBCOLOR;
 
-// elements of a time setting
+// elements of a time setting, used for both start and stop times
 typedef struct
 {
   uint8_t hour;
   uint8_t minute;
-} STARTTIME;
+} SCHEDULETIME;
 
 // enums
 // using namespaces to avoid ambiguities
@@ -41,10 +41,14 @@ namespace setting_id
     showversion,     // Show version during start-up
     autooffmode,     // Shutdown high voltage or switch to clock mode after a period of no keyboard activity
     autooffdelay,    // Delay in minutes for auto off mode
+    offstarttime,    // Start time of the scheduled off window, independent of autooffmode
+    offstoptime,     // Stop time of the scheduled off window, independent of autooffmode
+    offdays,         // Days of the week the HV is off for the entire day
     clockmode,       // Predefined display format in clock mode
     hourmode,        // 12 or 24 hours mode
     leadingzero,     // Hours leading zero off or on
     timeseparator,   // separator mode in compact time format
+    digittransition, // Clock digit transition effect: direct, crossfade or rolling
     dateformat,      // Date format
     pirmode,         // PIR off or on
     pirdelay,        // PIR delay time in minutes before shutting down the high voltage
@@ -56,11 +60,12 @@ namespace setting_id
     ledmode,         // LEDs on by time or always
     calcrgbmode,     // Fixed colors or random colors in calculator mode
     clockrgbmode,    // Fixed colors or random colors in clock mode
+    breathingmode,   // Breathing (pulsing brightness) effect for LED lighting off or on
     trigcolorchange, // Trigger color change event for random RGB modes in clock mode
     ledstarttime,    // Start time of LED lighting
-    ledduration,     // Duration in minutes of LED lighting
+    ledstoptime,     // Stop time of LED lighting
     ledstarttime2,   // Start time of LED lighting
-    ledduration2,    // Duration in minutes of LED lighting
+    ledstoptime2,    // Stop time of LED lighting
     acpstarttime,    // Start time of cathode poisoning prevention
     acpduration,     // Duration in minutes of cathode poisoning prevention
     acpforceon,      // Force turning nixies on during cathode poisoning prevention
@@ -105,17 +110,16 @@ namespace setting_id
     maxexpdigits,    // Max exponent digits
     scrolldelay,     // Interval while scrolling result in 1/10 of seconds
     calcprecision,   // Precision of the calculations
+    roundingmode,    // Rounding mode for calculator results, 5/4 or cut
     calcinputdirec,  // Calculator input direction and output format
     inputblinking,   // Input blinking off or on
     brightness,      // Display brightness (LED intensity or nixie blank-line PWM)
     dimbrightness,   // Display brightness during the dimming period
     dimstarttime,    // Start time of display dimming
-    dimduration,     // Duration in minutes of display dimming
+    dimstoptime,     // Stop time of display dimming
     apautostart,     // Automatically start the WiFi access point off or on
     rtcdriftcorr,    // RTC drift compensation in seconds per month
-    exttempcorr,     // External temperature sensor correction, in 0.1 degrees (Celsius)
-    breathingmode,   // Breathing (pulsing brightness) effect for LED lighting off or on
-    roundingmode     // Rounding mode for calculator results, 5/4 or cut
+    exttempcorr      // External temperature sensor correction, in 0.1 degrees (Celsius)
   };
 }
 
@@ -266,7 +270,7 @@ namespace led_mode
 {
   enum led_mode
   {
-    time,
+    scheduled,
     always
   };
 }
@@ -376,6 +380,16 @@ namespace show_busy_calc
     off,
     moving_decimal_separator,
     digit_flickering
+  };
+}
+
+namespace digit_transition
+{
+  enum digit_transition
+  {
+    direct,
+    crossfade,
+    rolling
   };
 }
 

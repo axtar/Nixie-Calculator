@@ -186,6 +186,27 @@ const char htmlConfig[] = R"rawliteral(
       cursor: pointer;
     }
 
+    .row .dayCheckboxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px 10px;
+      flex: 0 1 auto;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background-color: #f0f0f0;
+    }
+
+    .dayCheckboxes label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: .9rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
     #saveBar {
       flex: 0 0 auto;
       margin-top: auto;
@@ -326,6 +347,27 @@ const char htmlConfig[] = R"rawliteral(
         <div class="row" data-setting="autooffdelay">
           <label for="autooffdelay">Auto-off delay (minutes)</label>
           <input type="number" id="autooffdelay" name="autooffdelay" min="1" max="720">
+        </div>
+        <div class="row" data-setting="offstarttime">
+          <label for="offstarttime">Off window start time</label>
+          <input type="time" id="offstarttime" name="offstarttime">
+        </div>
+        <div class="row" data-setting="offstoptime">
+          <label for="offstoptime">Off window stop time</label>
+          <input type="time" id="offstoptime" name="offstoptime">
+        </div>
+        <div class="row" data-setting="offdays">
+          <label for="offdays">Off days</label>
+          <div class="dayCheckboxes">
+            <label><input type="checkbox" class="offday" value="1"> Sun</label>
+            <label><input type="checkbox" class="offday" value="2"> Mon</label>
+            <label><input type="checkbox" class="offday" value="4"> Tue</label>
+            <label><input type="checkbox" class="offday" value="8"> Wed</label>
+            <label><input type="checkbox" class="offday" value="16"> Thu</label>
+            <label><input type="checkbox" class="offday" value="32"> Fri</label>
+            <label><input type="checkbox" class="offday" value="64"> Sat</label>
+          </div>
+          <input type="hidden" id="offdays" name="offdays" min="0" max="127">
         </div>
         <div class="row" data-setting="inputblinking">
           <label for="inputblinking">Input blinking</label>
@@ -577,9 +619,9 @@ const char htmlConfig[] = R"rawliteral(
           <label for="dimstarttime">Dim start time</label>
           <input type="time" id="dimstarttime" name="dimstarttime">
         </div>
-        <div class="row" data-setting="dimduration">
-          <label for="dimduration">Dim duration (minutes)</label>
-          <input type="number" id="dimduration" name="dimduration" min="0" max="720">
+        <div class="row" data-setting="dimstoptime">
+          <label for="dimstoptime">Dim stop time</label>
+          <input type="time" id="dimstoptime" name="dimstoptime">
         </div>
       </details>
 
@@ -645,17 +687,17 @@ const char htmlConfig[] = R"rawliteral(
           <label for="ledstarttime">LED start time</label>
           <input type="time" id="ledstarttime" name="ledstarttime">
         </div>
-        <div class="row" data-setting="ledduration">
-          <label for="ledduration">LED duration (minutes)</label>
-          <input type="number" id="ledduration" name="ledduration" min="0" max="720">
+        <div class="row" data-setting="ledstoptime">
+          <label for="ledstoptime">LED stop time</label>
+          <input type="time" id="ledstoptime" name="ledstoptime">
         </div>
         <div class="row" data-setting="ledstarttime2">
           <label for="ledstarttime2">LED start time 2</label>
           <input type="time" id="ledstarttime2" name="ledstarttime2">
         </div>
-        <div class="row" data-setting="ledduration2">
-          <label for="ledduration2">LED duration 2 (minutes)</label>
-          <input type="number" id="ledduration2" name="ledduration2" min="0" max="720">
+        <div class="row" data-setting="ledstoptime2">
+          <label for="ledstoptime2">LED stop time 2</label>
+          <input type="time" id="ledstoptime2" name="ledstoptime2">
         </div>
       </details>
 
@@ -1008,6 +1050,25 @@ const char htmlConfig[] = R"rawliteral(
 
     restoreSectionState();
 
+    // "offdays" is a bitmask int shown as checkboxes; the hidden input is what load/save actually touches
+    function offDaysFromCheckboxes() {
+      return Array.from(document.querySelectorAll('.offday:checked'))
+        .reduce((mask, cb) => mask | parseInt(cb.value, 10), 0);
+    }
+
+    function updateOffDaysUI() {
+      const mask = parseInt(document.getElementById('offdays').value, 10) || 0;
+      document.querySelectorAll('.offday').forEach(cb => {
+        cb.checked = (mask & parseInt(cb.value, 10)) !== 0;
+      });
+    }
+
+    document.querySelectorAll('.offday').forEach(cb => {
+      cb.addEventListener('change', () => {
+        document.getElementById('offdays').value = offDaysFromCheckboxes();
+      });
+    });
+
     const toggleAllButton = document.getElementById('toggleAllButton');
 
     function updateToggleAllButton() {
@@ -1045,6 +1106,7 @@ const char htmlConfig[] = R"rawliteral(
             }
             setFieldValue(el, data[el.name]);
           });
+          updateOffDaysUI();
         })
         .catch(() => showStatus('Failed to load settings.', true));
     }
