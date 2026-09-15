@@ -1,4 +1,15 @@
 ## Nixie calculator controller firmware
+### Version: 0.9.9
+Status:    Beta<br/>
+Date:      September 15, 2026<br/>
+ESP-IDF:   v5.5.5<br/>
+Arduino:   v3.3.11<br>
+Free Heap: 246000
+#### Changes
+- Added offstarttime and offstoptime settings to define a time window where the display should remain switched off.
+- Added offdays setting to define the days of the week on which the display should remain switched off.
+- Added digittransition setting, currently just a placeholder, not yet implemented
+---
 ### Version: 0.9.8
 Status:    Beta<br/>
 Date:      September 13, 2026<br/>
