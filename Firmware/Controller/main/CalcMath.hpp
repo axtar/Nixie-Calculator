@@ -18,6 +18,23 @@ class CalcMath
 public:
   CalcMath() = delete;
 
+private:
+  // check range to prevent slow loops
+  static bool isInTrigRange(PRAT px, PRAT maxTrig, int32_t precision)
+  {
+    if (!rat_lt(px, maxTrig, precision))
+    {
+      return false;
+    }
+    PRAT negMaxTrig = nullptr;
+    DUPRAT(negMaxTrig, maxTrig);
+    negMaxTrig->pp->sign *= -1;
+    bool withinRange = rat_gt(px, negMaxTrig, precision);
+    destroyrat(negMaxTrig);
+    return withinRange;
+  }
+
+public:
   // do the math and store the result in px
   // maxTrig and angletype are needed for trigonometric operations
   static operation_return_code calculate(PRAT *px, PRAT py, operation op, uint32_t radix, int32_t precision, PRAT maxTrig = rat_zero, angle_type angleType = angle_type::deg)
@@ -278,7 +295,7 @@ public:
     case operation::sin: // sine
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           sinanglerat(px, angleType == angle_type::deg ? AngleType::Degrees : AngleType::Radians, radix, precision);
         }
@@ -296,7 +313,7 @@ public:
     case operation::asin: // arcsine
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           asinanglerat(px, angleType == angle_type::deg ? AngleType::Degrees : AngleType::Radians, radix, precision);
         }
@@ -314,7 +331,7 @@ public:
     case operation::sinh: // hyperbolic sine
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           sinhrat(px, radix, precision);
         }
@@ -332,7 +349,7 @@ public:
     case operation::cos: // cosine
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           cosanglerat(px, angleType == angle_type::deg ? AngleType::Degrees : AngleType::Radians, radix, precision);
         }
@@ -350,7 +367,7 @@ public:
     case operation::acos: // arccosine
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           acosanglerat(px, angleType == angle_type::deg ? AngleType::Degrees : AngleType::Radians, radix, precision);
         }
@@ -368,7 +385,7 @@ public:
     case operation::cosh: // hyperbolic cosine
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           coshrat(px, radix, precision);
         }
@@ -386,7 +403,7 @@ public:
     case operation::tan: // tangent
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           tananglerat(px, angleType == angle_type::deg ? AngleType::Degrees : AngleType::Radians, radix, precision);
         }
@@ -404,7 +421,7 @@ public:
     case operation::atan: // arctangent
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           atananglerat(px, angleType == angle_type::deg ? AngleType::Degrees : AngleType::Radians, radix, precision);
         }
@@ -422,7 +439,7 @@ public:
     case operation::tanh: // hyperbolic tangent
       try
       {
-        if (rat_lt(*px, maxTrig, precision))
+        if (isInTrigRange(*px, maxTrig, precision))
         {
           tanhrat(px, radix, precision);
         }
