@@ -1496,40 +1496,40 @@ void numpowi32(PNUMBER *proot, int32_t power, uint32_t radix, int32_t precision)
 //    DESCRIPTION: changes rational representation of root to
 //    root ** power.
 //
+//    Changed to fix infinite recursion if power is INT_MIN
 //-----------------------------------------------------------------------------
 
 void ratpowi32(PRAT *proot, int32_t power, int32_t precision)
 
 {
-  if (power < 0)
+  bool invertResult = power < 0;
+  uint32_t magnitude = invertResult ? (uint32_t)(-(int64_t)power) : (uint32_t)power;
+
+  PRAT lret = nullptr;
+
+  lret = i32torat(1);
+
+  while (magnitude > 0)
+  {
+    if (magnitude & 1)
+    {
+      mulnumx(&(lret->pp), (*proot)->pp);
+      mulnumx(&(lret->pq), (*proot)->pq);
+    }
+    mulrat(proot, *proot, precision);
+    trimit(&lret, precision);
+    trimit(proot, precision);
+    magnitude >>= 1;
+  }
+  destroyrat(*proot);
+  *proot = lret;
+
+  if (invertResult)
   {
     // Take the positive power and invert answer.
-    PNUMBER pnumtemp = nullptr;
-    ratpowi32(proot, -power, precision);
-    pnumtemp = (*proot)->pp;
+    PNUMBER pnumtemp = (*proot)->pp;
     (*proot)->pp = (*proot)->pq;
     (*proot)->pq = pnumtemp;
-  }
-  else
-  {
-    PRAT lret = nullptr;
-
-    lret = i32torat(1);
-
-    while (power > 0)
-    {
-      if (power & 1)
-      {
-        mulnumx(&(lret->pp), (*proot)->pp);
-        mulnumx(&(lret->pq), (*proot)->pq);
-      }
-      mulrat(proot, *proot, precision);
-      trimit(&lret, precision);
-      trimit(proot, precision);
-      power >>= 1;
-    }
-    destroyrat(*proot);
-    *proot = lret;
   }
 }
 
