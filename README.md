@@ -15,7 +15,6 @@
 >[!NOTE]
 > - **The project is not affiliated with any of the service providers mentioned in this repository.**
 > - **No HP code was used to develop the RPN firmware.**
-> - **Since controller firmware V0.2.0, the project is no longer AI-free.**
 
 ##
 #### Project Status 
