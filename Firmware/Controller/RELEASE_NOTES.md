@@ -7,6 +7,9 @@ Arduino:   v3.3.11<br>
 Free Heap: 245000
 #### Changes
 - Added a simple calculator self-test suite (not included in the build by default)
+#### Fixes
+- Fixed endless recursion in ratpowi32 in the original ratpak library
+- Fixed missing negative limit check for trigonometric operations
 ---
 ### Version: 0.10.0
 Status:    Beta<br/>
