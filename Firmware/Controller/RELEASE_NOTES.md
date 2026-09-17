@@ -8,7 +8,7 @@ Free Heap: 245000
 #### Changes
 - Added a simple calculator self-test suite (not included in the build by default)
 #### Fixes
-- Fixed endless recursion in ratpowi32 in the original ratpak library
+- Fixed endless recursion in ratpowi32
 - Fixed missing negative limit check for trigonometric operations
 ---
 ### Version: 0.10.0
