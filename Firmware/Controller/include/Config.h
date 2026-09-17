@@ -62,6 +62,14 @@ constexpr auto AP_PWD = "NIXIESareGreat!";
 constexpr auto OTA_PWD = "FeedMeWithBytes!";
 
 // -------------------------------------------------------------------------------
+// ratpak/calculator self-test page
+// -------------------------------------------------------------------------------
+// false -> disable
+// true  -> enable (requires WEB_SUPPORT) 
+// -------------------------------------------------------------------------------
+#define CALC_TESTS false
+
+// -------------------------------------------------------------------------------
 
 // compile time configuration checks
 static_assert(DISPLAY_TYPE == display_type::in12a ||
@@ -84,6 +92,14 @@ static_assert(DISPLAY_TYPE == display_type::in12a ||
 #error "OTA_SUPPORT configuration incorrect"
 #endif
 
+#if CALC_TESTS != false && CALC_TESTS != true
+#error "CALC_TESTS configuration incorrect"
+#endif
+
 #if OTA_SUPPORT && !WEB_SUPPORT
 #error "OTA_SUPPORT requires WEB_SUPPORT"
+#endif
+
+#if CALC_TESTS && !WEB_SUPPORT
+#error "CALC_TESTS requires WEB_SUPPORT"
 #endif

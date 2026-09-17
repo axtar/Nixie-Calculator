@@ -105,6 +105,11 @@ R"rawliteral(
     <a href="/firmware">Firmware Update</a>
 )rawliteral"
 #endif
+#if CALC_TESTS
+R"rawliteral(
+    <a href="/tests">Tests</a>
+)rawliteral"
+#endif
 R"rawliteral(
   </div>
 </body>
