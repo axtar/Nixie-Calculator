@@ -20,6 +20,9 @@
 #include <HTMLPassword.h>
 #include <HTMLTimeSync.h>
 #include <Settings.hpp>
+#if CALC_TESTS
+#include <HTMLTests.h>
+#endif
 #if OTA_SUPPORT
 #include <Update.h>
 #include <HTMLFirmware.h>
@@ -102,6 +105,9 @@ protected:
   using disconnectionCallback = std::function<void(uint32_t id)>;
   using settingsUpdateCallback = std::function<void(const String &json, bool isReset)>;
   using statusRequestCallback = std::function<String(void)>;
+#if CALC_TESTS
+  using testsRequestCallback = std::function<String(bool performance)>;
+#endif
   using keypadEventCallback = std::function<void(uint8_t keyCode, bool functionKeyPressed, bool shiftKeyPressed)>;
   using registerSubscriptionCallback = std::function<void(bool subscribe)>;
   using timeSyncCallback = std::function<void(time_t utc)>;
@@ -121,6 +127,9 @@ public:
   {
     _initialized = false;
     _serverInitialized = false;
+#if CALC_TESTS
+    _notifyTestsRequest = nullptr;
+#endif
   }
 
   virtual ~WebServer()
@@ -217,6 +226,20 @@ public:
   {
     _notifyStatusRequest = nullptr;
   }
+
+#if CALC_TESTS
+  // set the callback function providing the self-test page results
+  void attachTestsRequestCb(testsRequestCallback callBack)
+  {
+    _notifyTestsRequest = callBack;
+  }
+
+  // remove callback
+  void detachTestsRequestCb()
+  {
+    _notifyTestsRequest = nullptr;
+  }
+#endif
 
   // set the callback function for key events coming from the web keypad
   void attachKeypadEventCb(keypadEventCallback callBack)
@@ -414,6 +437,9 @@ private:
   disconnectionCallback _notifyDisconnection;
   settingsUpdateCallback _notifySettingsUpdate;
   statusRequestCallback _notifyStatusRequest;
+#if CALC_TESTS
+  testsRequestCallback _notifyTestsRequest;
+#endif
   keypadEventCallback _notifyKeypadEvent;
   registerSubscriptionCallback _notifyRegisterSubscription;
   timeSyncCallback _notifyTimeSync;
@@ -457,6 +483,10 @@ private:
     _server.on("/firmware", HTTP_GET, [](AsyncWebServerRequest *request)
                { request->send(200, "text/html", htmlFirmware); });
 #endif
+#if CALC_TESTS
+    _server.on("/tests", HTTP_GET, [](AsyncWebServerRequest *request)
+               { request->send(200, "text/html", htmlTests); });
+#endif
 
     // status information API
     _server.on("/api/status", HTTP_GET, [this](AsyncWebServerRequest *request)
@@ -470,9 +500,44 @@ private:
                    request->send(503, "application/json", "{}");
                  } });
 
+#if CALC_TESTS
+    // self-test suite API; /performance runs the known-slow cases separately since
+    // they can take much longer than the regular correctness suite.
+    // Registered before /api/tests: plain-string routes use "backward compatible"
+    // matching (^{uri}(/.*)?$), so /api/tests would otherwise also match
+    // /api/tests/performance and, being registered first, intercept it.
+    _server.on("/api/tests/performance", HTTP_GET, [this](AsyncWebServerRequest *request)
+               {
+                 if (_notifyTestsRequest)
+                 {
+                   request->send(200, "application/json", _notifyTestsRequest(true));
+                 }
+                 else
+                 {
+                   request->send(503, "application/json", "[]");
+                 } });
+    _server.on("/api/tests", HTTP_GET, [this](AsyncWebServerRequest *request)
+               {
+                 if (_notifyTestsRequest)
+                 {
+                   request->send(200, "application/json", _notifyTestsRequest(false));
+                 }
+                 else
+                 {
+                   request->send(503, "application/json", "[]");
+                 } });
+#endif
+
     // settings configuration API
     _server.on("/api/settings", HTTP_GET, [this](AsyncWebServerRequest *request)
                { request->send(200, "application/json", WebHelper::settingsToJSON(*_settings)); });
+    // registered before the /api/settings POST handler below: plain-string routes use
+    // "backward compatible" matching (^{uri}(/.*)?$), so /api/settings would otherwise
+    // also match /api/settings/reset and, being registered first, intercept it
+    _server.on("/api/settings/reset", HTTP_POST, [this](AsyncWebServerRequest *request)
+               {
+                 onSettingsUpdate(String(), true);
+                 request->send(200, "application/json", "{\"status\":\"ok\"}"); });
     _server.on(
         "/api/settings", HTTP_POST,
         [this](AsyncWebServerRequest *request)
@@ -529,10 +594,6 @@ private:
             }
           }
         });
-    _server.on("/api/settings/reset", HTTP_POST, [this](AsyncWebServerRequest *request)
-               {
-                 onSettingsUpdate(String(), true);
-                 request->send(200, "application/json", "{\"status\":\"ok\"}"); });
 
     // access point password change API
     _server.on(

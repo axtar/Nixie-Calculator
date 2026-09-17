@@ -33,6 +33,9 @@
 #if WEB_SUPPORT
 #include <WebServer.hpp>
 #include <WebHelper.hpp>
+#if CALC_TESTS
+#include <CalcTests.hpp>
+#endif
 #endif
 
 // pin definitions
@@ -261,6 +264,12 @@ public:
       // provide status information to the status page
       _web.attachStatusRequestCb([this]()
                                  { return (getStatusJSON()); });
+
+#if CALC_TESTS
+      // provide the self-test suite results to the tests page
+      _web.attachTestsRequestCb([this](bool performance)
+                                { return (getTestsJSON(performance)); });
+#endif
 
       // get notified on key events coming from the web keypad
       _web.attachKeypadEventCb([this](uint8_t keyCode, bool functionKeyPressed, bool shiftKeyPressed)
@@ -822,6 +831,16 @@ private:
 
     return (WebHelper::buildStatusJSON(info));
   }
+
+#if CALC_TESTS
+  // run the self-test suite and return the results as JSON, called from the async
+  // web server task
+  String getTestsJSON(bool performance)
+  {
+    return performance ? CalcTests::runPerformanceJSON(RAT_RADIX, SettingsCache::calcPrecision)
+                        : CalcTests::runCorrectnessJSON(RAT_RADIX, SettingsCache::calcPrecision);
+  }
+#endif
 #endif
 
   // return true if HV should be on, false if HV should be off

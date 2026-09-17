@@ -18,23 +18,6 @@ class CalcMath
 public:
   CalcMath() = delete;
 
-private:
-  // check range to prevent slow loops
-  static bool isInTrigRange(PRAT px, PRAT maxTrig, int32_t precision)
-  {
-    if (!rat_lt(px, maxTrig, precision))
-    {
-      return false;
-    }
-    PRAT negMaxTrig = nullptr;
-    DUPRAT(negMaxTrig, maxTrig);
-    negMaxTrig->pp->sign *= -1;
-    bool withinRange = rat_gt(px, negMaxTrig, precision);
-    destroyrat(negMaxTrig);
-    return withinRange;
-  }
-
-public:
   // do the math and store the result in px
   // maxTrig and angletype are needed for trigonometric operations
   static operation_return_code calculate(PRAT *px, PRAT py, operation op, uint32_t radix, int32_t precision, PRAT maxTrig = rat_zero, angle_type angleType = angle_type::deg)
@@ -589,4 +572,20 @@ public:
     destroyrat(*px);
     *px = StringToRat(false, sm, false, se, radix, precision);
   }
+
+private:
+  // check range to prevent slow loops
+  static bool isInTrigRange(PRAT px, PRAT maxTrig, int32_t precision)
+  {
+    bool result = false;
+    if (rat_lt(px, maxTrig, precision))
+    {
+      PRAT negMaxTrig = nullptr;
+      DUPRAT(negMaxTrig, maxTrig);
+      negMaxTrig->pp->sign *= -1;
+      result = rat_gt(px, negMaxTrig, precision);
+      destroyrat(negMaxTrig);
+    }
+    return result;
+  }  
 };
