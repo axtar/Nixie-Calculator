@@ -97,7 +97,9 @@ I recommend following this order:
 
 
 ## AI
-I recently started using AI in this project because I wanted to add some additional web-based features to the calculator, and I don't enjoy web design. So AI was primarily used to generate web pages.
+I started using AI in this project because I wanted to add some additional web-based features to the calculator, and I don't enjoy web design. 
+The last AI-free firmware version was 0.1.11 from August 2026, which already included most of the functionality, including a web-based register display.
+AI was primarily used to assist with the web interface and to generate the test cases.
 
 ## Web server and OTA (over-the-air) firmware update
 The calculator can be configured and used without a network connection. If you don't like network and web-based features in a retro project you can just change the defines to
