@@ -136,7 +136,7 @@ const char htmlStatus[] = R"rawliteral(
     <div class="row"><span>Board/MCU Temperature</span><span id="boardTemperature">-</span></div>
     <div class="row"><span>Free Heap</span><span id="freeHeap">-</span></div>
     <div class="row"><span>Heap Fragmentation</span><span id="heapFragmentation">-</span></div>
-    <div class="row"><span>Nixie Task Stack Free</span><span id="nixieTaskStackFree">-</span></div>
+    <div class="row"><span>Display Task Stack Free</span><span id="displayTaskStackFree">-</span></div>
     <div class="row"><span>Last Reset Reason</span><span id="resetReason">-</span></div>
     <div class="row"><span>Uptime</span><span id="uptime">-</span></div>
     <div class="row"><span>Access Point IP</span><span id="apIP">-</span></div>
@@ -189,7 +189,7 @@ const char htmlStatus[] = R"rawliteral(
           document.getElementById('externalTemperature').textContent = formatTemperature(data.externalTemperature, data.temperatureUnit);
           document.getElementById('freeHeap').textContent = data.freeHeap + " (min " + data.minFreeHeap + ")";
           document.getElementById('heapFragmentation').textContent = data.heapFragmentation + "% (largest " + data.largestFreeBlock + ")";
-          document.getElementById('nixieTaskStackFree').textContent = data.nixieTaskStackFree < 0 ? "N/A" : data.nixieTaskStackFree + " bytes";
+          document.getElementById('displayTaskStackFree').textContent = data.displayTaskStackFree < 0 ? "N/A" : data.displayTaskStackFree + " bytes";
           document.getElementById('uptime').textContent = formatUptime(data.uptime);
           document.getElementById('lastPresence').textContent = data.lastPresence < 0 ? "Never" : formatElapsed(data.lastPresence);
           document.getElementById('deviceMode').textContent = data.deviceMode;

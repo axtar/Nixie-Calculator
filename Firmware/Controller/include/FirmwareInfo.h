@@ -12,5 +12,5 @@
 //- VERSION
 constexpr uint8_t MAJOR_VERSION = 0;
 constexpr uint8_t MINOR_VERSION = 11;
-constexpr uint8_t REVISION = 0;
+constexpr uint8_t REVISION = 1;
 constexpr auto FW_STATUS = "beta";
