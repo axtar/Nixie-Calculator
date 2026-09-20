@@ -1,4 +1,13 @@
 ## Nixie calculator controller firmware
+### Version: 0.11.1
+Status:    Beta<br/>
+Date:      September 20, 2026<br/>
+ESP-IDF:   v5.5.5<br/>
+Arduino:   v3.3.12<br>
+Free Heap: 245000
+#### Changes
+- M7219 driver now uses SPI
+- Added time effects (transitions) to 7-segment LED display 
 ### Version: 0.11.0
 Status:    Beta<br/>
 Date:      September 17, 2026<br/>
