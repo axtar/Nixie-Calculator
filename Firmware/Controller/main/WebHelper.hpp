@@ -41,7 +41,7 @@ struct StatusInfo
   unsigned int cpuFreqMHz;
   uint32_t flashSize;
   long lastGpsSync;
-  int nixieTaskStackFree; // temporary: high water mark of the nixie refresh task's stack, -1 if not applicable
+  int displayTaskStackFree; // temporary: high water mark of the display refresh task's stack, -1 if not applicable
 };
 
 class WebHelper
@@ -220,8 +220,8 @@ public:
     json.concat(largestFreeBlock);
     json.concat(",\"heapFragmentation\":");
     json.concat(heapFragmentation);
-    json.concat(",\"nixieTaskStackFree\":");
-    json.concat(info.nixieTaskStackFree);
+    json.concat(",\"displayTaskStackFree\":");
+    json.concat(info.displayTaskStackFree);
     json.concat(",\"uptime\":");
     json.concat(info.uptimeSeconds);
     json.concat(",\"lastPresence\":");

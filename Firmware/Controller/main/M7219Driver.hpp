@@ -9,6 +9,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <SPI.h>
 
 // registers
 constexpr uint8_t REG_NO_OP = 0x00;
@@ -39,18 +40,25 @@ constexpr uint8_t CHAR_o = 14;
 // size of character map
 constexpr uint8_t CHARMAP_SIZE = 15;
 
+// SPI 
+constexpr uint32_t M7219_SPI_CLOCK_HZ = 1000000;
+constexpr uint8_t M7219_SPI_MODE = SPI_MODE0;
+
+// upper bound on cascaded ICs, sizes the transfer buffer (2 bytes per IC)
+constexpr uint8_t MAX_CHAIN_SIZE = 8;
+
 class M7219Driver
 {
 public:
-  M7219Driver(uint8_t dataPin, uint8_t clockPin, uint8_t loadPin, uint8_t chainSize) : _dataPin(dataPin),
-                                                                                       _clockPin(clockPin),
-                                                                                       _loadPin(loadPin),
-                                                                                       _chainSize(chainSize)
+  M7219Driver(SPIClass &spi, uint8_t dataPin, uint8_t clockPin, uint8_t loadPin, uint8_t chainSize) : _spi(spi),
+                                                                                                        _dataPin(dataPin),
+                                                                                                        _clockPin(clockPin),
+                                                                                                        _loadPin(loadPin),
+                                                                                                        _chainSize(chainSize > MAX_CHAIN_SIZE ? MAX_CHAIN_SIZE : chainSize)
   {
-    // define pin mode
-    pinMode(_dataPin, OUTPUT);
-    pinMode(_clockPin, OUTPUT);
     pinMode(_loadPin, OUTPUT);
+    digitalWrite(_loadPin, HIGH);
+    _spi.begin(_clockPin, -1, _dataPin, -1);
 
     // set scan limit to max
     setDigitCount(MAX_DIGITS);
@@ -176,6 +184,8 @@ public:
   }
 
 private:
+  SPIClass &_spi;
+
   // SPI pins
   uint8_t _dataPin;
   uint8_t _clockPin;
@@ -192,22 +202,26 @@ private:
   {
     if (index < _chainSize)
     {
-      digitalWrite(_loadPin, LOW);
-
+      uint8_t buffer[MAX_CHAIN_SIZE * 2];
+      uint8_t pos = 0;
       for (uint8_t i = _chainSize; i > 0; i--)
       {
         if (index == (i - 1))
         {
-          shiftOut(_dataPin, _clockPin, MSBFIRST, reg);
-          shiftOut(_dataPin, _clockPin, MSBFIRST, value);
+          buffer[pos++] = reg;
+          buffer[pos++] = value;
         }
         else
         {
-          shiftOut(_dataPin, _clockPin, MSBFIRST, REG_NO_OP);
-          shiftOut(_dataPin, _clockPin, MSBFIRST, 0x00);
+          buffer[pos++] = REG_NO_OP;
+          buffer[pos++] = 0x00;
         }
       }
+      _spi.beginTransaction(SPISettings(M7219_SPI_CLOCK_HZ, MSBFIRST, M7219_SPI_MODE));
+      digitalWrite(_loadPin, LOW);
+      _spi.transferBytes(buffer, nullptr, pos);
       digitalWrite(_loadPin, HIGH);
+      _spi.endTransaction();
     }
   }
 };

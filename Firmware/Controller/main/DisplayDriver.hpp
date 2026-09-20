@@ -50,10 +50,10 @@ constexpr uint32_t NIXIE_SPI_CLOCK_HZ = 2000000; // 2 MHz, safe margin over bit-
 constexpr uint8_t NIXIE_SPI_MODE = SPI_MODE1;
 
 // crossfade fakes a blend by rapidly alternating old/new cathode selection over time
-constexpr uint16_t DIGIT_FADE_DURATION_MS = 200;
+constexpr uint16_t DIGIT_FADE_DURATION_MS = 250;
 
 // rolling spins through a full 10-19 frame lap, so it needs more time per frame than crossfade
-constexpr uint16_t DIGIT_ROLL_DURATION_MS = 250;
+constexpr uint16_t DIGIT_ROLL_DURATION_MS = 300;
 
 constexpr uint32_t NIXIE_REFRESH_INTERVAL_US = 4000; // 250 Hz
 
@@ -134,7 +134,7 @@ public:
 
     case display_type::led:
       _dispHAL = new DisplayHAL_LED();
-      _m7219drv = new M7219Driver(_dataPin, _shiftPin, _storePin, CHAIN_SIZE);
+      _m7219drv = new M7219Driver(_spi, _dataPin, _shiftPin, _storePin, CHAIN_SIZE);
       break;
 
     case display_type::undefined:
@@ -169,8 +169,7 @@ public:
     _digits = new uint8_t[_digitCount];
     _digitsContent = new digit_content[_digitCount];
 
-    // per-digit crossfade state, used only for nixie displays (see setDigitFaded())
-    if (_displayType != display_type::led)
+    // per-digit transition state
     {
       _displayedDigit = new uint8_t[_digitCount];
       _transitionFrom = new uint8_t[_digitCount];
@@ -184,6 +183,13 @@ public:
       memset(_transitionDurationMs, 0, _digitCount * sizeof(uint16_t));
       memset(_transitionMode, 0, _digitCount * sizeof(time_effects::time_effects));
       memset(_ditherError, 0, _digitCount * sizeof(float));
+    }
+
+    if (_displayType == display_type::led)
+    {
+      _ledShown = new uint8_t[_digitCount];
+      memset(_ledShown, DIGIT_OFF, _digitCount * sizeof(uint8_t));
+      _ledCommitMutex = xSemaphoreCreateMutex();
     }
 
     // used for IN-15A
@@ -243,6 +249,11 @@ public:
     delete[] _transitionDurationMs;
     delete[] _transitionMode;
     delete[] _ditherError;
+    delete[] _ledShown;
+    if (_ledCommitMutex)
+    {
+      vSemaphoreDelete(_ledCommitMutex);
+    }
   }
 
   // initialization
@@ -254,12 +265,12 @@ public:
       clearLEDs();
     }
 
-    // nixie displays get a dedicated background task that continuously pushes shift register frames
-    if ((_displayType != display_type::led) && !_refreshTaskHandle)
+    // a dedicated background task to refresh the display
+    if (!_refreshTaskHandle)
     {
       xTaskCreatePinnedToCore([](void *t)
                               { static_cast<DisplayDriver *>(t)->refreshTaskLoop(); },
-                              "nixieRefresh", 2048, this, tskIDLE_PRIORITY + 5, &_refreshTaskHandle, 0);
+                              "displayRefresh", (_displayType == display_type::led) ? 3072 : 2048, this, tskIDLE_PRIORITY + 5, &_refreshTaskHandle, 0);
     }
   }
 
@@ -817,6 +828,8 @@ private:
   uint16_t *_transitionDurationMs;
   time_effects::time_effects *_transitionMode;
   float *_ditherError;
+  uint8_t *_ledShown = nullptr;
+  SemaphoreHandle_t _ledCommitMutex = nullptr;
   TaskHandle_t _refreshTaskHandle;
   portMUX_TYPE _fadeMux = portMUX_INITIALIZER_UNLOCKED;
 
@@ -901,7 +914,7 @@ private:
   }
 
   // commit values to the display
-  void commitToDisplay()
+  void commitToDisplay(bool changedOnly = false)
   {
     if (_displayType == display_type::led)
     {
@@ -910,43 +923,56 @@ private:
       uint8_t pos = 0;
       if (_m7219drv)
       {
-        // commit base sign
-        _dispHAL->getDigitAddress(BASE_SIGN, &index, &pos);
-        if (_minusSign == display_state::on)
+        xSemaphoreTake(_ledCommitMutex, portMAX_DELAY);
+        if (!changedOnly)
         {
-          _m7219drv->setChar(index, pos, CHAR_MINUS, false);
+          // commit base sign
+          _dispHAL->getDigitAddress(BASE_SIGN, &index, &pos);
+          if (_minusSign == display_state::on)
+          {
+            _m7219drv->setChar(index, pos, CHAR_MINUS, false);
+          }
+          else
+          {
+            _m7219drv->setChar(index, pos, CHAR_BLANK, false);
+          }
         }
-        else
-        {
-          _m7219drv->setChar(index, pos, CHAR_BLANK, false);
-        }
-        // commit digits and decimal points
+
         for (uint8_t i = 0; i < LED_DIGITCOUNT; i++)
         {
+          uint8_t shown = _displayedDigit[i];
+          if (changedOnly && (_ledShown[i] == shown))
+          {
+            continue;
+          }
+          _ledShown[i] = shown;
           _dispHAL->getDigitAddress(i + 1, &index, &pos);
           bool dp = (_decimalSeparators[i] == display_state::on);
-          if (_digits[i] == DIGIT_OFF)
+          if (shown == DIGIT_OFF)
           {
             _m7219drv->setChar(index, pos, CHAR_BLANK, dp);
           }
           else
           {
-            _m7219drv->setChar(index, pos, _digits[i], dp);
+            _m7219drv->setChar(index, pos, shown, dp);
           }
         }
-        // commit exponent sign
-        _dispHAL->getDigitAddress(EXPONENT_SIGN, &index, &pos);
-        if (_expMinusSign == display_state::on)
+        if (!changedOnly)
         {
-          _m7219drv->setChar(index, pos, CHAR_MINUS, false);
+          // commit exponent sign
+          _dispHAL->getDigitAddress(EXPONENT_SIGN, &index, &pos);
+          if (_expMinusSign == display_state::on)
+          {
+            _m7219drv->setChar(index, pos, CHAR_MINUS, false);
+          }
+          else
+          {
+            _m7219drv->setChar(index, pos, CHAR_BLANK, false);
+          }
         }
-        else
-        {
-          _m7219drv->setChar(index, pos, CHAR_BLANK, false);
-        }
+        xSemaphoreGive(_ledCommitMutex);
       }
     }
-    // nixie hardware pushes are owned exclusively by the background refresh task
   }
 
   // serialize the display state and push it over SPI; called only from the refresh task
@@ -1107,7 +1133,14 @@ private:
     while (true)
     {
       updateFadeState();
-      pushNixieFrame();
+      if (_displayType == display_type::led)
+      {
+        commitToDisplay(true);
+      }
+      else
+      {
+        pushNixieFrame();
+      }
       vTaskDelayUntil(&lastWake, period > 0 ? period : 1);
     }
   }

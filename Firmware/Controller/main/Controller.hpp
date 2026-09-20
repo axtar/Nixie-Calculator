@@ -826,8 +826,8 @@ private:
     info.cpuFreqMHz = ESP.getCpuFreqMHz();
     info.flashSize = ESP.getFlashChipSize();
     info.lastGpsSync = (lastSyncMillis != 0) ? static_cast<long>((millis() - lastSyncMillis) / 1000) : -1;
-    TaskHandle_t nixieTaskHandle = _displayHandler.getRefreshTaskHandle();
-    info.nixieTaskStackFree = nixieTaskHandle ? static_cast<int>(uxTaskGetStackHighWaterMark(nixieTaskHandle)) : -1;
+    TaskHandle_t displayTaskHandle = _displayHandler.getRefreshTaskHandle();
+    info.displayTaskStackFree = displayTaskHandle ? static_cast<int>(uxTaskGetStackHighWaterMark(displayTaskHandle)) : -1;
 
     return (WebHelper::buildStatusJSON(info));
   }
