@@ -43,7 +43,7 @@ dependencies:
       type: service
     version: 3.12.1
   espressif/arduino-esp32:
-    component_hash: 1aeba74639b4728ff708d6177edfb3a0011c23b4b585c829c9d5f9840f13f0ca
+    component_hash: ed2a18885dee9ad34123003b627a191d98908e8155c1899ad71c0321908737bb
     dependencies:
     - name: chmorgan/esp-libhelix-mp3
       registry_url: https://components.espressif.com
@@ -116,7 +116,7 @@ dependencies:
       require: private
       rules:
       - if: target == esp32p4
-      version: ^2.9.2
+      version: ^2.12.13
     - name: espressif/esp_insights
       registry_url: https://components.espressif.com
       require: private
@@ -216,7 +216,7 @@ dependencies:
     - esp32p4
     - esp32s2
     - esp32s3
-    version: 3.3.11
+    version: 3.3.12
   espressif/cbor:
     component_hash: dad9ca860963e930366510a10b422b3125a4fb27b979712ed65efcbcd742de50
     dependencies:
@@ -355,7 +355,7 @@ dependencies:
       type: service
     version: 2.1.0
   espressif/esp_rainmaker:
-    component_hash: 74e70026b0cf06b1b56d5324667b431bd784d71bdfd20a9e6fb134698dfac129
+    component_hash: 0f0f781677173826eee568d53f04b27e44fbe72c2bfc21929e4a5239fbe831d2
     dependencies:
     - name: espressif/cbor
       registry_url: https://components.espressif.com
@@ -398,7 +398,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.16.0
+    version: 1.16.1
   espressif/esp_schedule:
     component_hash: 52d305300abcee86034c309eb200feb2dfbc95fcbfc5b7b9dcd137763a995dbf
     dependencies:
@@ -548,7 +548,7 @@ dependencies:
       type: service
     version: 1.0.0
   espressif/rmaker_common:
-    component_hash: ee65381bc5ec077390be5c68d03aacb4f3846cbb93ca79a730d94e941304a6a0
+    component_hash: bfb0fc9a19686e4fc61da00e10d1db03fecb712d79d2a34c5fbb3fd41ef5f026
     dependencies:
     - name: espressif/mqtt
       registry_url: https://components.espressif.com
@@ -563,7 +563,7 @@ dependencies:
     - name: espressif/rmaker_common_events
       registry_url: https://components.espressif.com
       require: private
-      version: ^1.0.0
+      version: ^1.1.0
     - name: espressif/rmaker_console
       registry_url: https://components.espressif.com
       require: private
@@ -586,9 +586,9 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.8.6
+    version: 1.9.0
   espressif/rmaker_common_events:
-    component_hash: ced95feff88c368e6306ff67ff3696ac76a5273de9fe1f907a7c115d4370fe6e
+    component_hash: 57df0770974627a57a2c4d459a4ec93d707d2b9c029966128ddf262fed982c5d
     dependencies:
     - name: idf
       require: private
@@ -596,7 +596,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.0.0
+    version: 1.1.0
   espressif/rmaker_console:
     component_hash: 22f38fe0ec9c84257427dad9a92e09ddbba48a6278eae42b0b167589f0e79f20
     dependencies:
@@ -673,6 +673,6 @@ direct_dependencies:
 - espressif/ds18b20
 - espressif/led_strip
 - espressif/onewire_bus
-manifest_hash: 2e6250771ae3e2b6cdb0e08c9305af71a81c2a43f22ded2d943d0e694f85d79a
+manifest_hash: 2f7074d695a776bbd9c81bba2108ddf8767e7da2bd74b120afa6676a5a4bc0cb
 target: esp32
 version: 2.0.0
