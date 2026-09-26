@@ -397,10 +397,11 @@ const char htmlConfig[] = R"rawliteral(
             <option value="4">Time and date</option>
             <option value="5">Time and temperature</option>
             <option value="6">Time, date and temperature</option>
-            <option value="7">Date and time (raw)</option>
+            <option value="7">Time with hundredths</option>
             <option value="8">Dual time</option>
-            <option value="9">Timer</option>
-            <option value="10">Stopwatch</option>
+            <option value="9">Date and time (raw)</option>
+            <option value="10">Timer</option>
+            <option value="11">Stopwatch</option>
           </select>
         </div>
         <div class="row" data-setting="hourmode">
@@ -621,9 +622,17 @@ const char htmlConfig[] = R"rawliteral(
           <label for="brightness">Display brightness</label>
           <input type="number" id="brightness" name="brightness" min="1" max="15">
         </div>
+        <div class="row" data-setting="ledbrightness">
+          <label for="ledbrightness">LED brightness (%)</label>
+          <input type="number" id="ledbrightness" name="ledbrightness" min="5" max="100">
+        </div>
         <div class="row" data-setting="dimbrightness">
           <label for="dimbrightness">Dim brightness</label>
           <input type="number" id="dimbrightness" name="dimbrightness" min="1" max="15">
+        </div>
+        <div class="row" data-setting="dimlbrightness">
+          <label for="dimlbrightness">Dim LED brightness (%)</label>
+          <input type="number" id="dimlbrightness" name="dimlbrightness" min="5" max="100">
         </div>
         <div class="row" data-setting="dimstarttime">
           <label for="dimstarttime">Dim start time</label>

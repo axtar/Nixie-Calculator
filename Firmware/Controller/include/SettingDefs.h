@@ -58,6 +58,7 @@ namespace setting_id
     temperaturemode, // Temperature sensor off or on
     temperaturecf,   // Temperature in C or F
     ledmode,         // LEDs on by time or always
+    ledbrightness,   // General brightness of the LED lighting in percent
     calcrgbmode,     // Fixed colors or random colors in calculator mode
     clockrgbmode,    // Fixed colors or random colors in clock mode
     breathingmode,   // Breathing (pulsing brightness) effect for LED lighting off or on
@@ -115,6 +116,7 @@ namespace setting_id
     inputblinking,   // Input blinking off or on
     brightness,      // Display brightness (LED intensity or nixie blank-line PWM)
     dimbrightness,   // Display brightness during the dimming period
+    dimlbrightness,  // LED lighting brightness in percent during the dimming period
     dimstarttime,    // Start time of display dimming
     dimstoptime,     // Stop time of display dimming
     apautostart,     // Automatically start the WiFi access point off or on
@@ -161,8 +163,9 @@ namespace clock_mode
     time_and_date,
     time_and_temp,
     time_and_date_and_temp,
-    date_and_time_raw,
+    time_centiseconds,
     dual_time,
+    date_and_time_raw,
     timer,
     stopwatch
   };
