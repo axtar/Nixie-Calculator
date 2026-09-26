@@ -108,6 +108,9 @@ public:
         t += driftCorrection(t);
         struct timeval tv = {.tv_sec = t, .tv_usec = 0};
         settimeofday(&tv, nullptr);
+        // a new system second starts right now, restart the hundredths with it; otherwise a sync that
+        // steps the clock back leaves the seconds digit unchanged and the hundredths stuck at 99
+        _centiSecondStartUs = esp_timer_get_time();
       }
       _lastTimeSyncMillis = millis();
     }
@@ -330,6 +333,10 @@ private:
   int _lastStopwatchColorSecond = -1;
   int _lastStopwatchColorMinute = -1;
   int _lastStopwatchColorHour = -1;
+  int _centiLastSecond = -1;      
+  int64_t _centiSecondStartUs = 0;
+
+
 
   // some state variables
   int _movingLastSecond = 0;
@@ -432,6 +439,7 @@ private:
     case clock_mode::time_and_date:
     case clock_mode::time_and_temp:
     case clock_mode::time_and_date_and_temp:
+    case clock_mode::time_centiseconds:
     case clock_mode::date_and_time_raw:
     case clock_mode::dual_time:
       break;
@@ -532,6 +540,10 @@ private:
 
     case clock_mode::time_and_date_and_temp:
       showTimeAndDateAndTemp(tm);
+      break;
+
+    case clock_mode::time_centiseconds:
+      showTimeCentiseconds(tm);
       break;
 
     case clock_mode::date_and_time_raw:
@@ -736,7 +748,27 @@ private:
     }
   }
 
-  // display date and time in the format YYYYMMDDhhmmss, clock mode 7
+  // display the time with hundredths of a second
+  void showTimeCentiseconds(const struct tm *tm)
+  {
+    int64_t nowUs = esp_timer_get_time();
+    if (tm->tm_sec != _centiLastSecond)
+    {
+      _centiLastSecond = tm->tm_sec;
+      _centiSecondStartUs = nowUs;
+    }
+    int64_t hundredths = (nowUs - _centiSecondStartUs) / 10000;
+    if (hundredths > 99)
+    {
+      // the next second is late, hold at 99
+      hundredths = 99;
+    }
+    _displayHandler->showTime(tm, 1, SettingsCache::hourMode, SettingsCache::leadingZero, true, true, SettingsCache::timeSeparator);
+    _displayHandler->setDigit(10, hundredths / 10, digit_content::time);
+    _displayHandler->setDigit(11, hundredths % 10, digit_content::time);
+  }
+
+  // display date and time in the format YYYYMMDDhhmmss
   void showDateTimeRaw(const struct tm *tm) const
   {
     int year = tm->tm_year + 1900;
@@ -823,7 +855,7 @@ private:
                                    _lastTimerColorSecond, _lastTimerColorMinute, _lastTimerColorHour);
   }
 
-  // display the stopwatch, clock mode 10
+  // display the stopwatch
   void showStopWatch()
   {
     int position = 1;
@@ -950,17 +982,23 @@ private:
       case clock_mode::time_and_date:
       case clock_mode::time_and_temp:
       case clock_mode::time_and_date_and_temp:
-      case clock_mode::date_and_time_raw:
+      case clock_mode::time_centiseconds:
       case clock_mode::dual_time:
-      case clock_mode::timer:
-      case clock_mode::stopwatch:
-        _displayHandler->clearDisplay();
-        SettingsCache::clockMode = (clock_mode::clock_mode)digit;
-        _refreshLighting = true;
+      case clock_mode::date_and_time_raw:
+      case clock_mode::stopwatch: // reached with [00]
+        selectClockMode(static_cast<clock_mode::clock_mode>(digit));
         break;
       }
       break;
     }
+  }
+
+  // switch to a clock mode
+  void selectClockMode(clock_mode::clock_mode mode)
+  {
+    _displayHandler->clearDisplay();
+    SettingsCache::clockMode = mode;
+    _refreshLighting = true;
   }
 
   // called if a operator key is pressed in clock mode
@@ -968,6 +1006,14 @@ private:
   {
     switch (op)
     {
+    case operation::decimal_separator:
+      // [.] selects the timer
+      if (_inputMode == input_mode::none)
+      {
+        selectClockMode(clock_mode::timer);
+      }
+      break;
+
 #if RPN_MODE
     case operation::clear_stack:
 #else

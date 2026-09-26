@@ -296,7 +296,7 @@ public:
   {
     if (_leds)
     {
-      _leds->setPixel(ledID, red, green, blue);
+      // the color is stored as is, the brightness is applied when it is sent to the strip
       _currentColors[ledID] = ((uint32_t)red << 16) | ((uint32_t)green << 8) | blue;
     }
   }
@@ -337,19 +337,36 @@ public:
   {
     if (_leds)
     {
-      _leds->setPixel(ledID, 0, 0, 0);
       _currentColors[ledID] = 0;
     }
   }
 
-  // update the LEDs
+  // update the LEDs applying the general LED brightness to the stored colors
   void updateLEDs()
   {
     if (_leds)
     {
+      float factor = _ledBrightness / 100.0f;
+      float scale = factor * factor;
+      for (uint16_t i = 0; i < _ledCount; i++)
+      {
+        uint32_t color = _currentColors[i];
+        _leds->setPixel(i, scaleLedChannel((color >> 16) & 0xFF, scale), scaleLedChannel((color >> 8) & 0xFF, scale), scaleLedChannel(color & 0xFF, scale));
+      }
       _leds->refresh();
     }
     notifyCommit();
+  }
+
+  // set the general brightness of the LED lighting in percent and update the LEDs
+  void setLedBrightness(uint8_t percent)
+  {
+    percent = constrain(percent, 1, 100);
+    if (percent != _ledBrightness)
+    {
+      _ledBrightness = percent;
+      updateLEDs();
+    }
   }
 
   // return the number of digits on the display board
@@ -821,7 +838,7 @@ private:
   uint16_t _shiftBufferSize;
   uint16_t _shiftBitIndex;
 
-  // per-digit crossfade state (nixie only), guarded by _fadeMux across the two tasks
+  
   uint8_t *_displayedDigit;
   uint8_t *_transitionFrom;
   unsigned long *_transitionStartMs;
@@ -829,9 +846,21 @@ private:
   time_effects::time_effects *_transitionMode;
   float *_ditherError;
   uint8_t *_ledShown = nullptr;
+  uint8_t _ledBrightness = 100; // percent
   SemaphoreHandle_t _ledCommitMutex = nullptr;
   TaskHandle_t _refreshTaskHandle;
   portMUX_TYPE _fadeMux = portMUX_INITIALIZER_UNLOCKED;
+
+  // scale one color channel
+  uint8_t scaleLedChannel(uint8_t value, float scale)
+  {
+    if (value == 0)
+    {
+      return (0);
+    }
+    uint32_t scaled = static_cast<uint32_t>(value * scale + 0.5f);
+    return (static_cast<uint8_t>(scaled < 1 ? 1 : scaled));
+  }
 
   // invoked whenever anything visible changes
   void notifyCommit() const

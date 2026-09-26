@@ -223,6 +223,9 @@ public:
       // hide some setting according to display type
       adjustVisibleSettings();
 
+      // general brightness of the LED lighting
+      _displayHandler.setLedBrightness(currentLedBrightness());
+
       // initialize calculator
       _calculator.begin(_displayHandler.getDigitCount(), _displayHandler.getDecimalSeparatorCount(), _displayHandler.hasPlusSign());
 
@@ -316,12 +319,12 @@ public:
       _keyboard.setHoldTime(2000);
 
       // turn on high voltage
-      _hvOffTimestamp = MIN_HVON_INTERVAL;
+      _hvOffTimestamp = millis() - MIN_HVON_INTERVAL - 1;
       hvON();
 
+      // display a confirmation pattern when a factory reset has been performed
       if (factoryReset)
       {
-        // flash a confirmation pattern
         showFactoryResetConfirmation();
       }
 
@@ -587,6 +590,12 @@ private:
     return (_state.dimmingActive ? SettingsCache::dimBrightness : SettingsCache::brightness);
   }
 
+  // brightness of the LED lighting in percent, depending on the dimming window
+  int currentLedBrightness() const
+  {
+    return (_state.dimmingActive ? SettingsCache::dimLedBrightness : SettingsCache::ledBrightness);
+  }
+
   // turn the high voltage on
   void hvON()
   {
@@ -719,6 +728,7 @@ private:
     _calculator.setDecimals(SettingsCache::fixedDecimals);
     _calculator.setMaxExponentLength(SettingsCache::maxExpDigits);
     _displayHandler.setDisplayBrightness(currentBrightness());
+    _displayHandler.setLedBrightness(currentLedBrightness());
     if (!_calculator.isInputPending())
     {
       // update, fixed decimals may have changed
@@ -838,7 +848,7 @@ private:
   String getTestsJSON(bool performance)
   {
     return performance ? CalcTests::runPerformanceJSON(RAT_RADIX, SettingsCache::calcPrecision)
-                        : CalcTests::runCorrectnessJSON(RAT_RADIX, SettingsCache::calcPrecision);
+                       : CalcTests::runCorrectnessJSON(RAT_RADIX, SettingsCache::calcPrecision);
   }
 #endif
 #endif
@@ -1888,6 +1898,7 @@ private:
       {
         _state.dimmingActive = true;
         _displayHandler.setDisplayBrightness(SettingsCache::dimBrightness);
+        _displayHandler.setLedBrightness(SettingsCache::dimLedBrightness);
       }
     }
     else
@@ -1896,6 +1907,7 @@ private:
       {
         _state.dimmingActive = false;
         _displayHandler.setDisplayBrightness(SettingsCache::brightness);
+        _displayHandler.setLedBrightness(SettingsCache::ledBrightness);
       }
     }
   }
@@ -2012,6 +2024,8 @@ private:
       // we have to hide all lighting settings because
       // the 7-seg LED display has no back/underlighting
       _settings.hideSetting(setting_id::ledmode, true);
+      _settings.hideSetting(setting_id::ledbrightness, true);
+      _settings.hideSetting(setting_id::dimlbrightness, true);
       _settings.hideSetting(setting_id::calcrgbmode, true);
       _settings.hideSetting(setting_id::clockrgbmode, true);
       _settings.hideSetting(setting_id::breathingmode, true);

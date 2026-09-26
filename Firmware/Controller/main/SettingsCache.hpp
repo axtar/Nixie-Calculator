@@ -37,6 +37,8 @@ public:
   inline static temperature_mode::temperature_mode temperatureMode;
   inline static temperature_cf::temperature_cf temperatureCF;
   inline static led_mode::led_mode ledMode;
+  inline static int ledBrightness;
+  inline static int dimLedBrightness;
   inline static calc_rgb_mode::calc_rgb_mode calcRGBMode;
   inline static clock_rgb_mode::clock_rgb_mode clockRGBMode;
   inline static breathing_mode::breathing_mode breathingMode;

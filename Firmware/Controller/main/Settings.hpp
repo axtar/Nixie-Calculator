@@ -142,6 +142,10 @@ public:
         setting_type::numeric, led_mode::always, led_mode::scheduled, led_mode::always,
         syncToCache<&SettingsCache::ledMode>, syncFromCache<&SettingsCache::ledMode>);
 
+    _settings[setting_id::ledbrightness] = new Setting(setting_id::ledbrightness, "ledbrightness",
+        setting_type::numeric, 100, 5, 100,
+        syncToCache<&SettingsCache::ledBrightness>, syncFromCache<&SettingsCache::ledBrightness>);
+
     _settings[setting_id::calcrgbmode] = new Setting(setting_id::calcrgbmode, "calcrgbmode",
         setting_type::numeric, calc_rgb_mode::off, calc_rgb_mode::off, calc_rgb_mode::rainbow_all,
         syncToCache<&SettingsCache::calcRGBMode>, syncFromCache<&SettingsCache::calcRGBMode>);
@@ -369,6 +373,10 @@ public:
     _settings[setting_id::dimbrightness] = new Setting(setting_id::dimbrightness, "dimbrightness",
         setting_type::numeric, 1, 1, 15,
         syncToCache<&SettingsCache::dimBrightness>, syncFromCache<&SettingsCache::dimBrightness>);
+
+    _settings[setting_id::dimlbrightness] = new Setting(setting_id::dimlbrightness, "dimlbrightness",
+        setting_type::numeric, 20, 5, 100,
+        syncToCache<&SettingsCache::dimLedBrightness>, syncFromCache<&SettingsCache::dimLedBrightness>);
 
     _settings[setting_id::dimstarttime] = new Setting(setting_id::dimstarttime, "dimstarttime",
         setting_type::time, 0, 0, MAX_TIME_INT,
