@@ -108,8 +108,6 @@ public:
         t += driftCorrection(t);
         struct timeval tv = {.tv_sec = t, .tv_usec = 0};
         settimeofday(&tv, nullptr);
-        // a new system second starts right now, restart the hundredths with it; otherwise a sync that
-        // steps the clock back leaves the seconds digit unchanged and the hundredths stuck at 99
         _centiSecondStartUs = esp_timer_get_time();
       }
       _lastTimeSyncMillis = millis();

@@ -38,7 +38,6 @@ public:
   inline static temperature_cf::temperature_cf temperatureCF;
   inline static led_mode::led_mode ledMode;
   inline static int ledBrightness;
-  inline static int dimLedBrightness;
   inline static calc_rgb_mode::calc_rgb_mode calcRGBMode;
   inline static clock_rgb_mode::clock_rgb_mode clockRGBMode;
   inline static breathing_mode::breathing_mode breathingMode;
@@ -80,6 +79,7 @@ public:
   inline static input_blinking::input_blinking inputBlinking;
   inline static int brightness;
   inline static int dimBrightness;
+  inline static int dimLedBrightness;
   inline static SCHEDULETIME dimStartTime;
   inline static SCHEDULETIME dimStopTime;
   inline static ap_auto_start::ap_auto_start apAutoStart;
