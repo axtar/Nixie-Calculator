@@ -91,8 +91,8 @@ There are several clock modes. They can be accessed directly with the [0] to [9]
 
 | Mode | Description |
 | --- | --- |
-| 10 | stopwatch |
-| 11 | timer |
+| 10 | timer |
+| 11 | stopwatch |
 
 ### Timer
 
