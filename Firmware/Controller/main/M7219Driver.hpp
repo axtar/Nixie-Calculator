@@ -40,45 +40,67 @@ constexpr uint8_t CHAR_o = 14;
 // size of character map
 constexpr uint8_t CHARMAP_SIZE = 15;
 
-// SPI 
+// SPI
 constexpr uint32_t M7219_SPI_CLOCK_HZ = 1000000;
 constexpr uint8_t M7219_SPI_MODE = SPI_MODE0;
 
 // upper bound on cascaded ICs, sizes the transfer buffer (2 bytes per IC)
 constexpr uint8_t MAX_CHAIN_SIZE = 8;
 
+// time given to the chip's supply to settle before sending SPI commands
+constexpr uint32_t POWERUP_SETTLE_MS = 20;
+
+// intensity the chip starts at 
+constexpr uint8_t DEFAULT_INTENSITY = 0x08;
+
 class M7219Driver
 {
 public:
   M7219Driver(SPIClass &spi, uint8_t dataPin, uint8_t clockPin, uint8_t loadPin, uint8_t chainSize) : _spi(spi),
-                                                                                                        _dataPin(dataPin),
-                                                                                                        _clockPin(clockPin),
-                                                                                                        _loadPin(loadPin),
-                                                                                                        _chainSize(chainSize > MAX_CHAIN_SIZE ? MAX_CHAIN_SIZE : chainSize)
+                                                                                                      _dataPin(dataPin),
+                                                                                                      _clockPin(clockPin),
+                                                                                                      _loadPin(loadPin),
+                                                                                                      _chainSize(chainSize > MAX_CHAIN_SIZE ? MAX_CHAIN_SIZE : chainSize)
   {
-    pinMode(_loadPin, OUTPUT);
-    digitalWrite(_loadPin, HIGH);
-    _spi.begin(_clockPin, -1, _dataPin, -1);
-
-    // set scan limit to max
-    setDigitCount(MAX_DIGITS);
-
-    // set decode mode and display test off
-    for (uint8_t i = 0; i < _chainSize; i++)
-    {
-      send(i, REG_DECODE_MODE, 0x00);
-      send(i, REG_DISPLAY_TEST, 0x00);
-    }
-
-    // clear display
-    blank();
-
-    // put in shutdown state
-    off();
   }
 
   virtual ~M7219Driver()
   {
+  }
+
+  // init driver
+  void begin()
+  {
+    pinMode(_loadPin, OUTPUT);
+    digitalWrite(_loadPin, HIGH);
+    _spi.begin(_clockPin, -1, _dataPin, -1);
+    delay(POWERUP_SETTLE_MS);
+
+    // initialize twice
+    for (uint8_t pass = 0; pass < 2; pass++)
+    {
+      // set scan limit to max
+      setDigitCount(MAX_DIGITS);
+
+      // set decode mode, display test off and a default intensity
+      for (uint8_t i = 0; i < _chainSize; i++)
+      {
+        send(i, REG_DECODE_MODE, 0x00);
+        send(i, REG_DISPLAY_TEST, 0x00);
+        send(i, REG_INTENSITY, DEFAULT_INTENSITY);
+      }
+
+      // clear display
+      blank();
+
+      // put in shutdown state
+      off();
+
+      if (pass == 0)
+      {
+        delay(POWERUP_SETTLE_MS);
+      }
+    }
   }
 
   // shutdown all

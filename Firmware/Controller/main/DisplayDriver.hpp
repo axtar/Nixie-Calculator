@@ -265,6 +265,11 @@ public:
       clearLEDs();
     }
 
+    if (_m7219drv)
+    {
+      _m7219drv->begin();
+    }
+
     // a dedicated background task to refresh the display
     if (!_refreshTaskHandle)
     {
