@@ -1,4 +1,16 @@
 ## Nixie calculator controller firmware
+### Version: 0.11.3
+Status:    Beta<br/>
+Date:      October 7, 2026<br/>
+ESP-IDF:   v5.5.5<br/>
+Arduino:   v3.3.12<br>
+Free Heap: 244000
+#### Changes
+- Added direct value input in menu mode
+- Some minor changes
+#### Fixes
+- Some minor fixes
+---
 ### Version: 0.11.2
 Status:    Beta<br/>
 Date:      September 26, 2026<br/>
