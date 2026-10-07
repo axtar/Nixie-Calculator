@@ -181,22 +181,34 @@ public:
     switch (region)
     {
     case 0:
-      *red = val; *green = t; *blue = p;
+      *red = val;
+      *green = t;
+      *blue = p;
       break;
     case 1:
-      *red = q; *green = val; *blue = p;
+      *red = q;
+      *green = val;
+      *blue = p;
       break;
     case 2:
-      *red = p; *green = val; *blue = t;
+      *red = p;
+      *green = val;
+      *blue = t;
       break;
     case 3:
-      *red = p; *green = q; *blue = val;
+      *red = p;
+      *green = q;
+      *blue = val;
       break;
     case 4:
-      *red = t; *green = p; *blue = val;
+      *red = t;
+      *green = p;
+      *blue = val;
       break;
     default:
-      *red = val; *green = p; *blue = q;
+      *red = val;
+      *green = p;
+      *blue = q;
       break;
     }
   }

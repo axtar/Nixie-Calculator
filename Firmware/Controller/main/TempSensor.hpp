@@ -39,6 +39,11 @@ public:
   // create the 1-Wire bus and the DS18B20 device on it, returns true on success
   bool begin()
   {
+    if (_bus)
+    {
+      return (true);
+    }
+
     onewire_bus_config_t busConfig = {};
     busConfig.bus_gpio_num = _gpioNum;
     // the board provides an external pull-up resistor on the data line

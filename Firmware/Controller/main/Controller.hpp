@@ -162,7 +162,8 @@ public:
     _state.rotationStopped = false;
     _state.scrollResult = false;
     _state.temperatureShutdown = false;
-    _lastTempCheckTimestamp = 0;
+    _lastTempCheckTimestamp = millis() - TEMP_CHECK_INTERVAL - 1;
+    _lastBoardTemp = TEMP_UNDEFINED;
     _state.dimmingActive = false;
     _settingsUpdateMutex = xSemaphoreCreateMutex();
     _state.pendingSettingsIsReset = false;
@@ -573,6 +574,7 @@ private:
   unsigned long _hvOnTimestamp;
   unsigned long _hvOnAccumulatedSeconds;
   unsigned long _lastTempCheckTimestamp;
+  float _lastBoardTemp;
   std::atomic<bool> _settingsUpdatePending{false};
   SemaphoreHandle_t _settingsUpdateMutex;
   String _pendingSettingsJSON;
@@ -814,7 +816,7 @@ private:
     info.keyboardMajor = _keyboard.getMajorVersion();
     info.keyboardMinor = _keyboard.getMinorVersion();
     info.keyboardRevision = _keyboard.getRevision();
-    float boardTempC = _clock.getBoardTemperature();
+    float boardTempC = _lastBoardTemp;
     info.boardTemperature = (SettingsCache::temperatureCF == temperature_cf::celsius) ? boardTempC : Helper::celsiusToFahrenheit(boardTempC);
     float mcuTempC = temperatureRead();
     info.mcuTemperature = (SettingsCache::temperatureCF == temperature_cf::celsius) ? mcuTempC : Helper::celsiusToFahrenheit(mcuTempC);
@@ -1489,7 +1491,11 @@ private:
       switch (_state.deviceMode)
       {
       case device_mode::menu:
-        // leave menu mode and ignore changes
+        _keyboard.setAutoRepeatInterval(0);
+        _keyboard.setFastAutoRepeatDelay(0);
+        _keyboard.setFastAutoRepeatInterval(0);
+        _keyboard.setHoldTime(2000);
+
         _displayHandler.clearDisplay();
         _displayHandler.clearLEDs();
         _state.deviceMode = _state.prevDeviceMode;
@@ -1917,7 +1923,8 @@ private:
   {
     if (millis() - _lastTempCheckTimestamp > TEMP_CHECK_INTERVAL)
     {
-      float boardTemp = _clock.getBoardTemperature(); // temperature sensor is in the RTC chip
+      float boardTemp = _clock.getBoardTemperature();
+      _lastBoardTemp = boardTemp;
       __serial_print("Board temperature: ");
       __serial_println(boardTemp);
       if (_state.temperatureShutdown)

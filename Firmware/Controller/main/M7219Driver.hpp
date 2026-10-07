@@ -50,7 +50,7 @@ constexpr uint8_t MAX_CHAIN_SIZE = 8;
 // time given to the chip's supply to settle before sending SPI commands
 constexpr uint32_t POWERUP_SETTLE_MS = 20;
 
-// intensity the chip starts at 
+// intensity the chip starts at
 constexpr uint8_t DEFAULT_INTENSITY = 0x08;
 
 class M7219Driver

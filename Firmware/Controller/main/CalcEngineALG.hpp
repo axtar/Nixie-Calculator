@@ -30,6 +30,8 @@ public:
                     _regT(nullptr),
                     _fixedDecimals(FLOAT_DECIMALS),
                     _operation(operation::none),
+                    _operationReturnCode(operation_return_code::success),
+                    _maxTrig(nullptr),
                     _notifyRegisterUpdate(nullptr)
   {
   }

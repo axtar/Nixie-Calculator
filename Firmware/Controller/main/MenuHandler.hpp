@@ -36,6 +36,7 @@ public:
                                                                     _settingsMap(_settings->getSettingsMap())
   {
     _display.clear();
+    _inputBuffer.clear();
     _digitCount = 0;
     _lastMillis = millis();
     _displayBlink = true;
@@ -51,6 +52,7 @@ public:
     _it = _settingsMap.begin();
     _digitCount = digitCount;
     _it->second->setTempValue(_it->second->get());
+    _inputBuffer.clear();
     formatDisplay(_it->second);
     _rgbPart = rgb_part::red;
     _timePart = time_part::hours;
@@ -122,10 +124,12 @@ public:
         break;
 
       case KEY_MINUS:
+        _inputBuffer.clear();
         setPrevValue();
         break;
 
       case KEY_PLUS:
+        _inputBuffer.clear();
         setNextValue();
         break;
 
@@ -134,11 +138,72 @@ public:
         break;
 
       case KEY_BACK:
-        revertValue();
+        if (_inputBuffer.length() > 0)
+        {
+          _inputBuffer.remove(_inputBuffer.length() - 1);
+          if (_inputBuffer == "-")
+          {
+            _inputBuffer.clear();
+          }
+          formatDisplay(_it->second);
+        }
+        else
+        {
+          revertValue();
+        }
         break;
 
       case KEY_CLS:
         resetValue();
+        break;
+
+      case KEY_0:
+        digitInput(0);
+        break;
+
+      case KEY_1:
+        digitInput(1);
+        break;
+
+      case KEY_2:
+        digitInput(2);
+        break;
+
+      case KEY_3:
+        digitInput(3);
+        break;
+
+      case KEY_4:
+        digitInput(4);
+        break;
+
+      case KEY_5:
+        digitInput(5);
+        break;
+
+      case KEY_6:
+        digitInput(6);
+        break;
+
+      case KEY_7:
+        digitInput(7);
+        break;
+
+      case KEY_8:
+        digitInput(8);
+        break;
+
+      case KEY_9:
+        digitInput(9);
+        break;
+
+      case KEY_00:
+        digitInput(0);
+        digitInput(0);
+        break;
+
+      case KEY_CHS:
+        toggleInputSign();
         break;
       }
     }
@@ -162,10 +227,12 @@ public:
         break;
 
       case KEY_MINUS:
+        _inputBuffer.clear();
         setPrevValue();
         break;
 
       case KEY_PLUS:
+        _inputBuffer.clear();
         setNextValue();
         break;
 
@@ -174,11 +241,72 @@ public:
         break;
 
       case KEY_C:
-        revertValue();
+        if (_inputBuffer.length() > 0)
+        {
+          _inputBuffer.remove(_inputBuffer.length() - 1);
+          if (_inputBuffer == "-")
+          {
+            _inputBuffer.clear();
+          }
+          formatDisplay(_it->second);
+        }
+        else
+        {
+          revertValue();
+        }
         break;
 
       case KEY_AC:
         resetValue();
+        break;
+
+      case KEY_0:
+        digitInput(0);
+        break;
+
+      case KEY_1:
+        digitInput(1);
+        break;
+
+      case KEY_2:
+        digitInput(2);
+        break;
+
+      case KEY_3:
+        digitInput(3);
+        break;
+
+      case KEY_4:
+        digitInput(4);
+        break;
+
+      case KEY_5:
+        digitInput(5);
+        break;
+
+      case KEY_6:
+        digitInput(6);
+        break;
+
+      case KEY_7:
+        digitInput(7);
+        break;
+
+      case KEY_8:
+        digitInput(8);
+        break;
+
+      case KEY_9:
+        digitInput(9);
+        break;
+
+      case KEY_00:
+        digitInput(0);
+        digitInput(0);
+        break;
+
+      case KEY_CHS:
+        toggleInputSign();
         break;
       }
     }
@@ -188,6 +316,7 @@ public:
   // set a setting to its default value
   void resetValue()
   {
+    _inputBuffer.clear();
     _it->second->reset();
     revertValue();
   }
@@ -195,12 +324,14 @@ public:
   // revert to previously stored value
   void revertValue()
   {
+    _inputBuffer.clear();
     _it->second->setTempValue(_it->second->get());
     formatDisplay(_it->second);
   }
 
 private:
   String _display;
+  String _inputBuffer; // digits typed so far for direct numeric entry, empty when not typing
   Settings *_settings;
   decimal_separator_position _dsp;
   const SETTINGSMAP &_settingsMap;
@@ -215,6 +346,132 @@ private:
   unsigned long _lastMillis;
   bool _displayBlink;
 
+  // append a typed digit to the input buffer
+  void digitInput(uint8_t digit)
+  {
+    setting_type type = _it->second->getSettingType();
+    if (type == setting_type::dayofweek)
+    {
+      return;
+    }
+
+    uint8_t maxLen;
+    int lower, upper;
+    if (type == setting_type::numeric)
+    {
+      lower = _it->second->getMin();
+      upper = _it->second->getMax();
+      // just enough digits for this setting's range, sign excluded (handled separately)
+      maxLen = String(max(abs(lower), abs(upper))).length();
+    }
+    else if (type == setting_type::time)
+    {
+      maxLen = 2;
+      lower = 0;
+      upper = (_timePart == time_part::hours) ? 23 : 59;
+    }
+    else
+    {
+      maxLen = 3;
+      lower = 0;
+      upper = 255;
+    }
+
+    bool negative = _inputBuffer.startsWith("-");
+    String digits = negative ? _inputBuffer.substring(1) : _inputBuffer;
+    String candidate;
+    if (digits.isEmpty() || digits.equals("0"))
+    {
+      candidate = static_cast<char>(digit + '0');
+    }
+    else if (digits.length() < maxLen)
+    {
+      candidate = digits + static_cast<char>(digit + '0');
+    }
+    else
+    {
+      return;
+    }
+    int candidateValue = candidate.toInt() * (negative ? -1 : 1);
+    if (negative ? (candidateValue < lower) : (candidateValue > upper))
+    {
+      return;
+    }
+
+    _inputBuffer = (negative ? "-" : "") + candidate;
+    formatDisplay(_it->second);
+  }
+
+  // toggle a leading minus sign on the input buffer
+  void toggleInputSign()
+  {
+    if (_it->second->getSettingType() != setting_type::numeric)
+    {
+      return;
+    }
+    bool becomesNegative = !_inputBuffer.startsWith("-");
+    String flipped = becomesNegative ? ("-" + _inputBuffer) : _inputBuffer.substring(1);
+    int flippedValue = flipped.toInt();
+    if (becomesNegative ? (flippedValue < _it->second->getMin()) : (flippedValue > _it->second->getMax()))
+    {
+      return;
+    }
+    _inputBuffer = flipped;
+    formatDisplay(_it->second);
+  }
+
+  // parse the typed input buffer
+  void applyInputBuffer()
+  {
+    int typed = _inputBuffer.toInt();
+    uint8_t hours, minutes, red, green, blue;
+
+    switch (_it->second->getSettingType())
+    {
+    case setting_type::numeric:
+      typed = constrain(typed, _it->second->getMin(), _it->second->getMax());
+      _it->second->setTempValue(typed);
+      break;
+
+    case setting_type::time:
+      Helper::intToTime(_it->second->getTempValue(), &hours, &minutes);
+      typed = constrain(typed, 0, (_timePart == time_part::hours) ? 23 : 59);
+      if (_timePart == time_part::hours)
+      {
+        hours = typed;
+      }
+      else
+      {
+        minutes = typed;
+      }
+      _it->second->setTempValue(Helper::timeToInt(hours, minutes));
+      break;
+
+    case setting_type::rgb:
+      Helper::intToRGB(_it->second->getTempValue(), &red, &green, &blue);
+      typed = constrain(typed, 0, 255);
+      switch (_rgbPart)
+      {
+      case rgb_part::red:
+        red = typed;
+        break;
+
+      case rgb_part::green:
+        green = typed;
+        break;
+
+      case rgb_part::blue:
+        blue = typed;
+        break;
+      }
+      _it->second->setTempValue(Helper::rgbToInt(red, green, blue));
+      break;
+
+    case setting_type::dayofweek:
+      break;
+    }
+  }
+
   // format the current setting as a string to be displayed
   void formatDisplay(const Setting *setting, bool blink = false)
   {
@@ -225,24 +482,41 @@ private:
     uint8_t green = 0;
     uint8_t blue = 0;
 
+    bool typing = (_inputBuffer.length() > 0);
+    int typedValue = typing ? _inputBuffer.toInt() : 0;
+
     switch (setting->getSettingType())
     {
     case setting_type::numeric:
-      if (setting->getTempValue() < 0)
+    {
+      int value = typing ? typedValue : setting->getTempValue();
+      if (value < 0)
       {
-        sprintf(buffer, "-%02d%*s%3d", setting->getId(), _digitCount - 5, " ", abs(setting->getTempValue()));
+        sprintf(buffer, "-%02d%*s%3d", setting->getId(), _digitCount - 5, " ", abs(value));
         _display = "-";
       }
       else
       {
-        sprintf(buffer, "%02d%*s%3d", setting->getId(), _digitCount - 5, " ", setting->getTempValue());
+        sprintf(buffer, "%02d%*s%3d", setting->getId(), _digitCount - 5, " ", value);
         _display.clear();
       }
       _display += buffer;
       break;
+    }
 
     case setting_type::time:
       Helper::intToTime(setting->getTempValue(), &hours, &minutes);
+      if (typing)
+      {
+        if (_timePart == time_part::hours)
+        {
+          hours = typedValue;
+        }
+        else
+        {
+          minutes = typedValue;
+        }
+      }
       switch (_timePart)
       {
       case time_part::hours:
@@ -258,6 +532,23 @@ private:
 
     case setting_type::rgb:
       Helper::intToRGB(setting->getTempValue(), &red, &green, &blue);
+      if (typing)
+      {
+        switch (_rgbPart)
+        {
+        case rgb_part::red:
+          red = typedValue;
+          break;
+
+        case rgb_part::green:
+          green = typedValue;
+          break;
+
+        case rgb_part::blue:
+          blue = typedValue;
+          break;
+        }
+      }
       switch (_rgbPart)
       {
       case rgb_part::red:
@@ -316,6 +607,7 @@ private:
     } while (_it->second->isHidden());
 
     _it->second->setTempValue(_it->second->get());
+    _inputBuffer.clear();
     _rgbPart = rgb_part::red;
     _timePart = time_part::hours;
     _dayPart = 0;
@@ -339,6 +631,7 @@ private:
     } while (_it->second->isHidden());
 
     _it->second->setTempValue(_it->second->get());
+    _inputBuffer.clear();
     _rgbPart = rgb_part::red;
     _timePart = time_part::hours;
     _dayPart = 0;
@@ -548,6 +841,12 @@ private:
   // temporarily store setting value
   void commitValue()
   {
+    if ((_inputBuffer.length() > 0) && (_inputBuffer != "-"))
+    {
+      applyInputBuffer();
+    }
+    _inputBuffer.clear();
+
     switch (_it->second->getSettingType())
     {
     case setting_type::numeric:

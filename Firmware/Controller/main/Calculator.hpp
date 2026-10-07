@@ -54,6 +54,7 @@ public:
     _notifyLongOperation = nullptr;
     _notifyRegisterUpdate = nullptr;
     _forceScientific = false;
+    _precision = 0;
     resetScrollInfo();
   }
 
@@ -76,12 +77,14 @@ public:
   {
     // set ratpak decimal separator char
     SetDecimalSeparator(DECIMAL_SEPARATOR);
+    // set precision
+    _precision = SettingsCache::calcPrecision;
     // initialize ratpak constants
-    ChangeConstants(RAT_RADIX, SettingsCache::calcPrecision);
+    ChangeConstants(RAT_RADIX, _precision);
 
     // configure calc engine
     _calcEngine.setRadix(RAT_RADIX);
-    _calcEngine.setPrecision(SettingsCache::calcPrecision);
+    _calcEngine.setPrecision(_precision);
     _calcEngine.setFixedDecimals(SettingsCache::fixedDecimals);
     _calcEngine.setMaxTrig();
 
@@ -151,7 +154,7 @@ public:
   // update the internal number
   void updateNumber() const
   {
-    _cio->setNumber(_calcEngine.getResult(), RAT_RADIX, SettingsCache::calcPrecision, _calcEngine.getFixedDecimals(), _forceScientific);
+    _cio->setNumber(_calcEngine.getResult(), RAT_RADIX, _precision, _calcEngine.getFixedDecimals(), _forceScientific);
   }
 
   // called if a key is pressed
@@ -302,7 +305,7 @@ public:
     if (p)
     {
       auto it = _lastNotifiedValues.find(regId);
-      if ((it != _lastNotifiedValues.end()) && rat_equ(p, it->second, SettingsCache::calcPrecision))
+      if ((it != _lastNotifiedValues.end()) && rat_equ(p, it->second, _precision))
       {
         return;
       }
@@ -433,7 +436,7 @@ public:
   void trimXToDisplayedValue()
   {
     PRAT p = nullptr;
-    _cio->getPRAT(&p, RAT_RADIX, SettingsCache::calcPrecision);
+    _cio->getPRAT(&p, RAT_RADIX, _precision);
     _calcEngine.setRegX(p);
     destroyrat(p);
   }
@@ -445,6 +448,7 @@ private:
   CalcEngineALG _calcEngine;
 #endif
   Settings *_settings;
+  int32_t _precision;
   uint8_t _digitCount;
   uint8_t _decimalSeparatorCount;
   bool _inputPending;
@@ -459,14 +463,14 @@ private:
   // process the result and prepare for display
   uint32_t processResult()
   {
-    uint32_t result = _cio->setNumber(_calcEngine.getResult(), RAT_RADIX, SettingsCache::calcPrecision, _calcEngine.getFixedDecimals(), _forceScientific);
+    uint32_t result = _cio->setNumber(_calcEngine.getResult(), RAT_RADIX, _precision, _calcEngine.getFixedDecimals(), _forceScientific);
     if (result != 0)
     {
       // we got an overflow error in the result
       _calcEngine.setOperationReturnCodeFromRatError(result);
       // clear result
       _calcEngine.setResult(rat_zero);
-      _cio->setNumber(rat_zero, RAT_RADIX, SettingsCache::calcPrecision, _calcEngine.getFixedDecimals(), _forceScientific);
+      _cio->setNumber(rat_zero, RAT_RADIX, _precision, _calcEngine.getFixedDecimals(), _forceScientific);
     }
     return (result);
   }
@@ -474,14 +478,14 @@ private:
   // check memory register overflow
   uint32_t checkMemResult(uint8_t index)
   {
-    uint32_t result = _cio->setNumber(_calcEngine.getMemReg(index), RAT_RADIX, SettingsCache::calcPrecision, _calcEngine.getFixedDecimals(), _forceScientific);
+    uint32_t result = _cio->setNumber(_calcEngine.getMemReg(index), RAT_RADIX, _precision, _calcEngine.getFixedDecimals(), _forceScientific);
     if (result != 0)
     {
       // clear memory register
       _calcEngine.setMemReg(rat_zero, index);
     }
     // back to result
-    result = _cio->setNumber(_calcEngine.getResult(), RAT_RADIX, SettingsCache::calcPrecision, _calcEngine.getFixedDecimals(), _forceScientific);
+    result = _cio->setNumber(_calcEngine.getResult(), RAT_RADIX, _precision, _calcEngine.getFixedDecimals(), _forceScientific);
     return (result);
   }
 
@@ -489,7 +493,7 @@ private:
   void numericInput()
   {
     PRAT p = nullptr;
-    _cio->getPRAT(&p, RAT_RADIX, SettingsCache::calcPrecision);
+    _cio->getPRAT(&p, RAT_RADIX, _precision);
     _calcEngine.handleNumericInput(p);
     destroyrat(p);
   }

@@ -216,7 +216,9 @@ public:
       // array of LED colors
       _pixelColors = new uint32_t[_ledCount];
       _currentColors = new uint32_t[_ledCount];
+      _lastSentColors = new uint32_t[_ledCount];
       memset(_currentColors, 0, _ledCount * sizeof(uint32_t));
+      memset(_lastSentColors, 0xFF, _ledCount * sizeof(uint32_t));
     }
     clear();
   };
@@ -233,6 +235,7 @@ public:
       delete _leds;
       delete[] _pixelColors;
       delete[] _currentColors;
+      delete[] _lastSentColors;
     }
     if (_m7219drv)
     {
@@ -347,10 +350,14 @@ public:
   }
 
   // update the LEDs applying the general LED brightness to the stored colors
-  void updateLEDs()
+  void updateLEDs(bool force = false)
   {
     if (_leds)
     {
+      if (!force && (memcmp(_currentColors, _lastSentColors, _ledCount * sizeof(uint32_t)) == 0))
+      {
+        return;
+      }
       float factor = _ledBrightness / 100.0f;
       float scale = factor * factor;
       for (uint16_t i = 0; i < _ledCount; i++)
@@ -359,6 +366,7 @@ public:
         _leds->setPixel(i, scaleLedChannel((color >> 16) & 0xFF, scale), scaleLedChannel((color >> 8) & 0xFF, scale), scaleLedChannel(color & 0xFF, scale));
       }
       _leds->refresh();
+      memcpy(_lastSentColors, _currentColors, _ledCount * sizeof(uint32_t));
     }
     notifyCommit();
   }
@@ -370,7 +378,7 @@ public:
     if (percent != _ledBrightness)
     {
       _ledBrightness = percent;
-      updateLEDs();
+      updateLEDs(true);
     }
   }
 
@@ -827,6 +835,7 @@ private:
   display_state _menuSign;
   uint32_t *_pixelColors;
   uint32_t *_currentColors;
+  uint32_t *_lastSentColors;
   uint8_t _dataPin;
   uint8_t _storePin;
   uint8_t _shiftPin;
@@ -843,8 +852,7 @@ private:
   uint16_t _shiftBufferSize;
   uint16_t _shiftBitIndex;
 
-  
-  uint8_t *_displayedDigit;
+    uint8_t *_displayedDigit;
   uint8_t *_transitionFrom;
   unsigned long *_transitionStartMs;
   uint16_t *_transitionDurationMs;

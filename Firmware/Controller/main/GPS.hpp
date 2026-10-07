@@ -34,6 +34,7 @@ public:
     _gpsSyncIntervalActive = GPS_SYNC_INTERVAL_SHORT;
     _initialized = false;
     _gpsMessageInterval = GPS_MSG_INTERVAL;
+    _versionRequestTimestamp = 0;
   }
 
   virtual ~GPS()
@@ -92,6 +93,7 @@ public:
     _uGPS.detach();
     _uGPS.end();
     _resetTimestamp = 0;
+    _versionRequestTimestamp = 0;
     _gpsSyncIntervalActive = GPS_SYNC_INTERVAL_SHORT;
     __serial_println("GPS shutdown");
   }
@@ -148,11 +150,10 @@ public:
       {
         if (!_uGPS.isInitialized())
         {
-          // check for elpased time since reset
-          if (millis() - _resetTimestamp > 5000) // 5 seconds
+          if ((millis() - _resetTimestamp > 5000) && (millis() - _versionRequestTimestamp > 1000))
           {
-            // time to initialize
             _uGPS.requestVersion();
+            _versionRequestTimestamp = millis();
           }
         }
         else
@@ -167,7 +168,7 @@ public:
     }
     else
     {
-      if (_initialized)
+      if (_resetTimestamp != 0)
       {
         end();
       }
@@ -186,6 +187,7 @@ private:
   unsigned long _gpsSyncTimestamp;
   unsigned long _lastSyncMillis;
   unsigned long _resetTimestamp;
+  unsigned long _versionRequestTimestamp;
   uint8_t _pinRX;
   uint8_t _pinTX;
   ubGPSTime _uGPS;

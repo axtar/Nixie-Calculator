@@ -315,6 +315,11 @@ public:
     {
       setTimeDigit(currDigit, hours10, dc, lastDigit[0], isMinuteBoundary);
     }
+    else
+    {
+      setDigit(currDigit, DIGIT_OFF);
+      lastDigit[0] = DIGIT_OFF;
+    }
     currDigit++;
     setTimeDigit(currDigit, hours01, dc, lastDigit[1], isMinuteBoundary);
     if (!space)
@@ -648,6 +653,11 @@ public:
         {
           setDecimalSeparator(currDigit - 1 + getDspOffset(), display_state::on);
         }
+        else if (c == ' ')
+        {
+          setDigit(currDigit, DIGIT_OFF, digit_content::temp);
+          currDigit++;
+        }
         else
         {
           setDigit(currDigit, static_cast<uint8_t>(c - 48), digit_content::temp);
@@ -695,6 +705,7 @@ public:
     // wait for busy task end
     while (!_taskEnd)
     {
+      vTaskDelay(1);
     }
   }
 

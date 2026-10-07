@@ -468,24 +468,24 @@ private:
     // configure server
     _server.addHandler(_ws);
     _server.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlIndex); });
+               { request->send(200, "text/html", (const uint8_t *)htmlIndex, sizeof(htmlIndex) - 1); });
     _server.on("/config", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlConfig); });
+               { request->send(200, "text/html", (const uint8_t *)htmlConfig, sizeof(htmlConfig) - 1); });
     _server.on("/status", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlStatus); });
+               { request->send(200, "text/html", (const uint8_t *)htmlStatus, sizeof(htmlStatus) - 1); });
     _server.on("/calculator", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlCalculator); });
+               { request->send(200, "text/html", (const uint8_t *)htmlCalculator, sizeof(htmlCalculator) - 1); });
     _server.on("/password", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlPassword); });
+               { request->send(200, "text/html", (const uint8_t *)htmlPassword, sizeof(htmlPassword) - 1); });
     _server.on("/timesync", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlTimeSync); });
+               { request->send(200, "text/html", (const uint8_t *)htmlTimeSync, sizeof(htmlTimeSync) - 1); });
 #if OTA_SUPPORT
     _server.on("/firmware", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlFirmware); });
+               { request->send(200, "text/html", (const uint8_t *)htmlFirmware, sizeof(htmlFirmware) - 1); });
 #endif
 #if CALC_TESTS
     _server.on("/tests", HTTP_GET, [](AsyncWebServerRequest *request)
-               { request->send(200, "text/html", htmlTests); });
+               { request->send(200, "text/html", (const uint8_t *)htmlTests, sizeof(htmlTests) - 1); });
 #endif
 
     // status information API
@@ -556,7 +556,7 @@ private:
           }
           if (rejected)
           {
-            request->send(413, "application/json", "{\"status\":\"error\"}");
+            request->send(413, "application/json", "{\"status\":\"error\",\"message\":\"Request too large\"}");
           }
           else
           {

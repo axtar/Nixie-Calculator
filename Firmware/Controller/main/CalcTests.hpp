@@ -267,7 +267,7 @@ private:
   // runs CalcIO::setNumber() on value and compares the resulting CALC_NUMBER fields
   // (what actually drives the display) against the expected base/exponent/signs
   static Outcome expectFormatted(PRAT value, uint32_t radix, int32_t precision, uint8_t digitCount, uint8_t maxExpLength,
-                                  uint8_t fixedDecimals, bool forceScientific, const ExpectedNumber &expected)
+                                 uint8_t fixedDecimals, bool forceScientific, const ExpectedNumber &expected)
   {
     CalcIO cio(digitCount, maxExpLength);
     uint32_t result = cio.setNumber(value, radix, precision, fixedDecimals, forceScientific);
@@ -324,11 +324,10 @@ private:
         {"1 / 0 -> divide by zero", "arithmetic", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(1);
-                                 divrat(a.addr(), Rat::fromInt(0).get(), precision);
-                               },
-                               CALC_E_DIVIDEBYZERO, "divide by zero");
+                                 divrat(a.addr(), Rat::fromInt(0).get(), precision); },
+                              CALC_E_DIVIDEBYZERO, "divide by zero");
          }},
         {"1/x of 4 = 0.25", "arithmetic", [](uint32_t radix, int32_t precision) -> Outcome
          {
@@ -426,11 +425,10 @@ private:
         {"sqrt(-4) -> domain error", "power", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(-4);
-                                 rootrat(a.addr(), Rat::fromInt(2).get(), radix, precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 rootrat(a.addr(), Rat::fromInt(2).get(), radix, precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
         {"regression: sqrt(2.25) - 1.5 = 0", "regression", [](uint32_t radix, int32_t precision) -> Outcome
          {
@@ -509,29 +507,26 @@ private:
         {"ln(0) -> domain error", "log-exp", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(0);
-                                 lograt(a.addr(), precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 lograt(a.addr(), precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
         {"ln(-5) -> domain error", "log-exp", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(-5);
-                                 lograt(a.addr(), precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 lograt(a.addr(), precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
         {"exp(200000) -> domain error", "log-exp", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(200000);
-                                 exprat(a.addr(), radix, precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 exprat(a.addr(), radix, precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
 
         // ------------------------------------------------------------------- trig
@@ -594,20 +589,18 @@ private:
         {"asin(1.5) -> domain error", "trig", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = fromDecimal("1.5", radix, precision);
-                                 asinanglerat(a.addr(), AngleType::Degrees, radix, precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 asinanglerat(a.addr(), AngleType::Degrees, radix, precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
         {"tan(90 deg) -> domain error", "trig", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(90);
-                                 tananglerat(a.addr(), AngleType::Degrees, radix, precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 tananglerat(a.addr(), AngleType::Degrees, radix, precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
         {"sinh(0) = 0", "trig", [](uint32_t radix, int32_t precision) -> Outcome
          {
@@ -663,29 +656,26 @@ private:
         {"(-3)! -> domain error", "factorial", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(-3);
-                                 factrat(a.addr(), radix, precision);
-                               },
-                               CALC_E_DOMAIN, "domain error");
+                                 factrat(a.addr(), radix, precision); },
+                              CALC_E_DOMAIN, "domain error");
          }},
         {"3250! -> overflow error", "factorial", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(3250);
-                                 factrat(a.addr(), radix, precision);
-                               },
-                               CALC_E_OVERFLOW, "overflow error");
+                                 factrat(a.addr(), radix, precision); },
+                              CALC_E_OVERFLOW, "overflow error");
          }},
         {"-2000! -> overflow error", "factorial", [](uint32_t radix, int32_t precision) -> Outcome
          {
            return expectThrow([&]()
-                               {
+                              {
                                  Rat a = Rat::fromInt(-2000);
-                                 factrat(a.addr(), radix, precision);
-                               },
-                               CALC_E_OVERFLOW, "overflow error");
+                                 factrat(a.addr(), radix, precision); },
+                              CALC_E_OVERFLOW, "overflow error");
          }},
         {"5 P 2 = 20", "factorial", [](uint32_t radix, int32_t precision) -> Outcome
          {

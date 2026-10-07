@@ -258,7 +258,7 @@ private:
     return (false);
   }
 
-  // set LED color 
+  // set LED color
   void setDigitLED(int index, uint8_t red, uint8_t green, uint8_t blue)
   {
     if (index >= 0 && index < MAX_CACHED_LEDS)

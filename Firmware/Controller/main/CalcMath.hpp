@@ -587,5 +587,5 @@ private:
       destroyrat(negMaxTrig);
     }
     return result;
-  }  
+  }
 };

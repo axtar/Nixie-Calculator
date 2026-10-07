@@ -148,6 +148,7 @@ public:
                 _payloadCounter(0),
                 _disabledNMEA(false)
   {
+   _message.payload = _payloadBuffer;
   }
 
   // set a callback function for message notification
@@ -225,12 +226,6 @@ public:
           {
             _message.header1 = c;
             _fieldCounter++;
-            // free memory if we missed a delete
-            if (_message.payload)
-            {
-              delete[] _message.payload;
-              _message.payload = nullptr;
-            }
           }
           break;
 
@@ -277,8 +272,6 @@ public:
           }
           else
           {
-            // allocate memory
-            _message.payload = new uint8_t[_message.payloadLength];
             _fieldCounter++;
           }
           break;
@@ -303,12 +296,6 @@ public:
           _fieldCounter = 0;
           _payloadCounter = 0;
           processMessage(&_message);
-          // free memory after processing message
-          if (_message.payload)
-          {
-            delete[] _message.payload;
-            _message.payload = nullptr;
-          }
           break;
 
         default:
@@ -497,6 +484,7 @@ private:
   GPSSTATUS _gpsStatus;
   MODULEVERSION _moduleVersion;
   UBXMESSAGE _message;
+  uint8_t _payloadBuffer[MAX_PAYLOAD]; // backs _message.payload, reused for every incoming message
   uint16_t _fieldCounter;
   uint16_t _payloadCounter;
   bool _disabledNMEA;

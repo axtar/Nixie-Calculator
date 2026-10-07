@@ -116,7 +116,7 @@ private:
   void initAddressTable()
   {
     // 14 digits and 2 signs
-    _addressTable = (DIGIT_ADDRESS *)malloc(sizeof(DIGIT_ADDRESS) * (LED_DIGITCOUNT + 2));
+    _addressTable = (DIGIT_ADDRESS *)calloc(LED_DIGITCOUNT + 2, sizeof(DIGIT_ADDRESS));
 
     _addressTable[BASE_SIGN] = {0, 0}; // the address of the calculator base sign is digit 0 of IC 0
     _addressTable[1] = {0, 1};         // the address of the first calculator digit is digit 1 of IC 0

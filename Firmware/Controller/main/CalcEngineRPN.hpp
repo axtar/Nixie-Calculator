@@ -29,7 +29,9 @@ public:
                     _regY(nullptr),
                     _regZ(nullptr),
                     _regT(nullptr),
-                    _regLastX(nullptr)
+                    _regLastX(nullptr),
+                    _operationReturnCode(operation_return_code::success),
+                    _maxTrig(nullptr)
   {
     _fixedDecimals = FLOAT_DECIMALS;
     _storePending = false;

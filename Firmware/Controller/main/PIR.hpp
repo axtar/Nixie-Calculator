@@ -99,6 +99,7 @@ public:
       {
         end();
       }
+      _presenceDetected = true;
     }
   }
 

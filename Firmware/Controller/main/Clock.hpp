@@ -73,6 +73,7 @@ public:
   virtual ~Clock()
   {
     delete (_timeZone);
+    delete (_timeZone2);
   }
 
   // initialize the clock
@@ -161,8 +162,8 @@ public:
   {
     if (_timerMode == timer_mode::running)
     {
-      _remainingMillis = (_timerSetMillis - _timerElapsedMillis) - ((esp_timer_get_time() / 1000ULL) - _timerStartMillis);
-      if (_remainingMillis > _timerSetMillis)
+      _remainingMillis = (_timerSetMillis - _timerElapsedMillis) - ((esp_timer_get_time() / 1000LL) - _timerStartMillis);
+      if (_remainingMillis <= 0)
       {
         _timerMode = timer_mode::zero;
         _remainingMillis = 0;
@@ -331,10 +332,8 @@ private:
   int _lastStopwatchColorSecond = -1;
   int _lastStopwatchColorMinute = -1;
   int _lastStopwatchColorHour = -1;
-  int _centiLastSecond = -1;      
+  int _centiLastSecond = -1;
   int64_t _centiSecondStartUs = 0;
-
-
 
   // some state variables
   int _movingLastSecond = 0;

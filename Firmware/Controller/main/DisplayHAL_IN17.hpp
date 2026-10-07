@@ -139,7 +139,7 @@ private:
   // this was introduced to simplify the routing of the driver and display PCBs
   void initTranslationTable()
   {
-    _translationTable = (TRANSLATION_TABLE_ENTRY *)malloc(sizeof(TRANSLATION_TABLE_ENTRY) * IN17_REGISTERCOUNT);
+    _translationTable = (TRANSLATION_TABLE_ENTRY *)calloc(IN17_REGISTERCOUNT, sizeof(TRANSLATION_TABLE_ENTRY));
     _translationTable[25] = {register_type::number, 0, 0};
     _translationTable[26] = {register_type::number, 0, 1};
     _translationTable[27] = {register_type::number, 0, 2};
