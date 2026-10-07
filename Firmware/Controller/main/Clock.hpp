@@ -342,17 +342,17 @@ private:
   bool _scrollingIsDate = false;
   int _scrollingTimePosition = 2;
   int _scrollingDatePosition = 13;
-  uint64_t _scrollingLastMillis = millis();
+  unsigned long _scrollingLastMillis = millis();
   uint64_t _swStartMillis = 0;
   uint64_t _swElapsedMillis = 0;
   bool _swRunning = false;
   unsigned long _inputLastMillis = millis();
   bool _inputShow = true;
-  uint64_t _timerSetMillis = 0;
-  uint64_t _timerStartMillis = 0;
-  uint64_t _timerElapsedMillis = 0;
-  uint64_t _remainingMillis = 0;
-  uint64_t _timerNotifyChangeMillis = 0;
+  int64_t _timerSetMillis = 0;
+  int64_t _timerStartMillis = 0;
+  int64_t _timerElapsedMillis = 0;
+  int64_t _remainingMillis = 0;
+  unsigned long _timerNotifyChangeMillis = 0;
 
   // compute the drift correction, in seconds, to apply to an RTC reading
   time_t driftCorrection(time_t rtcNow) const
@@ -1128,13 +1128,13 @@ private:
           {
           case timer_mode::running:
             _timerMode = timer_mode::stopped;
-            _timerElapsedMillis += (esp_timer_get_time() / 1000ULL) - _timerStartMillis;
+            _timerElapsedMillis += (esp_timer_get_time() / 1000LL) - _timerStartMillis;
             break;
 
           case timer_mode::set:
           case timer_mode::stopped:
             _timerMode = timer_mode::running;
-            _timerStartMillis = esp_timer_get_time() / 1000ULL;
+            _timerStartMillis = esp_timer_get_time() / 1000LL;
             break;
 
           case timer_mode::zero:
@@ -1166,7 +1166,7 @@ private:
   // set the timer according user input
   void setTimer()
   {
-    u_int64_t interval = 0;
+    int64_t interval = 0;
     if (_display.length() <= MAX_TIMER_INPUT)
     {
       int count = MAX_TIMER_INPUT - _display.length();
