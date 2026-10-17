@@ -214,6 +214,7 @@ Hold the [F] key for 3 seconds to enter the menu mode. The setting ID (see [Sett
 | 83 | apautostart | Enable the access point and the web server at startup ** | 0 = off (default)<br>1 = on |
 | 84 | rtcdriftcorr | RTC drift compensation in seconds per month | -60 - 60 (default 0) |
 | 85 | exttempcorr | External temperature sensor correction in 0.1 °C | -100 - 100 (default 0) |
+| 86 | statusleds | Net activity and high voltage status LEDs off or on | 0 = off<br>1 = on (default) |
 
 *(\*) not available for 7-segment LED version*
 *(\*\*) only available if WEB_SUPPORT is set to true*
