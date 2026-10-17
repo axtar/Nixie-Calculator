@@ -1,4 +1,11 @@
 ## Nixie calculator keyboard firmware
+### Version: 0.10.1
+Status:  Beta<br/>
+Date:    October 17, 2026
+#### Fixes
+  - Fixed issue with first autorepeat
+  - Added argument-length check
+---
 ### Version: 0.10.0
 Status:  Beta<br/>
 Date:    September 16, 2026
