@@ -383,6 +383,13 @@ const char htmlConfig[] = R"rawliteral(
             <option value="1">On</option>
           </select>
         </div>
+        <div class="row" data-setting="statusleds">
+          <label for="statusleds">Status LEDs (net activity / high voltage)</label>
+          <select id="statusleds" name="statusleds">
+            <option value="0">Off</option>
+            <option value="1">On</option>
+          </select>
+        </div>
       </details>
 
       <details class="section" id="section-clock">

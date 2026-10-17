@@ -121,7 +121,8 @@ namespace setting_id
     dimstoptime,     // Stop time of display dimming
     apautostart,     // Automatically start the WiFi access point off or on
     rtcdriftcorr,    // RTC drift compensation in seconds per month
-    exttempcorr      // External temperature sensor correction, in 0.1 degrees (Celsius)
+    exttempcorr,     // External temperature sensor correction, in 0.1 degrees (Celsius)
+    statusleds       // Net activity and high voltage status LEDs off or on
   };
 }
 
@@ -420,6 +421,15 @@ namespace input_blinking
 namespace ap_auto_start
 {
   enum ap_auto_start
+  {
+    off,
+    on
+  };
+}
+
+namespace status_leds
+{
+  enum status_leds
   {
     off,
     on

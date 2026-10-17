@@ -65,7 +65,7 @@ constexpr auto OTA_PWD = "FeedMeWithBytes!";
 // ratpak/calculator self-test page
 // -------------------------------------------------------------------------------
 // false -> disable
-// true  -> enable (requires WEB_SUPPORT) 
+// true  -> enable (requires WEB_SUPPORT)
 // -------------------------------------------------------------------------------
 #define CALC_TESTS false
 
