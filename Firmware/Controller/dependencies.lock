@@ -255,7 +255,7 @@ dependencies:
       type: service
     version: 1.8.2
   espressif/esp-modbus:
-    component_hash: a52eabcf5e1f81f16f730c70981e69338ea33aee9c44fa512c644d1d8942aa16
+    component_hash: 26a64a9531b5e15a1bbdb9064f2f8715df5b150bfb821dd493174a5aa7566bf8
     dependencies:
     - name: idf
       require: private
@@ -263,7 +263,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 2.1.3
+    version: 2.1.4
   espressif/esp-zboss-lib:
     component_hash: 321883d142421f65009972408287441794250057668a11abbdfd8bec77c3309a
     dependencies:
@@ -355,7 +355,7 @@ dependencies:
       type: service
     version: 2.1.0
   espressif/esp_rainmaker:
-    component_hash: 0f0f781677173826eee568d53f04b27e44fbe72c2bfc21929e4a5239fbe831d2
+    component_hash: 404b6fce47c5021a35550065a94ec66d766d0d2d31b79c3eead6b40d1dbff1cf
     dependencies:
     - name: espressif/cbor
       registry_url: https://components.espressif.com
@@ -391,14 +391,14 @@ dependencies:
     - name: espressif/rmaker_common
       registry_url: https://components.espressif.com
       require: private
-      version: '>=1.8.2'
+      version: '>=1.9.0'
     - name: idf
       require: private
       version: '>=5.1'
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.16.1
+    version: 1.17.0
   espressif/esp_schedule:
     component_hash: 52d305300abcee86034c309eb200feb2dfbc95fcbfc5b7b9dcd137763a995dbf
     dependencies:
@@ -658,7 +658,7 @@ dependencies:
       type: idf
     version: 5.5.5
   joltwallet/littlefs:
-    component_hash: 3af20a3d75c49db9dc2286fd50862c34055c9f578419ad1f2bf7ed3ed01391fe
+    component_hash: f65ef32c718e87638ee966b9b02f21639c45bed59c8d0126fd03e9c1f3275a92
     dependencies:
     - name: idf
       require: private
@@ -666,7 +666,7 @@ dependencies:
     source:
       registry_url: https://components.espressif.com
       type: service
-    version: 1.22.3
+    version: 1.23.0
 direct_dependencies:
 - esp32async/espasyncwebserver
 - espressif/arduino-esp32
