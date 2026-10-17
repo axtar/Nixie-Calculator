@@ -52,7 +52,7 @@
 // version information
 constexpr uint8_t MAJOR_VERSION = 0;
 constexpr uint8_t MINOR_VERSION = 10;
-constexpr uint8_t REVISION = 0;
+constexpr uint8_t REVISION = 1;
 constexpr auto FW_STATUS = "beta";
 
 // Set to false to disable custom serial print
@@ -166,7 +166,7 @@ void updateDataReadyPin();
 void deleteKeyHoldInfo(uint8_t keyCode);
 void setKeyHoldInfo(uint8_t keyCode);
 void initKeyHoldInfo();
-uint16_t readUInt();
+bool readUInt(uint16_t *value);
 
 void setup()
 {
@@ -218,6 +218,8 @@ void loop()
           {
           case KeyState::HOLD:
             setKeyHoldInfo((uint8_t)keypad.key[i].kchar);
+            // the first autorepeat event comes right after the hold event
+            queueKeyEvent((uint8_t)keypad.key[i].kchar, KEYSTATE_AUTOREPEAT);
             break;
 
           case KeyState::RELEASED:
@@ -400,37 +402,57 @@ void onGetVersion()
 // set new hold time value
 void onSetHoldTime()
 {
-  holdTime = readUInt();
-  keypad.setHoldTime(holdTime);
+  uint16_t value;
+  if (readUInt(&value))
+  {
+    holdTime = value;
+    keypad.setHoldTime(holdTime);
+  }
 }
 
 // set new debounce time value
 void onSetDebounceTime()
 {
-  debounceTime = readUInt();
-  keypad.setDebounceTime(debounceTime);
+  uint16_t value;
+  if (readUInt(&value))
+  {
+    debounceTime = value;
+    keypad.setDebounceTime(debounceTime);
+  }
 }
 
 // set the key repeat interval
 // set to 0 to disable auto repeat
 void onSetAutoRepeatInterval()
 {
-  autoRepeatInterval = readUInt();
-  initKeyHoldInfo();
-  __serial_println(autoRepeatInterval);
+  uint16_t value;
+  if (readUInt(&value))
+  {
+    autoRepeatInterval = value;
+    initKeyHoldInfo();
+    __serial_println(autoRepeatInterval);
+  }
 }
 
 // set the key fast repeat interval
 // set to 0 to disable fast auto repeat
 void onSetFastAutoRepeatInterval()
 {
-  fastAutoRepeatInterval = readUInt();
+  uint16_t value;
+  if (readUInt(&value))
+  {
+    fastAutoRepeatInterval = value;
+  }
 }
 
 // sets the delay before changing to fast repeat interval
 void onSetFastAutoRepeatDelay()
 {
-  fastAutoRepeatDelay = readUInt();
+  uint16_t value;
+  if (readUInt(&value))
+  {
+    fastAutoRepeatDelay = value;
+  }
 }
 
 // delete the hold timestamp for this key
@@ -456,8 +478,9 @@ void setKeyHoldInfo(uint8_t keyCode)
     if (keyHoldInfo[i].keyCode == 0)
     {
       keyHoldInfo[i].keyCode = keyCode;
-      keyHoldInfo[i].holdTimestamp = millis() + autoRepeatInterval;
-      keyHoldInfo[i].autoRepeatCount = 0;
+      keyHoldInfo[i].holdTimestamp = millis();
+      // the first autorepeat event is queued together with the hold event, count it
+      keyHoldInfo[i].autoRepeatCount = (fastAutoRepeatInterval > 0) ? 1 : 0;
       break;
     }
   }
@@ -474,16 +497,21 @@ void initKeyHoldInfo()
   }
 }
 
-// read a 2 byte unsigned integer from the wire
-uint16_t readUInt()
+// read a 2 byte unsigned integer from the wire, high byte first
+// returns false and leaves the value unchanged if the argument is incomplete
+bool readUInt(uint16_t *value)
 {
-  uint16_t result = 0;
   uint8_t loByte;
   uint8_t hiByte;
+
+  if (Wire.available() < 2)
+  {
+    return (false);
+  }
 
   hiByte = Wire.read();
   loByte = Wire.read();
 
-  result = hiByte << 8 | loByte;
-  return (result);
+  *value = hiByte << 8 | loByte;
+  return (true);
 }
