@@ -85,4 +85,5 @@ public:
   inline static ap_auto_start::ap_auto_start apAutoStart;
   inline static int rtcDriftCorr;
   inline static int extTempCorr;
+  inline static status_leds::status_leds statusLeds;
 };

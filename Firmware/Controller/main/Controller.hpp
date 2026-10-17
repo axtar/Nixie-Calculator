@@ -608,7 +608,7 @@ private:
       {
         _state.highVoltageOn = true;
         _hvOnTimestamp = millis();
-        digitalWrite(PIN_HVLED, HIGH);
+        digitalWrite(PIN_HVLED, SettingsCache::statusLeds == status_leds::on ? HIGH : LOW);
         _displayHandler.setDisplayBrightness(currentBrightness());
         if (_displayHandler.getDisplayType() != display_type::led)
         {
@@ -731,6 +731,10 @@ private:
     _calculator.setMaxExponentLength(SettingsCache::maxExpDigits);
     _displayHandler.setDisplayBrightness(currentBrightness());
     _displayHandler.setLedBrightness(currentLedBrightness());
+    digitalWrite(PIN_HVLED, (_state.highVoltageOn && (SettingsCache::statusLeds == status_leds::on)) ? HIGH : LOW);
+#if WEB_SUPPORT
+    _web.refreshNetActLed();
+#endif
     if (!_calculator.isInputPending())
     {
       // update, fixed decimals may have changed
@@ -1630,8 +1634,8 @@ private:
   // called to sync the rtc time with the gps time
   void onGPSTimeSyncEvent(time_t utc)
   {
-    // set the real time clock
-    _clock.setSystemAndRTCTime(utc, false);
+    // set the real time clock, the RTC is exact again so the drift reference moves too
+    _clock.setSystemAndRTCTime(utc, true);
     _gps.notifySynced();
 
     // notify GPS time sync

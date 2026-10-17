@@ -26,6 +26,7 @@ constexpr unsigned long TIMER_NOTIFY_ON_INTERVAL = 200;     // ms
 constexpr unsigned long TIMER_NOTIFY_OFF_INTERVAL = 1000;   // ms
 constexpr unsigned long TIME_SYNC_INTERVAL = 5 * 60 * 1000; // ms
 constexpr time_t SECONDS_PER_MONTH = 30 * 86400;            // used to scale the RTC drift correction setting
+constexpr unsigned long REF_EPOCH_STORE_INTERVAL = 3600000;  // ms, min time between throttled drift reference NVS writes
 
 enum class stopwatch_mode : uint8_t
 {
@@ -81,6 +82,8 @@ public:
   {
     setTimeZones();
     _rtc.begin();
+    // drift correction reference, kept in RAM to avoid an NVS read on every RTC sync
+    _rtcRefEpoch = _settings->getRtcRefEpoch();
     // seed the system clock from the RTC immediately
     syncTimeFromRTC(true);
   }
@@ -212,16 +215,21 @@ public:
     _temperature = temperature;
   }
 
-  // update the RTC time
-  void setSystemAndRTCTime(time_t utc, bool updateDriftReference = true)
+  // update the RTC time and the drift correction reference;
+  // frequent callers (GPS sync) pass throttleReferenceStore to limit NVS writes,
+  // the reference in RAM is always updated
+  void setSystemAndRTCTime(time_t utc, bool throttleReferenceStore = false)
   {
     struct timeval tv = {.tv_sec = utc, .tv_usec = 0};
     settimeofday(&tv, nullptr);
     _rtc.set(utc);
-    if (updateDriftReference)
+    // remember when the RTC was set, used as the reference point for drift correction
+    _rtcRefEpoch = utc;
+    if (!throttleReferenceStore || !_refEpochStored || (millis() - _lastRefEpochStoreMillis > REF_EPOCH_STORE_INTERVAL))
     {
-      // remember when the RTC was deliberately set, used as the reference point for drift correction
       _settings->setRtcRefEpoch(utc);
+      _lastRefEpochStoreMillis = millis();
+      _refEpochStored = true;
     }
   }
 
@@ -290,7 +298,8 @@ public:
   // adjust time by +/- seconds
   void adjustTime(int seconds)
   {
-    time_t t = _rtc.get() + seconds;
+    // start from the system time, it already includes the drift correction
+    time_t t = time(nullptr) + seconds;
     setSystemAndRTCTime(t);
   }
 
@@ -321,6 +330,9 @@ private:
   long _showDateSecond;
   bool _hourParamSet;
   unsigned long _lastTimeSyncMillis = 0;
+  time_t _rtcRefEpoch = 0;
+  unsigned long _lastRefEpochStoreMillis = 0;
+  bool _refEpochStored = false;
   bool _timerEnded;
   bool _timerNotifyOn;
   int _lastColorChangeSecond = -1;
@@ -361,12 +373,11 @@ private:
     {
       return (0);
     }
-    time_t refEpoch = _settings->getRtcRefEpoch();
-    if ((refEpoch == 0) || (rtcNow <= refEpoch))
+    if ((_rtcRefEpoch == 0) || (rtcNow <= _rtcRefEpoch))
     {
       return (0);
     }
-    time_t elapsed = rtcNow - refEpoch;
+    time_t elapsed = rtcNow - _rtcRefEpoch;
     return (static_cast<time_t>((static_cast<int64_t>(SettingsCache::rtcDriftCorr) * static_cast<int64_t>(elapsed)) / SECONDS_PER_MONTH));
   }
 

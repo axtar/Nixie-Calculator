@@ -397,6 +397,10 @@ public:
     _settings[setting_id::exttempcorr] = new Setting(setting_id::exttempcorr, "exttempcorr",
         setting_type::numeric, 0, -100, 100,
         syncToCache<&SettingsCache::extTempCorr>, syncFromCache<&SettingsCache::extTempCorr>);
+
+    _settings[setting_id::statusleds] = new Setting(setting_id::statusleds, "statusleds",
+        setting_type::numeric, status_leds::on, status_leds::off, status_leds::on,
+        syncToCache<&SettingsCache::statusLeds>, syncFromCache<&SettingsCache::statusLeds>);
     // clang-format on
   }
 

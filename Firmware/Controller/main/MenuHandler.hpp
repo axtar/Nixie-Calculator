@@ -493,7 +493,7 @@ private:
       if (value < 0)
       {
         sprintf(buffer, "-%02d%*s%3d", setting->getId(), _digitCount - 5, " ", abs(value));
-        _display = "-";
+        _display.clear();
       }
       else
       {

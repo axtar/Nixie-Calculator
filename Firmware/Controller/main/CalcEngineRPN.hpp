@@ -53,16 +53,12 @@ public:
     _notifyRegisterUpdate = nullptr;
   }
 
-  // handle numeric input
+  // handle numeric input, with stack lift disabled the input just replaces X
   void handleNumericInput(PRAT p)
   {
     if (!getDisableStackLift())
     {
       stackLift();
-    }
-    else
-    {
-      setRegY(getRegX());
     }
     setRegX(p);
   }
@@ -322,20 +318,21 @@ public:
     }
     else if (getRecallPending())
     {
-      if (!getDisableStackLift())
-      {
-        stackLift();
-      }
       operation op = getPendingMemMathOperation();
       if (op == operation::none)
       {
         // recall is pending, copy memory register to X register
+        if (!getDisableStackLift())
+        {
+          stackLift();
+        }
         setRegX(getMemReg(digit));
         *index = digit;
       }
       else
       {
         // do recall memory math operation, result is stored in the X register
+        // without lifting the stack (HP behavior)
         onOperation(op, digit);
       }
       result = true;
@@ -699,10 +696,10 @@ private:
     _operationReturnCode = operation_return_code::success;
   }
 
-  // do the memory math operations
+  // do the memory math operations, a following number entry lifts the stack (HP behavior)
   void onMemRegMathOperation(operation op, uint8_t digit)
   {
-    _disableStackLift = true;
+    _disableStackLift = false;
     _operationReturnCode = calculateMemMath(op, digit);
   }
 
@@ -789,7 +786,9 @@ private:
     destroyrat(p);
   }
 
-  // do the memory register math
+  // do the memory register math (HP operand order):
+  // store: Rn = Rn <op> X, recall: X = X <op> Rn
+  // note: CalcMath::calculate(&px, py, op) computes py <op> px
   operation_return_code calculateMemMath(operation op, uint8_t digit)
   {
     PRAT p = nullptr;
@@ -797,35 +796,11 @@ private:
     switch (op)
     {
     case operation::store_addition:
-      DUPRAT(p, getMemReg(digit));
-      result = CalcMath::calculate(&p, _regX, operation::addition, _radix, _precision);
-      if (result == operation_return_code::success)
-      {
-        setMemReg(p, digit);
-      }
-      break;
-
     case operation::store_subtraction:
-      DUPRAT(p, getMemReg(digit));
-      result = CalcMath::calculate(&p, _regX, operation::subtraction, _radix, _precision);
-      if (result == operation_return_code::success)
-      {
-        setMemReg(p, digit);
-      }
-      break;
-
     case operation::store_multiplication:
-      DUPRAT(p, getMemReg(digit));
-      result = CalcMath::calculate(&p, _regX, operation::multiplication, _radix, _precision);
-      if (result == operation_return_code::success)
-      {
-        setMemReg(p, digit);
-      }
-      break;
-
     case operation::store_division:
-      DUPRAT(p, getMemReg(digit));
-      result = CalcMath::calculate(&p, _regX, operation::division, _radix, _precision);
+      DUPRAT(p, _regX);
+      result = CalcMath::calculate(&p, getMemReg(digit), toArithmeticOperation(op), _radix, _precision);
       if (result == operation_return_code::success)
       {
         setMemReg(p, digit);
@@ -833,19 +808,15 @@ private:
       break;
 
     case operation::recall_addition:
-      result = CalcMath::calculate(&_regX, getMemReg(digit), operation::addition, _radix, _precision);
-      break;
-
     case operation::recall_subtracion:
-      result = CalcMath::calculate(&_regX, getMemReg(digit), operation::subtraction, _radix, _precision);
-      break;
-
     case operation::recall_multiplication:
-      result = CalcMath::calculate(&_regX, getMemReg(digit), operation::multiplication, _radix, _precision);
-      break;
-
     case operation::recall_division:
-      result = CalcMath::calculate(&_regX, getMemReg(digit), operation::division, _radix, _precision);
+      DUPRAT(p, getMemReg(digit));
+      result = CalcMath::calculate(&p, _regX, toArithmeticOperation(op), _radix, _precision);
+      if (result == operation_return_code::success)
+      {
+        setRegX(p);
+      }
       break;
 
     default: // avoid warning
@@ -853,6 +824,32 @@ private:
     }
     destroyrat(p);
     return (result);
+  }
+
+  // map a store/recall memory math operation to its arithmetic operation
+  static operation toArithmeticOperation(operation op)
+  {
+    switch (op)
+    {
+    case operation::store_addition:
+    case operation::recall_addition:
+      return (operation::addition);
+
+    case operation::store_subtraction:
+    case operation::recall_subtracion:
+      return (operation::subtraction);
+
+    case operation::store_multiplication:
+    case operation::recall_multiplication:
+      return (operation::multiplication);
+
+    case operation::store_division:
+    case operation::recall_division:
+      return (operation::division);
+
+    default:
+      return (operation::none);
+    }
   }
 
   // change angle mode, deg<->rad

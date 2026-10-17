@@ -146,9 +146,6 @@ public:
   {
     if (!_initialized)
     {
-      // turn net activity LED on
-      digitalWrite(_netActPin, HIGH);
-
       // start access point
       WiFi.softAP(_settings->getApSsid().c_str(), _settings->getApPassword().c_str());
       _ip = WiFi.softAPIP();
@@ -162,6 +159,7 @@ public:
       }
 
       _initialized = true;
+      refreshNetActLed();
     }
   }
 
@@ -173,10 +171,22 @@ public:
       // stop access point
       WiFi.softAPdisconnect(true);
 
-      // turn net activity LED off
-      digitalWrite(_netActPin, LOW);
       _initialized = false;
+      refreshNetActLed();
     }
+  }
+
+  // reflect the current AP state and the statusleds setting on the net activity LED,
+  // unless a firmware update is armed, in which case process() owns the blinking
+  void refreshNetActLed()
+  {
+#if OTA_SUPPORT
+    if (isFirmwareUpdateArmed())
+    {
+      return;
+    }
+#endif
+    digitalWrite(_netActPin, (_initialized && (SettingsCache::statusLeds == status_leds::on)) ? HIGH : LOW);
   }
 
   // set the callback function for client connection event
@@ -303,7 +313,7 @@ public:
     {
       // the arm window just expired; restore the LED to reflect the AP state
       _firmwareArmedUntil = 0;
-      digitalWrite(_netActPin, _initialized ? HIGH : LOW);
+      refreshNetActLed();
     }
 #endif
   }
@@ -316,7 +326,7 @@ public:
     {
       _firmwareArmedUntil = 0;
       // restore the LED immediately instead of waiting for process() to notice
-      digitalWrite(_netActPin, _initialized ? HIGH : LOW);
+      refreshNetActLed();
     }
     else
     {
