@@ -134,7 +134,7 @@ Hold the [F] key for 3 seconds to enter the menu mode. The setting ID (see [Sett
 | 3 | autooffmode | Auto off action after a period of no keyboard activity | 0 = auto off disabled<br>1 = shutdown high voltage<br>2 = switch to clock mode (default) |
 | 4 | autooffdelay | Delay in minutes for auto off mode | 1 - 720 (default 5) |
 | 5 | offstarttime | Start time of the scheduled high voltage shutdown | 00:00 - 23:59 (default 00:00) |
-| 6 | offstoptime | Stop time of the scheduled high voltage shutdown | 00:00 - 23:50 (default 00:00) |
+| 6 | offstoptime | Stop time of the scheduled high voltage shutdown | 00:00 - 23:59 (default 00:00) |
 | 7 | offdays | Days of the week the high voltage is off for the entire day | 0 = none (default) [bitmask] |
 | 8 | clockmode | Initial clock mode | 0 = time (default)<br>1 = time, no seconds<br>2 = moving time<br>3 = time or date<br>4 = time and date<br>5 = time and temperature<br>6 = time and date and temperature<br>7 = time with hundredths of a second<br>8 = dual time<br>9 = raw date and time<br>10 = timer<br>11 = stopwatch |
 | 9 | hourmode | 12 or 24 hours mode | 0 = 12 hours<br>1 = 24 hours (default) |
@@ -221,7 +221,7 @@ Hold the [F] key for 3 seconds to enter the menu mode. The setting ID (see [Sett
 
 ## Reducing the display on-time
 
-There are various settings available to reduce the time the display remains on. The best method is to connect the PIR module and define "pirmode" and "pirdelay" so that the display turns on only when someone is present. There are also some very basic scheduling features. You can set "autooffmode" to "on", and the display will then turn off after a specified period ("autooffdelay") of no keyboard activity. Additionally, the "offstarttime" and "offendtime" settings allow you to define a daily time window during which the display remains off. You can also use the "offdays" setting to specify days of the week (e.g., Saturday and Sunday) on which the display remains off all day. You always can temporarily turn on the display by pressing a key.
+There are various settings available to reduce the time the display remains on. The best method is to connect the PIR module and define "pirmode" and "pirdelay" so that the display turns on only when someone is present. There are also some very basic scheduling features. You can set "autooffmode" to 1 (shutdown high voltage), and the display will then turn off after a specified period ("autooffdelay") of no keyboard activity. Additionally, the "offstarttime" and "offstoptime" settings allow you to define a daily time window during which the display remains off. You can also use the "offdays" setting to specify days of the week (e.g., Saturday and Sunday) on which the display remains off all day. You always can temporarily turn on the display by pressing a key.
 
 ## Web server
 
@@ -313,9 +313,8 @@ If the calculator loses the time, please change the CR2032 battery.
 | 4 | Out of memory |
 | 5 | Indefinite result |
 | 6 | Invalid range |
-| 7 | No result |
-| 8 | Unknown operation |
-| 9 | Unknown error |
+| 7 | Unknown operation |
+| 8 | Unknown error |
 
 ## List of operations
 
