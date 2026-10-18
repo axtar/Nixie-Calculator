@@ -1,4 +1,21 @@
 ## Nixie calculator controller firmware
+### Version: 0.11.6
+Status:    Beta<br/>
+Date:      October 18, 2026<br/>
+ESP-IDF:   v5.5.5<br/>
+Arduino:   v3.3.12<br>
+Free Heap: 244000
+#### Changes
+- After three unsuccessful attempts to read the RTC temperature, the high voltage (HV) is now switched off
+- Improved RTC sync
+- Improved day-of-week handling in menu mode
+- PIR interrupt is now set to RISING
+#### Fixes
+- GPS sync now no longer ignores the validUTC flag
+- RPN: a constant (pi, e) right after a typed number no longer replaces that number if stack lift is disabled
+- ALG: constants and MR now count as entered number
+- SHIFT no longer clears after a hold or autorepeat event
+---
 ### Version: 0.11.5
 Status:    Beta<br/>
 Date:      October 17, 2026<br/>
