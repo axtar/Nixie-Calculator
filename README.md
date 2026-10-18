@@ -13,7 +13,6 @@
 >- **Start with [this document](Docs/README.md).**
 
 >[!NOTE]
-> - **Since manual coding is dead, moving forward I will only provide an AI-generated specification file, which can serve as a starting point for your own firmware. I will no longer maintain or further develop the existing firmware and will move it to the archive directory.**
 > - The project is not affiliated with any of the service providers mentioned in this repository.
 > - No HP code was used to develop the RPN firmware.
 
