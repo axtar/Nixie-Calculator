@@ -23,6 +23,10 @@ constexpr uint8_t BIT_CH = 7;      // clock halt bit, seconds register
 constexpr uint8_t BIT_HR1224 = 6;  // 12/24 hour mode bit, hours register
 constexpr uint8_t BIT_CENTURY = 7; // century bit, month register
 
+// operating range of the temperature sensor, readings outside are treated as failed reads
+constexpr float RTC_TEMP_MIN = -40.0f;
+constexpr float RTC_TEMP_MAX = 85.0f;
+
 class RTC
 {
 public:
@@ -50,19 +54,25 @@ public:
     return (writeTime(tm));
   }
 
-  // return the RTC temperature in degrees Celsius, times four
-  int16_t temperature()
+  // read the RTC temperature in degrees Celsius, returns false if the read failed
+  bool temperature(float &celsius)
   {
     Wire.beginTransmission(RTC_I2C_ADDR);
     Wire.write(REG_TEMP_MSB);
     if (Wire.endTransmission())
     {
-      return (0);
+      return (false);
     }
-    Wire.requestFrom(RTC_I2C_ADDR, (uint8_t)2);
+    if (Wire.requestFrom(RTC_I2C_ADDR, (uint8_t)2) != 2)
+    {
+      return (false);
+    }
     int8_t msb = (int8_t)Wire.read();
     uint8_t lsb = Wire.read();
-    return ((int16_t)(((int16_t)msb << 8) | lsb) / 64);
+    // register value in quarter degrees
+    int16_t quarters = (int16_t)(((int16_t)msb << 8) | lsb) / 64;
+    celsius = quarters / 4.0f;
+    return ((celsius >= RTC_TEMP_MIN) && (celsius <= RTC_TEMP_MAX));
   }
 
 private:

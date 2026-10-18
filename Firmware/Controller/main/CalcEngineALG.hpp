@@ -604,19 +604,23 @@ private:
   }
 
   // perform operations with constants
+  // a constant counts as an entered number, like a typed one
   void onConstantOperation(operation op)
   {
+    PRAT p = nullptr;
     switch (op)
     {
     case operation::pi:
     case operation::e:
     case operation::rnd:
-      CalcMath::getSpecialValue(&_regX, op, _radix, _precision);
+      CalcMath::getSpecialValue(&p, op, _radix, _precision);
+      handleNumericInput(p);
       break;
 
     default: // avoid warning
       break;
     }
+    destroyrat(p);
   }
 
   // handle memory register operations
@@ -634,7 +638,8 @@ private:
       break;
 
     case operation::memory_read:
-      setRegX(getMemReg(0));
+      // the recalled value counts as an entered number, like a typed one
+      handleNumericInput(getMemReg(0));
       break;
 
     case operation::memory_addition:

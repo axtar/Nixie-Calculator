@@ -32,7 +32,7 @@ public:
   void begin()
   {
     attachInterrupt(_pinPIR, [this]()
-                    { handlePIRTimeout(); }, HIGH);
+                    { handlePIRTimeout(); }, RISING);
     _initialized = true;
     _pirTimestamp = millis();
   }
@@ -83,6 +83,10 @@ public:
       if (!isInitialized())
       {
         begin();
+      }
+      if (digitalRead(_pinPIR) == HIGH)
+      {
+        handlePIRTimeout();
       }
       if (millis() - _pirTimestamp > SettingsCache::pirDelay)
       {

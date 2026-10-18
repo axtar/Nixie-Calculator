@@ -25,6 +25,8 @@ constexpr unsigned long MAX_TIMER_INTERVAL = (99 * 86400) + (23 * 3600) + (59 * 
 constexpr unsigned long TIMER_NOTIFY_ON_INTERVAL = 200;     // ms
 constexpr unsigned long TIMER_NOTIFY_OFF_INTERVAL = 1000;   // ms
 constexpr unsigned long TIME_SYNC_INTERVAL = 5 * 60 * 1000; // ms
+constexpr unsigned long RTC_TICK_TIMEOUT = 1100;             // ms, max wait for the next RTC second
+constexpr int64_t RTC_SYNC_TOLERANCE_US = 50000;             // us, system/RTC agreement margin
 constexpr time_t SECONDS_PER_MONTH = 30 * 86400;            // used to scale the RTC drift correction setting
 constexpr unsigned long REF_EPOCH_STORE_INTERVAL = 3600000;  // ms, min time between throttled drift reference NVS writes
 
@@ -84,8 +86,26 @@ public:
     _rtc.begin();
     // drift correction reference, kept in RAM to avoid an NVS read on every RTC sync
     _rtcRefEpoch = _settings->getRtcRefEpoch();
-    // seed the system clock from the RTC immediately
-    syncTimeFromRTC(true);
+    // seed the system clock from the RTC, aligned to the RTC's second tick
+    // (blocks for up to RTC_TICK_TIMEOUT, acceptable during startup)
+    time_t start = _rtc.get();
+    if (start != 0)
+    {
+      time_t t = start;
+      unsigned long waitStart = millis();
+      while ((t == start) && (millis() - waitStart < RTC_TICK_TIMEOUT))
+      {
+        delay(2);
+        time_t now = _rtc.get();
+        if (now != 0)
+        {
+          t = now;
+        }
+      }
+      // on timeout (RTC not ticking) the last reading is used unaligned
+      setSystemTimeFromRTC(t);
+    }
+    _lastTimeSyncMillis = millis();
   }
 
   // return the real-time clock object
@@ -101,20 +121,47 @@ public:
     _timeZone2->defineRules(SettingsCache::dstRule2, SettingsCache::stdRule2);
   }
 
-  // periodically re-sync the system clock from the RTC
-  void syncTimeFromRTC(bool force = false)
+  // called from the main loop: periodically check the system clock against the RTC
+  // and correct it only if they disagree, the correction is applied on the RTC's
+  // second tick (polled every loop, non-blocking) to keep the sub-second alignment
+  void syncTimeFromRTC()
   {
-    if (force || millis() - _lastTimeSyncMillis > TIME_SYNC_INTERVAL)
+    if (_rtcTickPending)
     {
+      // waiting for the RTC seconds to change
       time_t t = _rtc.get();
-      if (t != 0)
+      if ((t != 0) && (t != _rtcTickStart))
       {
-        t += driftCorrection(t);
-        struct timeval tv = {.tv_sec = t, .tv_usec = 0};
-        settimeofday(&tv, nullptr);
-        _centiSecondStartUs = esp_timer_get_time();
+        setSystemTimeFromRTC(t);
+        _rtcTickPending = false;
       }
+      else if (millis() - _rtcTickWaitMillis > RTC_TICK_TIMEOUT)
+      {
+        // RTC not ticking, leave the system time alone and retry at the next check
+        _rtcTickPending = false;
+      }
+      return;
+    }
+
+    if (millis() - _lastTimeSyncMillis > TIME_SYNC_INTERVAL)
+    {
       _lastTimeSyncMillis = millis();
+      time_t t = _rtc.get();
+      if (t == 0)
+      {
+        return;
+      }
+      // the RTC reading t means the RTC is somewhere in [t, t + 1 s)
+      struct timeval now;
+      gettimeofday(&now, nullptr);
+      int64_t offsetUs = (static_cast<int64_t>(now.tv_sec) - (t + driftCorrection(t))) * 1000000LL + now.tv_usec;
+      if ((offsetUs < -RTC_SYNC_TOLERANCE_US) || (offsetUs > 1000000LL + RTC_SYNC_TOLERANCE_US))
+      {
+        // system clock outside the RTC's current second, correct it on the next tick
+        _rtcTickPending = true;
+        _rtcTickStart = t;
+        _rtcTickWaitMillis = millis();
+      }
     }
   }
 
@@ -222,7 +269,11 @@ public:
   {
     struct timeval tv = {.tv_sec = utc, .tv_usec = 0};
     settimeofday(&tv, nullptr);
+    // writing the seconds register also restarts the RTC's second, both clocks now tick in step
     _rtc.set(utc);
+    // a pending RTC re-sync is obsolete now
+    _rtcTickPending = false;
+    _lastTimeSyncMillis = millis();
     // remember when the RTC was set, used as the reference point for drift correction
     _rtcRefEpoch = utc;
     if (!throttleReferenceStore || !_refEpochStored || (millis() - _lastRefEpochStoreMillis > REF_EPOCH_STORE_INTERVAL))
@@ -233,10 +284,10 @@ public:
     }
   }
 
-  // get the temperature of the RTC IC
-  float getBoardTemperature()
+  // get the temperature of the RTC IC in degrees Celsius, returns false if the read failed
+  bool getBoardTemperature(float &celsius)
   {
-    return (static_cast<float>(_rtc.temperature() / 4.0f));
+    return (_rtc.temperature(celsius));
   }
 
   // called if a key has been pressed
@@ -330,6 +381,9 @@ private:
   long _showDateSecond;
   bool _hourParamSet;
   unsigned long _lastTimeSyncMillis = 0;
+  bool _rtcTickPending = false;
+  time_t _rtcTickStart = 0;
+  unsigned long _rtcTickWaitMillis = 0;
   time_t _rtcRefEpoch = 0;
   unsigned long _lastRefEpochStoreMillis = 0;
   bool _refEpochStored = false;
@@ -365,6 +419,15 @@ private:
   int64_t _timerElapsedMillis = 0;
   int64_t _remainingMillis = 0;
   unsigned long _timerNotifyChangeMillis = 0;
+
+  // set the system clock from an RTC reading taken right at the RTC's second tick
+  void setSystemTimeFromRTC(time_t rtcTime)
+  {
+    time_t t = rtcTime + driftCorrection(rtcTime);
+    struct timeval tv = {.tv_sec = t, .tv_usec = 0};
+    settimeofday(&tv, nullptr);
+    _centiSecondStartUs = esp_timer_get_time();
+  }
 
   // compute the drift correction, in seconds, to apply to an RTC reading
   time_t driftCorrection(time_t rtcNow) const

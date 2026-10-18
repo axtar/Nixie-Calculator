@@ -61,6 +61,8 @@ public:
       stackLift();
     }
     setRegX(p);
+    // a completed number entry enables stack lift
+    _disableStackLift = false;
   }
 
   // clear all
@@ -332,7 +334,7 @@ public:
       else
       {
         // do recall memory math operation, result is stored in the X register
-        // without lifting the stack (HP behavior)
+        // without lifting the stack
         onOperation(op, digit);
       }
       result = true;
@@ -696,7 +698,7 @@ private:
     _operationReturnCode = operation_return_code::success;
   }
 
-  // do the memory math operations, a following number entry lifts the stack (HP behavior)
+  // do the memory math operations, a following number entry lifts the stack
   void onMemRegMathOperation(operation op, uint8_t digit)
   {
     _disableStackLift = false;
@@ -786,9 +788,7 @@ private:
     destroyrat(p);
   }
 
-  // do the memory register math (HP operand order):
-  // store: Rn = Rn <op> X, recall: X = X <op> Rn
-  // note: CalcMath::calculate(&px, py, op) computes py <op> px
+  // do the memory register math
   operation_return_code calculateMemMath(operation op, uint8_t digit)
   {
     PRAT p = nullptr;

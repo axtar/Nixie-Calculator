@@ -293,10 +293,13 @@ public:
       switch (state)
       {
       case key_state::pressed:
+      case key_state::hold:
+      case key_state::autorepeat:
         _shiftKeyPressed = true;
         break;
 
-      default:
+      case key_state::released:
+      case key_state::idle:
         _shiftKeyPressed = false;
         break;
       }

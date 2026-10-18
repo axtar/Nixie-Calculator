@@ -60,6 +60,9 @@ constexpr float SHUTDOWN_TEMP = 50.0;
 constexpr float RECOVER_TEMP = 45.0;
 constexpr unsigned long TEMP_CHECK_INTERVAL = 10000; // in ms
 
+// consecutive failed board temperature reads before a fail-safe shutdown
+constexpr uint8_t TEMP_READ_FAILURE_LIMIT = 3;
+
 // minimum allowed time between two high-voltage switch-on events
 constexpr unsigned long MIN_HVON_INTERVAL = 1000; // in ms
 
@@ -164,6 +167,7 @@ public:
     _state.temperatureShutdown = false;
     _lastTempCheckTimestamp = millis() - TEMP_CHECK_INTERVAL - 1;
     _lastBoardTemp = TEMP_UNDEFINED;
+    _boardTempFailures = 0;
     _state.dimmingActive = false;
     _settingsUpdateMutex = xSemaphoreCreateMutex();
     _state.pendingSettingsIsReset = false;
@@ -575,6 +579,7 @@ private:
   unsigned long _hvOnAccumulatedSeconds;
   unsigned long _lastTempCheckTimestamp;
   float _lastBoardTemp;
+  uint8_t _boardTempFailures;
   std::atomic<bool> _settingsUpdatePending{false};
   SemaphoreHandle_t _settingsUpdateMutex;
   String _pendingSettingsJSON;
@@ -821,7 +826,8 @@ private:
     info.keyboardMinor = _keyboard.getMinorVersion();
     info.keyboardRevision = _keyboard.getRevision();
     float boardTempC = _lastBoardTemp;
-    info.boardTemperature = (SettingsCache::temperatureCF == temperature_cf::celsius) ? boardTempC : Helper::celsiusToFahrenheit(boardTempC);
+    // an unreadable sensor is reported as TEMP_UNDEFINED, like the external sensor
+    info.boardTemperature = ((boardTempC == TEMP_UNDEFINED) || (SettingsCache::temperatureCF == temperature_cf::celsius)) ? boardTempC : Helper::celsiusToFahrenheit(boardTempC);
     float mcuTempC = temperatureRead();
     info.mcuTemperature = (SettingsCache::temperatureCF == temperature_cf::celsius) ? mcuTempC : Helper::celsiusToFahrenheit(mcuTempC);
     info.externalTemperature = _temperature.getTemperature();
@@ -956,12 +962,18 @@ private:
   // show board (RTC sensor) and MCU (chip die) temperature, separated by a blank tube
   void showBoardTemperature()
   {
-    float boardTempC = _clock.getBoardTemperature();
-    float boardTemp = (SettingsCache::temperatureCF == temperature_cf::celsius) ? boardTempC : Helper::celsiusToFahrenheit(boardTempC);
+    // the board temperature stays blank if the sensor can't be read
+    char board[10] = "    ";
+    float boardTempC;
+    if (_clock.getBoardTemperature(boardTempC))
+    {
+      float boardTemp = (SettingsCache::temperatureCF == temperature_cf::celsius) ? boardTempC : Helper::celsiusToFahrenheit(boardTempC);
+      sprintf(board, "%.2f", boardTemp);
+    }
     float mcuTempC = temperatureRead();
     float mcuTemp = (SettingsCache::temperatureCF == temperature_cf::celsius) ? mcuTempC : Helper::celsiusToFahrenheit(mcuTempC);
-    char buffer[20];
-    sprintf(buffer, "%.2f %.2f", boardTemp, mcuTemp);
+    char buffer[24];
+    sprintf(buffer, "%s %.2f", board, mcuTemp);
     _displayHandler.show(buffer);
   }
 
@@ -1927,20 +1939,39 @@ private:
   {
     if (millis() - _lastTempCheckTimestamp > TEMP_CHECK_INTERVAL)
     {
-      float boardTemp = _clock.getBoardTemperature();
-      _lastBoardTemp = boardTemp;
-      __serial_print("Board temperature: ");
-      __serial_println(boardTemp);
-      if (_state.temperatureShutdown)
+      float boardTemp;
+      if (_clock.getBoardTemperature(boardTemp))
       {
-        if (boardTemp <= RECOVER_TEMP)
+        _boardTempFailures = 0;
+        _lastBoardTemp = boardTemp;
+        __serial_print("Board temperature: ");
+        __serial_println(boardTemp);
+        if (_state.temperatureShutdown)
         {
-          _state.temperatureShutdown = false;
+          if (boardTemp <= RECOVER_TEMP)
+          {
+            _state.temperatureShutdown = false;
+          }
+        }
+        else if (boardTemp >= SHUTDOWN_TEMP)
+        {
+          _state.temperatureShutdown = true;
         }
       }
-      else if (boardTemp >= SHUTDOWN_TEMP)
+      else
       {
-        _state.temperatureShutdown = true;
+        // a failed read never clears a shutdown, repeated failures force one (fail-safe):
+        // without a working sensor the HV would run unprotected
+        _lastBoardTemp = TEMP_UNDEFINED;
+        if (_boardTempFailures < TEMP_READ_FAILURE_LIMIT)
+        {
+          _boardTempFailures++;
+        }
+        if (_boardTempFailures >= TEMP_READ_FAILURE_LIMIT)
+        {
+          _state.temperatureShutdown = true;
+        }
+        __serial_println("Board temperature: read failed");
       }
       _lastTempCheckTimestamp = millis();
     }

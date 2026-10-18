@@ -253,40 +253,29 @@ private:
   // sync the time with the GPS time
   void gpsTimeSync(TIMEUTC timeUTC)
   {
-    struct tm tm;
     if (millis() - _gpsSyncTimestamp > (_gpsSyncIntervalActive))
     {
-      time_t utc = time(nullptr);
-      gmtime_r(&utc, &tm);
-      if (timeUTC.timeOfWeekValid)
+      if (timeUTC.timeOfWeekValid && timeUTC.weekNumberValid && timeUTC.utcValid)
       {
-
+        struct tm tm = {};
         tm.tm_sec = timeUTC.second;
         tm.tm_min = timeUTC.minute;
         tm.tm_hour = timeUTC.hour;
-      }
-      if (timeUTC.weekNumberValid)
-      {
         tm.tm_mday = timeUTC.day;
         tm.tm_mon = timeUTC.month - 1;
         tm.tm_year = timeUTC.year - 1900;
-      }
-      if (timeUTC.timeOfWeekValid || timeUTC.weekNumberValid)
-      {
-        utc = timegmCompat(&tm);
+        time_t utc = timegmCompat(&tm);
         struct timeval tv = {.tv_sec = utc, .tv_usec = 0};
         settimeofday(&tv, nullptr);
         if (_notify)
         {
           _notify(utc);
         }
-      }
-      if (timeUTC.timeOfWeekValid && timeUTC.weekNumberValid)
-      {
         _gpsSyncIntervalActive = SettingsCache::gpsSyncInterval;
       }
       else
       {
+        // not yet usable, retry soon
         _gpsSyncIntervalActive = GPS_SYNC_INTERVAL_SHORT;
       }
       // adjust because the GPS module only sends 1 message/min

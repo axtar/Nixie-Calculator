@@ -568,20 +568,28 @@ private:
 
     case setting_type::dayofweek:
     {
-      // one digit per day (0=Sunday..6=Saturday); selected days blink, "." marks the +/- cursor
+      // one digit per day (0=Sunday..6=Saturday): selected days show their digit,
+      // unselected days are blank, independent of input blinking;
+      // "." marks the +/- cursor, on the side where the display has its decimal points
       char days[9];
       uint8_t pos = 0;
       for (uint8_t d = 0; d < 7; d++)
       {
         bool selected = Helper::isDaySelected(setting->getTempValue(), d);
-        days[pos++] = (blink && selected) ? ' ' : static_cast<char>('0' + d);
-        if (d == _dayPart)
+        bool cursor = (d == _dayPart);
+        if (cursor && (_dsp == decimal_separator_position::left))
+        {
+          days[pos++] = '.';
+        }
+        days[pos++] = selected ? static_cast<char>('0' + d) : ' ';
+        if (cursor && (_dsp == decimal_separator_position::right))
         {
           days[pos++] = '.';
         }
       }
       days[pos] = '\0';
-      sprintf(buffer, "%02d%*s%s", setting->getId(), _digitCount - 2 - pos, " ", days);
+      // pad for the 7 day digits only, the "." takes no digit position
+      sprintf(buffer, "%02d%*s%s", setting->getId(), _digitCount - 2 - 7, " ", days);
       _display = buffer;
       break;
     }
