@@ -3,7 +3,7 @@
 #### This repository contains some information and ideas for building a nixie calculator and is provided *as-is* for educational, experimental, and hobbyist purposes only. However, this repository is only intended for suitably qualified electronics engineers.
 ##
 >[!WARNING]
-> #### This is a hobbyist project. The project has not been tested for compliance with electrical, safety, or electromagnetic standards (e.g., CE, FCC).<br>
+> #### This is just a hobbyist project. The project has not been tested for compliance with electrical, safety, or electromagnetic standards (e.g., CE, FCC).<br>
 > ### If you choose to build or use the calculator, you are doing so at your own risk.
 
 >[!CAUTION]
