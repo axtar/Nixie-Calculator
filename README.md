@@ -1,18 +1,17 @@
 ## Nixie Calculator - RPN | Algebraic 
 
-<img width="150" align="left" src="Images/hobbyist.png" /><br>
-
-#### This repository contains some information and ideas for building a nixie calculator and is provided *as-is* for educational, experimental, and hobbyist purposes only. However, this repository is only intended for suitably qualified electronics engineers. The project has not been tested for compliance with electrical, safety, or electromagnetic standards (e.g., CE, FCC). 
-
+#### This repository contains some information and ideas for building a nixie calculator and is provided *as-is* for educational, experimental, and hobbyist purposes only. However, this repository is only intended for suitably qualified electronics engineers.
 ##
 >[!WARNING]
-> <img align="left" width="70" src="Images/warning_sign_small.png" />
-> #### Nixie tubes and associated circuitry operate at potentially dangerous voltages. If you choose to build or use the calculator, you are doing so at your own risk.
+> #### This is a hobbyist project; it has not been tested for compliance with electrical, safety, or electromagnetic standards (e.g., CE, FCC).<br>
+> ### If you choose to build or use the calculator, you are doing so at your own risk.
 
->[!IMPORTANT]
->- **Start with [this document](Docs/README.md).**
+>[!CAUTION]
+> <img align="left" width="50" src="Images/warning_sign_small.png" />
+> ### Nixie tubes and associated circuitry operate at potentially dangerous voltages.
 
 >[!NOTE]
+> - **Since more display types will be added this repository will be replaced with https://github.com/axtar/Retro-Calculator**
 > - The project is not affiliated with any of the service providers mentioned in this repository.
 > - No HP code was used to develop the RPN firmware.
 
